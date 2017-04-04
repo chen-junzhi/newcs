@@ -87,6 +87,19 @@ li{
 		top:80px;
 	}
 }
+.loginBox{
+	-webkit-animation:login 2s;
+	-o-animation:login 2s;
+	animation:login 2s;
+}
+@keyframes login{
+	0%{
+		top:80px;
+	}
+	100%{
+		top:-80px;
+	}
+}
 
 
 #loginMask{

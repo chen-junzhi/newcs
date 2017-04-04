@@ -34,7 +34,7 @@
    	  </div>
    </div>
    <div class="wrap">
-	   <div id="loginBox">
+	   <div id="loginBox" class="loginBox">
 		   <form  action="" method="post">
 			   <h1>登录</h1>
 			   <p>
@@ -139,7 +139,7 @@
 					flag=false;
 				}else{
 					$("#loginMask").fadeOut();
-					$("#loginBox").hide();
+					$(".loginBox").fadeOut();
 					flag=true;
 				}
 			});
