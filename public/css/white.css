@@ -1,0 +1,254 @@
+.clear{
+    clear: both;
+}
+#white_guide .company_profile{
+    padding: 130px 0px 95px;
+}
+.company_profile .profile_box{
+    width:1200px;
+    margin:0px auto;
+}
+.profile_box .profile_img{
+    width:610px;
+    height:331px;
+    float: left;
+    display: block;
+}
+.profile_box .profile_info{
+    width:505px;
+    padding-top:25px;
+    float: right;
+}
+.profile_info .profile_name{
+    font-size: 30px;
+    color:#343434;
+}
+.profile_info .profile_content{
+    height:175px;
+    line-height: 29px;
+    margin: 10px 0px 15px;
+    overflow: hidden;
+    color:#454545;
+}
+.cat_name{
+    text-align: center;
+}
+.cat_name p{
+    display: block;
+}
+.cat_name .name1{
+    color:#404040;
+    font-size: 30px;
+    margin-bottom: 3px;
+}
+.cat_name .name2{
+    color:#969696;
+    font-size: 18px;
+    font-family:  arial;
+}
+.task_list .task_menu{
+    width:1200px;
+    margin:75px auto 0px;
+    position: relative;
+    height:57px;
+}
+.task_menu .task_btn{
+    width:39px;
+    height:39px;
+    display: block;
+    position: absolute;
+    top:0;
+    z-index: 1;
+}
+.task_menu .prev_task{
+    background: url("../images/arrow3_l_ico.png") no-repeat;
+    left:0;
+}
+.task_menu .next_task{
+    background: url("../images/arrow3_r_ico.png") no-repeat;
+    right:0;
+}
+.task_menu .task_menu_list{
+    width:1070px;
+    height:100%;
+    margin:0px auto;
+    position: relative;
+    overflow: hidden;
+}
+.task_menu_list ul{
+    width:10000%;
+    height:100%;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 1;
+    display: block;
+}
+.task_menu_list ul li{
+    width:204px;
+    margin:0px 5px;
+    display: block;
+    white-space: nowrap;
+    float: left;
+    text-align: center;
+    overflow:hidden ;
+}
+.task_menu_list ul li a:hover{
+    border-bottom:2px solid #ea5e43 ;
+    color:#ea5e43;
+}
+.task_menu_item{
+    height:55px;
+    display: inline-block;
+    font-size: 24px;
+    color:#626262;
+}
+.task_list .task_text{
+    padding:70px 0px 85px;
+    background: #efefef;
+}
+.task_text .task_text_box{
+    width:1200px;
+    margin:0px auto;
+}
+.task_text_item .task_text_c{
+    width:1200px;
+    height:60px;
+    overflow: hidden;
+}
+.task_text_c .text_content_list{
+    width:6000px;
+    height:60px;
+
+}
+.text_content_list div{
+    float: left;
+    width:1200px;
+    height:60px;
+    display: none;
+}
+.text_c1.text_c2,.text_c3,.text_c4,.text_c5{
+    font-size: 15px;
+}
+.text_c1 p,.text_c2 p,.text_c3 p,.text_c4 p,.text_c5 p{
+    color:red;
+}
+.task_text_item img{
+    vertical-align: middle;
+}
+.task_text_item .share{
+   margin-left:80%;
+    position: relative;
+
+}
+.share .share_box{
+ position: absolute;
+    top:0px;
+    left:0px;
+}
+.share .share_box a{
+    height:24px;
+    width:25px;
+    display:inline-block;
+    background-image: url("../images/icons_0_24.png");
+    background-repeat: no-repeat;
+    margin:0px 2px 2px 0px;
+}
+.share_box .bds_more{
+    background-position: 0 0;
+}
+.share_box .bds_qzone{
+    background-position: 0 -52px;
+}
+.share_box .bds_tsina{
+    background-position: 0 -104px;
+}
+.share_box .bds_tqq{
+    background-position: 0 -260px;
+}
+.share_box .bds_renren{
+    background-position: 0 -208px;
+}
+.share_box .bds_weixin{
+    background-position: 0 -1612px;
+}
+.share .all_share_box{
+    width:226px;
+    border:1px solid #e9e9e9;
+    text-align: left;
+    background: #f6f6f6;
+    position: absolute;
+    top:20px;
+    left:0px;
+    z-index: 234;
+}
+.all_share_box .all_sh_top{
+    height:28px;
+    color:#626262;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 28px;
+    padding:0px 5px;
+}
+.all_share_box ul{
+    padding:5px 0px ;
+    overflow: auto;
+    display: block;
+    background: #fff;
+}
+.all_share_box ul li{
+    float: left;
+    width:100px;
+    padding:2px;
+    margin-left:6px;
+    height:28px;
+    overflow: hidden;
+}
+.all_share_box ul li a{
+    color:#565656;
+    font:12px "宋体";
+    display: block;
+    padding:5px 0px 5px 28px;
+    background-image: url(../images/icons_0_16.png);
+    background-repeat: no-repeat;
+    line-height: 18px;
+    border:1px solid  #fff;
+}
+.all_share_box ul li .popup_mshare{  background-position: 4px -2439px;  }
+.all_share_box ul li .popup_qzone{  background-position: 4px -47px;  }
+.all_share_box ul li .popup_tsina{  background-position: 4px -99px;  }
+.all_share_box ul li .popup_bdysc{  background-position: 4px -3063px;  }
+.all_share_box ul li .popup_weixin{  background-position: 4px -1607px;  }
+.all_share_box ul li .popup_bdysc{  background-position: 4px -255px;  }
+.all_share_box ul li .popup_renren{  background-position: 4px -203px;  }
+.all_share_box ul li .popup_tqq{  background-position: 4px -255px;  }
+.all_share_box ul li .popup_bdxc{  background-position: 4px -2543px;  }
+.all_share_box ul li .popup_kaixin001{  background-position: 4px -307px;  }
+.all_share_box ul li .popup_tqf{  background-position: 4px -359px;  }
+.all_share_box ul li .popup_tieba{  background-position: 4px -723px;  }
+.all_share_box ul li .popup_douban{  background-position: 4px -463px;  }
+.all_share_box ul li .popup_bdhome{  background-position: 4px -151px;  }
+.all_share_box ul li .popup_sqq{  background-position: 4px -2647px;  }
+.all_share_box ul li .popup_thx{  background-position: 4px -2491px;  }
+.all_share_box ul li .popup_ibaidu{  background-position: 4px -3115px;  }
+.all_share_box .all_sh_bottom{
+  clear:both;
+  font-size: 12px;
+  height:30px;
+  padding:0px 10px;
+  text-align:right;
+}
+.all_sh_bottom a{
+    color:#999;
+
+    padding: 5px 0 5px 28px;
+    line-height: 18px;
+    vertical-align: middle;
+    background: url("../images/icons_0_16.png") no-repeat 4px 5px;
+}
+.task-img{
+    position:relative ;
+    top:30px;
+    left:0px;
+    z-index: 1;
+}

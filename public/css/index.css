@@ -1,0 +1,578 @@
+*{
+	margin:0;
+	padding:0;
+}
+head,html{
+	height:100%;
+}
+embed{
+	border-radius:18px;
+}
+.box-btn{
+    position:fixed;
+    top:50%;
+    right:30px;
+    transform:translate(0,-50%);
+    width:14px;
+	z-index:200;
+}
+.box-btn a{
+	display:block;
+	height:100%;
+}
+.box-btn ul li{
+    width:10px;
+    height:10px;
+    margin:14px auto;
+    border-radius:50%;
+    border:1px solid white;
+    display: block;
+}
+
+.box-btn ul li.selected{
+    background: #fff;
+}
+
+.con{
+	overflow:hidden;
+}
+/*第一个div的样式*/
+.fst{
+	background:url("../../public/images/index_search_bg.jpg");
+    background-position:center;
+	background-size:cover;
+    z-index:70;
+}
+.fst .logo2{
+	position:absolute;
+	top:30%;
+	left:50%;
+}
+.first .logo2{
+	animation:first 1.5s;
+	-webkit-transform: translate(-50%,-50%);
+	-moz-transform: translate(-50%,-50%);
+	-ms-transform: translate(-50%,-50%);
+	-o-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+}
+.fst .s-p{
+	position:absolute;
+	top:30%;
+	left:50%;
+	margin-top:9%;
+	transform:translate(-50%,0);
+}
+.first .s-p{
+	-webkit-animation:first 1.5s;
+	-o-animation:first 1.5s;
+	animation:first 1.5s;
+	animation-delay:0.1s;
+}
+.fst .s-p p{
+	color:#fff;
+	font-size:22px;
+}
+.fst .s-i{
+	position:absolute;
+	top:30%;
+	left:50%;
+	transform:translate(-50%,0);
+	margin-top:13%;
+}
+.first .s-i{
+	-webkit-animation:first_input 1.5s;
+	-o-animation:first_input 1.5s;
+	animation:first_input 1.5s;
+}
+.fst .s-i input{
+	width:340px;
+	height:40px;
+	line-height:40px;
+	border-radius:20px;
+	border:none;
+	font-size:16px;
+	background:url("../../public/images/search_ico.png") #E5E0E7 no-repeat 18px 10px;
+	padding-left:55px;
+	/*CSS定义了圆角文本框，可是获得焦点时是方角，显得很难看*/
+	outline:none;
+}
+.fst .s-n{
+	position:absolute;
+	bottom:10%;
+	left:50%;
+	transform:translate(-50%,0);
+}
+.first .s-n img{
+	animation-delay:1s;
+	-webkit-animation:go_next 2s infinite;
+	-o-animation:go_next 2s infinite;
+	animation:go_next 2s infinite;
+}
+.fst .s-c{
+	position:absolute;
+	bottom:4%;
+	left:50%;
+	transform:translate(-50%,0);
+}
+.fst .s-c p{
+	color:#fff;
+}
+
+.scd{
+	background-color:#FD5868;
+    z-index:80;
+}
+.scd .second_img{
+	position:absolute;
+}
+.scd .video{
+	z-index:50;
+	width:335px;
+	height:275px;
+	-webkit-border-radius:18px;
+	-moz-border-radius:18px;
+	border-radius:18px;
+	top:136%;
+	left:12%;
+}
+.second .video{
+	-webkit-animation:video 1s;
+	-o-animation:video 1s;
+	animation:video 1s;
+}
+.scd .video2_bg{
+	top:114%;
+	left:10%;
+	z-index:20;
+}
+.second .video2_bg{
+	-webkit-animation:video_bg 1s;
+	-o-animation:video_bg 1s;
+	animation:video_bg 1s;
+}
+.scd .part_video_bg{
+	top:116%;
+	left:11%;
+	z-index:10;
+}
+.second .part_video_bg{
+	-webkit-animation:opa 4s;
+	-o-animation:opa 4s;
+	animation:opa 4s;
+}
+.scd .people{
+	top:124%;
+	left:44%;
+	z-index:30;
+}
+.second .people{
+	-webkit-animation:people 2s;
+	-o-animation:people 2s;
+	animation:people 2s;
+}
+.scd .people_shadow{
+	top:173%;
+	left:46.5%;
+	z-index:25;
+}
+.second .people_shadow{
+	-webkit-animation:people_shadow 2s;
+	-o-animation:people_shadow 2s;
+	animation:people_shadow 2s;
+}
+.scd .second_div{
+	color:#fff;
+	top:144%;
+	left:65%;
+}
+.second .second_div{
+	-webkit-animation:second_div 1s;
+	-o-animation:second_div 1s;
+	animation:second_div 1s;
+}
+
+.thd{
+	background-color:#16CAFF;
+    z-index:80;
+}
+.thd .third_ul li{
+	width:190px;
+	height:320px;
+	background:#fff;
+	margin-left:20px;
+	border:1px solid #fff;
+	float:left;
+	box-shadow:1px 1px 10px #fff;
+}
+.third .third_ul li{
+	-webkit-animation:show 0.5s;
+	-o-animation:show 0.5s;
+	animation:show 0.5s;
+	animation-fill-mode:forwards;
+}
+.thd .third_ul li:hover{
+	box-shadow:-8px 4px 46px #000;
+}
+
+.thd .third_ul li img{
+	width:100px;
+	height:120px;
+	display:block;
+	margin:40px auto 0;
+}
+.thd .third_ul li img:hover{
+	transform:rotateY(360deg);
+	transition:1s;
+}
+.thd .third_ul h3{
+	text-align: center;
+	margin:30px auto 10px;
+}
+.thd .third_ul p{
+	width: 160px;
+	text-align:left;
+	margin:5px auto 0;
+}
+.third .third_ul li.shenqing{
+	opacity:0;
+	animation-delay:0.3s;
+}
+.third .third_ul li.tijiao{
+	opacity:0;
+	animation-delay:0.6s;
+}
+.third .third_ul li.shenhe{
+	opacity:0;
+	animation-delay:0.9s;
+}
+.third .third_ul li.jiesuan{
+	opacity:0;
+	animation-delay:1.2s;
+}
+
+.fot{
+	background-color:#FF5079;
+    z-index:90;
+}
+.fot .people_game{
+    width:300px;
+    height:300px;
+    margin:150px 0 0 350px;
+    display:inline-block;
+    vertical-align:middle;
+}
+.forth .people_game{
+	-webkit-animation:people_game 2s;
+	-o-animation:people_game 2s;
+	animation:people_game 2s;
+}
+.fot .forth_div{
+    color:#fff;
+    width:370px;
+    margin:0 0 0 120px;
+    display:inline-block;
+}
+.fot .money{
+    width:680px;
+    position:absolute;
+    left:48%;
+    top:355%;
+	z-index:70;
+}
+.forth .money{
+	-webkit-animation:money 2s;
+	-o-animation:money 2s;
+	animation:money 2s;
+}
+
+.fif{
+	background-color:#FCC31A;
+    z-index:100;
+	position:relative;
+}
+.fif .fifth_div{
+    width:620px;
+    text-align:center;
+    color:#fff;
+    margin:40px auto;
+}
+.fifth .fifth_div{
+	animation:people_game 1.5s;
+}
+.fif .brush{
+    width:280px;
+    height:280px;
+    margin:0 auto;
+    display: block;
+}
+.fifth .brush{
+	-webkit-animation:brush 1s;
+	-o-animation:brush 1s;
+	animation:brush 1s;
+}
+.fif .cloud{
+    height:110px;
+    position:absolute;
+    top:73%;
+    left:15%;
+    opacity:0;
+}
+.fifth .cloud{
+	-webkit-animation:cloud 1s;
+	-o-animation:cloud 1s;
+	animation:cloud 1s;
+	animation-delay:1s;
+	animation-fill-mode:forwards;
+}
+
+.metor{
+	position:absolute;
+}
+
+.metor1{
+	top:-60px;
+	left:45%;
+	animation:meteor1 1.5s 1s ease-out infinite;
+}
+@keyframes meteor1
+{
+	from{
+		top:-60px;
+		left:45%;
+		opacity:1;
+	}
+	to{
+		top:50%;
+		left:20%;
+		opacity:0;
+	}
+}
+
+.metor2{
+	top:-120px;
+	left:60%;
+	animation:meteor2 1.5s 2s ease-out infinite;
+}
+
+@keyframes meteor2
+{
+	from{
+		top:-120px;
+		left:60%;
+		opacity:1;
+	}
+	to{
+		top:65%;
+		left:25%;
+		opacity:0;
+	}
+}
+
+.metor3{
+	top:-140px;
+	left:90%;
+	animation:meteor3 1.5s 3s ease-out infinite;
+}
+
+@keyframes meteor3
+{
+	from{
+		top:-140px;
+		left:90%;
+		opacity:1;
+	}
+	to{
+		top:55%;
+		left:45%;
+		opacity:0;
+	}
+}
+
+.metor4{
+	top:-250px;
+	left:95%;
+	animation:meteor4 1.5s 4s ease-out infinite;
+}
+
+@keyframes meteor4
+{
+	from{
+		top:-250px;
+		left:95%;
+		opacity:1;
+	}
+	to{
+		top:60%;
+		left:60%;
+		opacity:0;
+	}
+}
+
+@keyframes first{
+	0%{
+		left:-50%;
+	}
+	30%{
+		left:55%;
+	}
+	50%{
+		left:47%;
+	}
+	100%{
+		left:50%;
+	}
+}
+@keyframes first_input{
+	0%{
+		left:150%;
+	}
+	50%{
+		left:45%;
+	}
+	100%{
+		left:50%;
+	}
+}
+
+@keyframes go_next{
+	0%{
+		opacity:1;
+	}
+	50%{
+		opacity:0.2;
+	}
+	100%{
+		opacity:1;
+	}
+
+}
+
+@keyframes video{
+	0%{
+		left:-12%;
+	}
+	100%{
+		left:12%;
+	}
+}
+
+@keyframes video_bg{
+	0%{
+		left:-12%;
+	}
+	100%{
+		left:10%;
+	}
+}
+
+@keyframes opa{
+	0%{
+		opacity:0;
+	}
+	100%{
+		opacity:1;
+	}
+}
+
+@keyframes people{
+	0%{
+		top:100%;
+	}
+	30%{
+		top:129%;
+	}
+	60%{
+		top:121%;
+	}
+	100%{
+		top:124%;
+	}
+}
+
+@keyframes people_shadow{
+	0%{
+		opacity:0;
+		transform:scale(0);
+	}
+	100%{
+		opacity:1;
+		transform:scale(1);
+	}
+}
+
+@keyframes second_div{
+	0%{
+		left:160%;
+	}
+	50%{
+		left:61%;
+	}
+	70%{
+		left:67%;
+	}
+	100%{
+		left:65%;
+	}
+}
+
+@keyframes show{
+	0%{
+		opacity:0;
+		transform:scale(0);
+	}
+	100%{
+		opacity:1;
+		transform:scale(1);
+	}
+}
+
+@keyframes people_game{
+    0%{
+        transform:scale(0);
+        opacity:0;
+    }
+    50%{
+        transform:scale(1.1);
+        opacity:0.8;
+    }
+	100%{
+		transform:scale(1);
+		opacity:1;
+	}
+}
+
+@keyframes money{
+    0%{
+        top:200%;
+    }
+    30%{
+        top:359%;
+    }
+    60%{
+        top:353%;
+    }
+    100%{
+        top:355%;
+    }
+}
+
+@keyframes cloud{
+    0%{
+        transform:scale(0);
+        opacity:0;
+    }
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+@keyframes brush{
+    0%{
+       transform:rotate(0deg);
+    }
+    100%{
+       transform:rotate(-360deg);
+    }
+}

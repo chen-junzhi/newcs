@@ -1,0 +1,184 @@
+{% extends "layout.html" %}
+
+{%block main%}
+
+<!--内容开始-->
+<div id="white_guide">
+    <div class="company_profile">
+        <div class="profile_box">
+            <div class="profile_img">
+                <img src="../../public/images/1475979424.jpg" width="100%" height="100%" />
+            </div>
+            <div class="profile_info">
+                <p class="profile_name">公司介绍</p>
+                <div class="profile_content">
+                    新创生网络科技成立于2015年，公司2年来致力于网站应用板块，致力于为大学生提供服务
+                    的综合型平台。以玩游戏，听音乐，看电影为基础项目。以，创新想法、创
+                    造机会、改变生活为宗旨。让广大大学生受益，真正的去帮助他们。现目前团队共
+                    人数16人。计划在未来的1年内，改变30万人的生活。团队正已积极的态度，努力
+                    把新创生做成大家最喜欢的产品。
+                </div>
+                <a href=""><img src="../../public/images/arrow2_r_ico.png" /></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="task_list">
+        <div class="cat_name">
+            <p class="name1">任务介绍</p>
+            <p class="name2">MISSION BRIEFING</p>
+        </div>
+        <div class="task_menu">
+            <a href="javascript:;" class="task_btn prev_task"></a>
+            <a href="javascript:;" class="task_btn next_task"></a>
+            <div class="task_menu_list">
+                <ul>
+                    <li>
+                        <a href="javascript:void (0);" title="听音乐介绍" class="task_menu_item active" onclick="showPic(1)" >听音乐介绍</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" title="看电影任务介绍" class="task_menu_item" onclick="showPic(2);return false">看电影任务介绍</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" title="注册任务介绍" class="task_menu_item" onclick="showPic(3);return false">注册任务介绍</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" title="玩游戏任务介绍" class="task_menu_item" onclick="showPic(4);return false">玩游戏任务介绍</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" title="读文章任务介绍" class="task_menu_item" onclick="showPic(5);return false">读文章任务介绍</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="task_text">
+            <div class="task_text_box">
+                <div class="task_text_item" style="display: block">
+                    <div class="task_text_c">
+                        <div class="text_content_list">
+                            <div class="text_c1" style="display: block">
+                                <p>音乐是一种能产生共鸣效果的生频。新创生音乐任务。带你走进全新的、不一样的、很有动感的体验。</p>
+                                <p>注册完毕后，点击任务大厅音乐任务，然后按音乐任务的描述进行流程操作。就可以轻松赚钱。</p>
+                            </div>
+                            <div class="text_c2" >
+                                <p>电影是一种综合的现代艺术。亦正新创生所带来的不一样的体验方式。电影亦是生活的一部分。</p>
+                                <p>注册完毕后，点击任务大厅，电影任务。然后按照每部电影的描述进行流程操作，就可以轻松赚钱。</p>
+                            </div>
+                            <div class="text_c3">
+                                <p>新创生的注册任务都是通过风控的测试，专门为大家提供一些优质的注册任务。</p>
+                                <p>注册完毕后，进去任务大厅，点击注册任务，点击申请，按照任务流程一步一步去操作，最后提交相关的资料。</p>
+                            </div>
+                            <div class="text_c4">
+                                <p>新创生的玩游戏任务都是通过风控的测试，专门为大家提供一些优质的注册任务。</p>
+                                <p>注册完毕后，进去任务大厅，点击注册任务，点击申请，按照任务流程一步一步去操作，最后提交相关的资料。</p>
+                            </div>
+                            <div class="text_c5">
+                                <p>新创生的读文章任务都是通过风控的测试，专门为大家提供一些优质的注册任务。</p>
+                                <p>注册完毕后，进去任务大厅，点击注册任务，点击申请，按照任务流程一步一步去操作，最后提交相关的资料。</p>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="share">
+                        <div class="share_box">
+                            <a href="#" id="bds_more"></a>
+                            <a href="#" class="bds_qzone" title="分享到qq空间"></a>
+                            <a href="#" class="bds_tsina" title="分享到新浪微博"></a>
+                            <a href="#" class="bds_tqq" title="分享到腾讯微博"></a>
+                            <a href="#" class="bds_renren" title="分享到人人网"></a>
+                            <a href="#" class="bds_weixin" title="分享到微信"></a>
+                        </div>
+                        <div class="all_share_box" id="all_share_box" style="display: none">
+                            <div class="all_sh_top">分享到</div>
+                            <ul id="lism">
+                                <li class="re"><a href="#" class="popup_mshare">一键分享</a></li>
+                                <li><a href="#" class="popup_qzone">QQ空间</a></li>
+                                <li><a href="#" class="popup_tsina">新浪微博</a></li>
+                                <li><a href="#" class="popup_bdysc">百度云收藏</a></li>
+                                <li><a href="#" class="popup_weixin">微信</a></li>
+                                <li><a href="#" class="popup_renren">人人网</a></li>
+                                <li><a href="#" class="popup_tqq">腾讯微博</a></li>
+                                <li><a href="#" class="popup_bdxc">百度相册</a></li>
+                                <li><a href="#" class="popup_kaixin001">开心网</a></li>
+                                <li><a href="#" class="popup_tqf">腾讯朋友</a></li>
+                                <li><a href="#" class="popup_tieba">百度贴吧</a></li>
+                                <li><a href="#" class="popup_douban">豆瓣网</a></li>
+                                <li><a href="#" class="popup_bdhome">百度新首页</a></li>
+                                <li><a href="#" class="popup_sqq">QQ好友</a></li>
+                                <li><a href="#" class="popup_thx">和讯微博</a></li>
+                                <li><a href="#" class="popup_ibaidu">百度中心</a></li>
+                            </ul>
+                            <div class="all_sh_bottom"><a href="#" class="popup_more">更多...</a></div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <img src="../../public/images/img_1.png" width="100%" height="581" class="task-img" id="task-img"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    //分享显示
+  /* var alsb=document.getElementById("all_share_box");
+    var bdsmore=document.getElementById("bds_more");
+    bdsmore.onmouseover=function(){
+        alsb.style.display="block";
+        console.log(document.body.scrollTop);
+        if((document.body.scrollTop || document.documentElement.scrollTop)<=340){
+            alsb.style.top="-300px";
+        }else if((document.body.scrollTop || document.documentElement.scrollTop)>=790){
+            alsb.style.top="80px";
+        }else{
+            alsb.style.top="-40px";
+        }
+    }
+    bdsmore.onmouseout=function(){
+        setTimeout(function () {
+            alsb.style.display="none";
+        },1000);
+
+    }
+    var lis=document.getElementById("lism").getElementsByTagName("li");
+    for(var j=0;j<lis.length;j++){
+
+        lis[j].onmouseover=function (){
+            console.log(lis[this]);
+           lis[this].className="re";
+        }
+        lis[j].onmouseout=function (){
+            lis[this].className="whit";
+        }
+    }*/
+
+   $(function(){
+        var alsb=$("#all_share_box");
+        var bdsmore=$("#bds_more");
+        bdsmore.on("mouseover",function () {
+            alsb.show();
+            console.log(document.body.scrollTop);
+            if((document.body.scrollTop || document.documentElement.scrollTop)<=500){
+                alsb.css("top",-330);
+            }else if((document.body.scrollTop || document.documentElement.scrollTop)>=790){
+                alsb.css("top",80);
+            }else{
+                alsb.css("top",40);
+            }
+        });
+        bdsmore.on("mouseout",function () {
+            alsb.delay(2000).hide(0);
+        });
+
+
+    })
+
+
+</script>
+<!--内容结束-->
+
+
+{%endblock%}
+
+
+
+

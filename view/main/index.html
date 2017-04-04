@@ -1,0 +1,256 @@
+{% extends "layout.html" %}
+
+{%block main%}
+<div class="bigBox">
+    <!--按钮区-->
+    <div class="box-btn">
+         <ul>
+            <li class="selected"><a href="#1"></a></li>
+            <li><a href="#2"></a></li>
+            <li><a href="#3"></a></li>
+            <li><a href="#4"></a></li>
+            <li><a href="#5"></a></li>
+         </ul>
+    </div>
+
+    <!--内容区-->
+	<div class="box-con">
+		<div class="first con fst" id="first">
+			<img src="../../public/images/meteor.png" width="70" class="metor metor1" />
+			<img src="../../public/images/meteor.png" width="100" class="metor metor2" />
+			<img src="../../public/images/meteor.png" width="80" class="metor metor3" />
+			<img src="../../public/images/meteor.png" width="50" class="metor metor4" />
+
+			<div class="logo2"><img src="../../public/images/logo2.png"></div>
+			<div class="s-p"><p>我想玩游戏、玩注册、听音乐、看电影......</p></div>
+			<div class="s-i"><input type="text" name="text" id="text" placeholder="玩游戏、玩注册、听音乐、看电影、、、" /></div>
+			<div class="s-n"><a href="#2" onclick="scrollfiy('#2')"><img src="../../public/images/go_next_ico.png"></a></div>
+			<div class="s-c"><p>版权所有©新创生MUX,powered by alimama THX.</p></div>
+		</div>
+
+		<div class="second con scd" id="second">
+			<div class="second_img video">
+				<embed src="http://player.youku.com/player.php/Type/Folder/Fid/23680436/Ob/1/sid/XMjYxNTM0MjYxNg/v.swf" quality="high" width="100%" height="100%" align="middle" allowScriptAccess="always" allowFullScreen="true" mode="transparent" type="application/x-shockwave-flash"></embed>
+			</div>
+			<img src="../../public/images/video2_bg.png" class="second_img video2_bg" />
+			<div class="second_img part_video_bg" style="height:88%;overflow:hidden;"><img src="../../public/images/part_video_bg.png"  /></div>
+			<img src="../../public/images/people.png" class="second_img people" />
+			<img src="../../public/images/people_shadow.png" class="second_img people_shadow" />
+			<div class="second_img second_div">
+				<p><h3>电影的曲折，音乐的澎湃，游戏的激情</h3></p>
+				<p><span style="margin-top:5px;display:block;">从中找寻属于你的那份财富，新创生帮你实现</span></p>
+			</div>
+		</div>
+
+		<div class="third con thd" id="third">
+			<div class="third_div" style="color:#fff;margin:100px auto 0;width:856px;">
+				<h3 style="text-align:center;">任务流程</h3>
+				<p style="text-align:center;margin-top:15px;line-height:26px;">进入网站直接看见推荐任务，客户申请任务，进行完成任务，然后提交相应的资料，在自己的个人中心，能够看到结果，若成功，客户进行支付宝，或者银行卡提现</p>
+			</div>
+			<ul class="third_ul" style="margin:40px 0 0 150px;display:inline-block;">
+				<li class="zhuce">
+					<img src="../../public/images/reg2_ico.png" />
+					<h3>注册</h3>
+					<p>客户必须注册后，才能够做任务。注册需要客户的手机号码</p>
+				</li>
+				<li class="shenqing">
+					<img src="../../public/images/a_task2_ico.png" />
+					<h3>申请任务</h3>
+					<p>进去看到直观的推荐任务，点击后就可以申请任务</p>
+				</li>
+				<li class="tijiao">
+					<img src="../../public/images/s_task2_ico.png" />
+					<h3>提交任务内容</h3>
+					<p>申请任务完成后，就可以提交任务内容</p>
+				</li>
+				<li class="shenhe">
+					<img src="../../public/images/audit_task2_ico.png" />
+					<h3>任务审核</h3>
+					<p>后台进行审核，审核成功然后反馈到客户的个人中心</p>
+				</li>
+				<li class="jiesuan">
+					<img src="../../public/images/billing_task2_ico.png" />
+					<h3>结算任务</h3>
+					<p>客户在自己的个人中心，能够看到结果，若成功，客户进行支付宝，或者银行卡提现</p>
+				</li>
+			</ul>
+		</div>
+
+		<div class="forth con fot" id="forth">
+            <img src="../../public/images/people_game.png" class="people_game" />
+            <div class="forth_div">
+                <h3>青春，不一样的颜色</h3>
+                <p style="margin-top:5px;">听音乐，看电影，玩游戏，都能轻松赚钱，太任性了</p>
+            </div>
+            <img src="../../public/images/money.png" class="money" />
+		</div>
+
+		<div class="fifth con fif" id="fifth">
+            <div class="fifth_div">
+                <h3>创新想法·创造机会·改变生活</h3>
+                <p style="margin-top:15px;">我的责任是帮助需要帮助的同学成长！新创生是一个慈善者 我们只帮助需要帮助的人！在这里你"只会得到不会失去"！！！</p>
+            </div>
+            <img src="../../public/images/brush.png" class="brush" />
+            <img src="../../public/images/cloud.png" class="cloud">
+		</div>
+	</div>
+</div>
+
+	<script>
+		$(function(){
+			$(".con").css({"height":($(window).height())});
+			resize();
+			/*if(){
+				$("#head").hide();
+				$.scrollify("move",$(".box-btn ul li").eq(0).find("a").attr("href"));
+			}*/
+			var index=0;
+			$("#head").hide();
+			//$(".con").css({"height":$(window).height()});
+
+			$(window).resize(function () {
+				resize();
+			});
+
+			$.scrollify({
+				scrollbars:false,
+				section:".con",
+				before:function (num) {
+					/*$(".con").css({"height":$(window).height()});*/
+				},
+				after:function (num) {
+					/*$(".first .logo2").animate({"left":"-50%"}).animate({"left":"55%"}).animate({"left":"47%"}).animate({"left":"50%"});*/
+					/*clearTimeout(timer);
+					timer = setTimeout(function() {
+						$(".con").css({"height":$(window).height()});
+					},40);*/
+					/*var bigBox=$(".bigBox .box-con");
+					var container=$(".container-fluid");
+					var foot=$("#bot");
+					if(num==4){
+						foot.appendTo(bigBox);
+						//$("body").css("overflow","");
+					}else{
+						foot.insertAfter(container);
+					}*/
+				}
+			});
+
+			 /*var scrollTop=new Array();
+			 var i=0;
+			 scrollTop[0]=0;*/
+			 $(window).scroll(function() {
+				 var str=location.href;
+				 var num=str.split("#")[1];
+				 //console.log(num);
+				 if(num==1){
+					 $("#first").show();
+					 $("#first").addClass("first");
+
+					 $("#second").removeClass("second");
+					 $("#third").removeClass("third");
+					 $("#forth").removeClass("forth");
+					 $("#fifth").removeClass("fifth");
+					 //$("#second").hide();
+
+					 $("#head").fadeOut();
+				 }else if(num==2){
+					 $("#second").show();
+					 $("#second").addClass("second");
+
+					 $("#first").removeClass("first");
+					 $("#third").removeClass("third");
+					 $("#forth").removeClass("forth");
+					 $("#fifth").removeClass("fifth");
+					 //$("#third").hide();
+
+					 $("#head").fadeIn();
+				 }else if(num==3){
+					 $("#third").show();
+					 $("#third").addClass("third");
+
+					 $("#first").removeClass("first");
+					 $("#second").removeClass("second");
+					 $("#forth").removeClass("forth");
+					 $("#fifth").removeClass("fifth");
+					 //$("#second").hide();
+
+					 $("#head").fadeIn();
+				 }else if(num==4){
+					 $("#forth").show();
+					 $("#forth").addClass("forth");
+
+					 //$("#third").hide();
+
+					 $("#first").removeClass("first");
+					 $("#second").removeClass("second");
+					 $("#third").removeClass("third");
+					 $("#fifth").removeClass("fifth");
+					 //$("#fifth").hide();
+
+					 $("#head").fadeIn();
+				 }else if(num==5){
+					 //滑倒底部了最后一个div了，底部要显示出来
+					 $("#fifth").show();
+					 $("#fifth").addClass("fifth");
+
+					 $("#first").removeClass("first");
+					 $("#second").removeClass("second");
+					 $("#third").removeClass("third");
+					 $("#forth").removeClass("forth");
+					 //$("#forth").hide();
+                     $("#head").fadeIn();
+                     //$("#bot").addClass("con");
+				 }
+				 //console.log($(this).scrollTop());
+				 /*i++;
+				 scrollTop[i] = $(this).scrollTop();
+
+				 if (scrollTop[i] > scrollTop[i - 1]) {
+					 //下滚
+					 //如果当前是第一个div，让头部显示
+					 var str=location.href;
+					 num=str.split("#")[1];
+				 }else{
+					 //上滚
+					 $("#bot").hide();
+					 var str=location.href;
+					 num=str.split("#")[1];
+				 }*/
+				 //console.log(num);
+				 /*var NUM={
+					 "first":0,
+					 "second":1,
+					 "third":2,
+					 "forth":3,
+					 "fifth":4
+				 };
+				 var x=num.replace(/\"/g,"");*/
+				 //console.log(NUM.first);
+				 $(".box-btn ul li").eq(num-1).addClass("selected").siblings().removeClass("selected");
+			 });
+
+			//按钮切换div
+			$(".box-btn li").click(function () {
+				var index=$(this).index();
+				$(this).addClass("selected").siblings().removeClass("selected");
+				var str=location.href.split("/")[3];
+				//console.log(str);
+				//跳转到对应的节点$.scrollify("move","#name");
+				$.scrollify("move",$(this).find("a").attr("href"));
+				//console.log($(this).find("a").attr("href"));
+			});
+		})
+		function scrollfiy(num){
+			$.scrollify("move",num);
+		}
+		function resize(){
+            $(".con").css({"height":($(window).height())});
+			var timer;
+			clearTimeout(timer);
+			timer = setTimeout(function() {
+				$(".con").css({"height":($(window).height())});
+			},40);
+		}
+	</script>
+{%endblock%}
