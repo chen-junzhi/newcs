@@ -68,44 +68,20 @@ li{
 #loginBox{
 	width:400px;
 	height:400px;
-	z-index:900;
+	z-index:2000;
 	background:#fff;
 	position:fixed;
-	top:80px;
+	top:-400px;
 	left:50%;
 	transform:translate(-50%,0);
 	display:none;
-	-webkit-animation:loginBox 1s;
-	-o-animation:loginBox 1s;
-	animation:loginBox 1s;
-}
-@keyframes loginBox{
-	0%{
-		top:-80px;
-	}
-	100%{
-		top:80px;
-	}
-}
-.loginBox{
-	-webkit-animation:login 2s;
-	-o-animation:login 2s;
-	animation:login 2s;
-}
-@keyframes login{
-	0%{
-		top:80px;
-	}
-	100%{
-		top:-80px;
-	}
 }
 
 
 #loginMask{
 	width: 100%;
 	height: 100%;
-	z-index:899;
+	z-index:1999;
 	background: #000;
 	position: fixed;
 	top: 0;

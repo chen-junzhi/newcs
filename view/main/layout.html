@@ -34,7 +34,7 @@
    	  </div>
    </div>
    <div class="wrap">
-	   <div id="loginBox" class="loginBox">
+	   <div id="loginBox">
 		   <form  action="" method="post">
 			   <h1>登录</h1>
 			   <p>
@@ -131,18 +131,14 @@
    <!--底部结束-->
    <script>
 		$(function(){
-			var flag=true;
 			$("#login").click(function(){
-				if(flag){
-					$("#loginMask").fadeIn();
-					$("#loginBox").fadeIn();
-					flag=false;
-				}else{
-					$("#loginMask").fadeOut();
-					$(".loginBox").fadeOut();
-					flag=true;
-				}
+				$("#loginMask").fadeIn();
+				$("#loginBox").fadeIn();
+				$("#loginBox").animate({
+					top:"0px"
+				});
 			});
+			//点击关闭，用到bootstrap字体图标
 		});
    </script>
 </body>
