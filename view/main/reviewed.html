@@ -1,7 +1,54 @@
 {% extends "layout.html" %}
 {% block main %}
     <div class="box">
-        <div id="recom"><div></div></div>
+        <div id="recom">
+            <div class="rec_cont">
+                <div class="task_reclist">
+                    <img src="../../public/images/1482474118.jpeg" width="400" height="300" />
+                    <div class="reclist_title">
+                    <span class="reclist_price">
+                        <i>VIP佣金</i>
+                        <strong>5.00</strong>
+                    </span>
+                        <span class="reclist_dec">
+                        <a href="#">降龙之剑----来自宇宙的力量</a>
+                        <p>1956人已申请</p>
+                    </span>
+                    </div>
+                </div>
+                <div class="task_reclist">
+                    <img src="../../public/images/1482474118.jpeg" width="400" height="300" />
+                    <div class="reclist_title">
+                    <span class="reclist_price">
+                        <i>VIP佣金</i>
+                        <strong>5.00</strong>
+                    </span>
+                        <span class="reclist_dec">
+                        <a href="#">降龙之剑----来自宇宙的力量</a>
+                        <p>1956人已申请</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="reclist_right">
+                    <span>
+                        <img src="../../public/images/1477619826.jpg" width="165" height="124" />
+                        <a href="###">鬼神语言</a>
+                    </span>
+                    <span>
+                        <img src="../../public/images/1477619826.jpg" width="165" height="124" />
+                        <a href="###">精灵宝贝可爱GO</a>
+                    </span>
+                    <span>
+                        <img src="../../public/images/1477619826.jpg" width="165" height="124" />
+                        <a href="###">火柴人聪明</a>
+                    </span>
+                    <span>
+                        <img src="../../public/images/1477619826.jpg" width="165" height="124" />
+                        <a href="###">暖暖环游世界</a>
+                    </span>
+                </div>
+            </div>
+        </div>
         <div id="past_trail">
             <div class="caption">
                 <span class="name1">往期踪迹</span>
@@ -209,7 +256,7 @@
                     </div>
                     <div class="task_listright">
                         <div class="hot_task">
-                            <h2>推荐任务</h2>
+                            <h2>任务资讯</h2>
                             <div class="scroll_task"  style="overflow:hidden;height:355px;line-height:30px;">
                                 <ul class="holder">
                                     <li><a href="javascript:void(0)">王者荣前进的动力真的是正义吗</a></li>
@@ -231,12 +278,46 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="today_rec">
+                            <div class="today_head">
+                                <span>今日推荐</span>
+                            </div>
+                            <ul>
+                                <li><a href="javascript:void(0)">
+                                    <img src="../../public/images/1476931353.png" /></a>
+                                    <div class="hover_title">
+                                        <span>AB单声单声</span>
+                                        <p>佣金:￥5.0</p>
+                                        <a href="javascript:void(0)">任务详情</a>
+                                    </div></li>
+                                <li><a href="javascript:void(0)">
+                                    <img src="../../public/images/1476931353.png" /></a>
+                                    <div class="hover_title">
+                                        <span>AB单声单声</span>
+                                        <p>佣金:￥5.0</p>
+                                        <a href="javascript:void(0)">任务详情</a>
+                                    </div></li>
+                                <li style="border: 1px solid #ccc"><a href="javascript:void(0)"><img src="../../public/images/1476931353.png" /></a>
+                                    <div class="hover_title">
+                                        <span>AB单声单声</span>
+                                        <p>佣金:￥5.0</p>
+                                        <a href="javascript:void(0)">任务详情</a>
+                                    </div></li>
+                            </ul>
+                        </div>
+                        <div style="position:relative">
+                            <a id="btn_top"></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 <script>
+
+
+
     //推荐任务栏任务滚动
     function AutoScroll(obj) {
         $(obj).find("ul:first").animate({
@@ -259,11 +340,32 @@
         timer=setInterval('AutoScroll(".scroll_task")', 1500)
     });
 
+
     //往期踪迹导航栏
     var lis=$(".past_nav li");
     lis.on("click",function(){  //返回被选元素的所有同胞元素
         $(this).addClass("active").siblings().removeClass("active");
     });
+
+
+    //返回顶部
+    var btn_top=$("#btn_top");
+    btn_top.on("click",function(){
+        $("body").animate({scrollTop: 0},"slow");
+    });
+    if($(window).scrollTop() > 460){
+        btn_top.fadeIn(600);
+    }
+    $(window).scroll(function(){
+        if($(window).scrollTop() > 460){
+            btn_top.fadeIn(600);
+        }else{
+            btn_top.fadeOut(600);
+        }
+    });
+
+
+
 
 </script>
 {%endblock%}
