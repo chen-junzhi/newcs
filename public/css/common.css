@@ -66,8 +66,8 @@ li{
 }
 
 #loginBox{
-	width:400px;
-	height:400px;
+	width:384px;
+	padding:50px 24px 24px 24px;
 	z-index:2000;
 	background:#fff;
 	position:fixed;
@@ -76,7 +76,67 @@ li{
 	transform:translate(-50%,0);
 	display:none;
 }
+#loginBox h1{
+	font-weight:normal;
+	font-size:30px;
+}
+#loginBox h1 span{
+	font-size: 14px;
+	color: #999;
+	padding: 10px 0px;
+	float: right;
+}
+#loginBox h1 span a{
+	color: #c32854;
+	margin-left: 5px;
+}
+.login_content{
+	margin: 30px 0px;
+}
+.login_content span {
+	display: block;
+	margin: 10px 0px;
+}
+.login_content span input {
+	width: 90%;
+	height: 45px;
+	line-height: 45px;
+	padding: 0 5%;
+	border: 1px solid #dae2e5;
+	color: #999;
+}
+.login_content span button {
+	width: 100%;
+	height: 45px;
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	background: #c32854;
+}
+.login_content .msg{
+	display: block;
+	padding-top: 5px;
+	color: #f00;
+}
 
+.login_close {
+	width: 19px;
+	height: 19px;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+}
+button{
+	cursor: pointer;
+	border: none;
+	background: none;
+}
+.login_close img{
+	transition:all 0.5s;
+}
+.login_close img:hover{
+	transform:rotate(180deg);
+}
 
 #loginMask{
 	width: 100%;
