@@ -3,6 +3,11 @@
     margin:0px auto;
     font-family: "微软雅黑";
 }
+body{
+    font-family: tahoma,Arial,"Microsoft YaHei",SimSun;
+    font-size: 14px;
+    color: #333;
+}
 li{
     list-style: none;
 }
@@ -12,12 +17,87 @@ a{
 .box{
     min-width:1200px;
 }
+
+/*头部大图*/
 #recom{
     width:100%;
     min-width:1200px;
     height:350px;
     margin-top:80px;
     background:url(../../public/images/task_reccombg.jpg) center center no-repeat;
+}
+.rec_cont{
+    padding:0px 0px 0px 90px;
+}
+.task_reclist{
+    float: left;
+    width: 400px;
+    height: 300px;
+    margin: 25px 15px 25px 0px;
+    position: relative;
+}
+.reclist_title{
+    width:400px;
+    position:absolute;
+    bottom:0px;;
+    left:0px;
+}
+.reclist_title span{
+    display: inline-block;
+    float: left;
+    color: #fff;
+}
+.reclist_price{
+    width: 70px;
+    background: #ea5e44;
+    padding: 5px;
+    text-align: center;
+}
+.reclist_price i{
+    display: block;
+    font-style: normal;
+    font-size: 12px;
+}
+.reclist_price strong{
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+}
+.reclist_dec{
+    width: 320px;
+    height:52px;
+    background: rgba(198,198,198,0.6);
+}
+.reclist_dec a{
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin:0px 0px 3px 10px;
+}
+.rec_cont a:hover{
+    text-decoration: underline;
+}
+.reclist_dec p{
+    color: #ddd;
+    margin:0px 0px 0px 10px;
+}
+.reclist_right{
+    float: right;
+    width: 410px;
+    margin: 25px 0px 25px 0px;
+    overflow: hidden;
+}
+.reclist_right span{
+    display: block;
+    width: 140px;
+    float: left;
+    margin: 0px 45px 5px 0px;
+}
+.reclist_right span a{
+    display: block;
+    line-height: 24px;
+    color: #fff;
+    overflow: hidden;
 }
 
 /*往期踪迹栏目*/
@@ -82,7 +162,7 @@ a{
     display: block;
     width: 18px;
     height: 18px;
-    background: url(../../public/images/searchico2.png) no-repeat;
+    background:url(../../public/images/searchico2.png) no-repeat;
     position: absolute;
     right: 8px;
     top: 6px;
@@ -226,7 +306,6 @@ a{
 .hot_task{
     background: #e5e5e5;
     padding: 0px 10px 10px 10px;
-    margin-bottom: 20px;
 }
 .hot_task h2{
     display: block;
@@ -251,4 +330,90 @@ a{
 }
 .hot_task .scroll_task .holder li a:hover{
     color: #ea5e44;
+}
+
+/*今日推荐*/
+.today_rec{
+    margin-top:35px;
+}
+.today_head{
+    width: 222px;
+    height:45px;
+    font-size:20px;
+    color:#fff;
+    background:rgba(234,94,68,0.8);
+    position: relative;
+    text-align: center;
+    margin-bottom:5px;
+}
+.today_head span{
+    height:30px;
+    display: block;
+    border:1px solid #fff;
+    width:200px;
+    position: absolute;
+    top:7px;
+    left:10px;
+}
+.today_rec ul li{
+    width:220px;
+    height:185px;
+    border: 1px solid #ccc;
+    border-bottom:none;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+.today_rec ul li img{
+    width:220px;
+    height:183px;
+}
+.hover_title{
+    position: absolute;
+    top:100%;
+}
+.hover_title span{
+    font-size:14px;
+    padding-top:45px;
+    display: block;
+}
+.hover_title p{
+    font-size:16px;
+    padding-top:10px;
+}
+.hover_title a{
+    display: block;
+    margin-top:10px;
+    background-color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 7px 10px;
+    outline: none;
+    width: 40%;
+    color:#ea5e44;
+}
+.today_rec ul li:hover .hover_title{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background:#ea5e44;
+    text-align: center;
+    color:#fff;
+    transition: all 0.8s ease-in-out;
+}
+
+/*返回顶部*/
+#btn_top{
+    display: inline-block;
+    width:30px;
+    height:65px;
+    background:url(../../public/images/5-120601155S6.png) no-repeat;
+    position:fixed;
+    top:260px;
+    right:25px;
+    z-index:999;
+    display: none;
+    cursor: pointer;
 }
