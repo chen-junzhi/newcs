@@ -10,12 +10,50 @@ li{
     list-style: none;
 }
 
+/*3D图效果*/
 #pic{
-    width:1200px;
-    height:390px;
-    background-color:lime;
-    margin-top:100px;
+    width:100%;
+    height:450px;
+    padding-top:100px;
+
+    position:relative;
 }
+.wrapper{
+    position: relative;
+    max-width: 840px;
+    width: 100%;
+    margin: 0 auto;
+}
+#nav-arrows a span{
+    width: 46px;
+    height: 46px;
+    position: absolute;
+    cursor: pointer;
+    opacity: 0.8;
+    border-radius: 50%;
+    box-shadow: 0 1px 1px rgba(255,255,255,0.8);
+}
+#nav-arrows a span:hover{
+    opacity:1;
+}
+#nav-arrows a{
+    display: block;
+    position:absolute;
+    top:40%;
+}
+#nav-arrows .pre{
+    left:-10%;
+}
+#nav-arrows .pre span{
+    background: #cbbfae url(../../public/images/nav.png) no-repeat top left;
+}
+#nav-arrows .next{
+    right:-8%;
+}
+#nav-arrows .next span{
+    background: #cbbfae url(../../public/images/nav.png) no-repeat top right;
+}
+
 
 /*最新聚焦栏目*/
 #new_focus{
