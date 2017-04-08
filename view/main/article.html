@@ -216,30 +216,22 @@
 
             //获取滚动条滚动了的距离
             var top=document.documentElement.scrollTop || document.body.scrollTop;
-            console.log(top);
+            //console.log(top);
             //分享框显示的位置
             if(top<=950){
-                $("#shareto").css("top",-273);
+                $("#shareto").css("top",-283);
                 $("#shareto").css("left",145);
             }else if(top>950){
-                $("#shareto").css("top",-8);
-                $("#shareto").css("left",-6);
+                $("#shareto").css("top",5);
+                $("#shareto").css("left",-80);
             }
 
-            $("#shareto").bind("mouseover",function () {
-                $("#shareto").show();
-                if(top<=950){
-                    $("#shareto").css("top",-273);
-                    $("#shareto").css("left",145);
-                }else if(top>950){
-                    $("#shareto").css("top",-8);
-                    $("#shareto").css("left",-6);
-                }
-            });
-
         }).mouseout(function(){
-            $("#shareto").hide();
-            $("#shareto").bind("mouseout",function () {
+            $("#shareto").delay(2000).hide(0);
+            $("#shareto").mouseover(function(){
+                //清除延时
+               $("#shareto").stop().show();
+            }).mouseout(function(){
                 $("#shareto").hide();
             });
         });
