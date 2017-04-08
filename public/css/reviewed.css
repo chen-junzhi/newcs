@@ -14,14 +14,14 @@ li{
 a{
     text-decoration: none;
 }
-.box{
-    min-width:1200px;
+body{
+    min-width:1350px;
 }
 
 /*头部大图*/
 #recom{
     width:100%;
-    min-width:1200px;
+    min-width:1350px;
     height:350px;
     margin-top:80px;
     background:url(../../public/images/task_reccombg.jpg) center center no-repeat;

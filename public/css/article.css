@@ -12,6 +12,9 @@ li{
 a:link{
     text-decoration: none;
 }
+body{
+    min-width:1350px;
+}
 
 /*内容由此开始*/
 #maincontent{
