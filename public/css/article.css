@@ -123,6 +123,7 @@ body{
     top:-6px;
     font-size:14px;
     font-weight:200;
+    color:#666;
 }
 #news_sharecontent a:hover,.share_style a span:hover{
     opacity:0.8;
