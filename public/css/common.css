@@ -10,6 +10,9 @@ a{
 li{
 	list-style: none;
 }
+input{
+	outline: none;
+}
 #head{
 	height:80px;
 	width:100%;
@@ -65,7 +68,7 @@ li{
 	color:black;
 }
 
-#loginBox{
+#loginBox,#registerBox{
 	width:384px;
 	padding:50px 24px 24px 24px;
 	z-index:2000;
@@ -76,28 +79,28 @@ li{
 	transform:translate(-50%,0);
 	display:none;
 }
-#loginBox h1{
+#loginBox h1,#registerBox h1{
 	font-weight:normal;
 	font-size:30px;
 }
-#loginBox h1 span{
+#loginBox h1 span,#registerBox h1 span{
 	font-size: 14px;
 	color: #999;
 	padding: 10px 0px;
 	float: right;
 }
-#loginBox h1 span a{
+#loginBox h1 span a,#registerBox h1 span a{
 	color: #c32854;
 	margin-left: 5px;
 }
-.login_content{
+.login_content,.reg_content{
 	margin: 30px 0px;
 }
-.login_content span {
+.login_content span,.reg_content span{
 	display: block;
 	margin: 10px 0px;
 }
-.login_content span input {
+.login_content span input,.reg_content span input{
 	width: 90%;
 	height: 45px;
 	line-height: 45px;
@@ -105,7 +108,7 @@ li{
 	border: 1px solid #dae2e5;
 	color: #999;
 }
-.login_content span button {
+.login_content span button,.reg_content span button{
 	width: 100%;
 	height: 45px;
 	color: #fff;
@@ -113,13 +116,13 @@ li{
 	font-weight: bold;
 	background: #c32854;
 }
-.login_content .msg{
+.login_content .msg,.reg_content .msg{
 	display: block;
 	padding-top: 5px;
 	color: #f00;
 }
 
-.login_close {
+.login_close{
 	width: 19px;
 	height: 19px;
 	position: absolute;
@@ -137,7 +140,6 @@ button{
 .login_close img:hover{
 	transform:rotate(180deg);
 }
-
 #loginMask{
 	width: 100%;
 	height: 100%;
@@ -149,7 +151,23 @@ button{
 	display: none;
 	opacity: 0.8;
 }
-
+.reg_content span button.phoneCode{
+	width: 80px;
+	height: 47px;
+	background: #dae2e5;
+	color: #666;
+	font-size: 12px;
+	font-weight: normal;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+.reg_content span {
+	position: relative;
+}
+.reg_content span button{
+	background: #66cc33;
+}
 
 #bot{
 	margin-top:20px;
