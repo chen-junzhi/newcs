@@ -1,0 +1,47 @@
+.mymsg h1{
+    font-size: 22px;
+    font-weight: 400;
+    margin: 10px 0px;
+}
+.msgs{
+    border-top: 2px solid #eaeaea;
+    padding: 20px 0px;
+}
+.msgs_list{
+    margin-bottom: 20px;
+}
+.msgs_list .msg_date{
+    font-size: 12px;
+    color: #999;
+}
+.msgs_list .msg_cont{
+    border: 1px solid #eaeaea;
+    margin-top: 5px;
+    padding: 10px;
+    position: relative;
+    background: #f9f9f9;
+}
+.msgs_list .msg_cont b{
+    font-size: 12px;
+    color: #666;
+    font-weight:400;
+}
+.msgs_list .msg_cont h3{
+    font-weight: bold;
+    margin: 5px 0px;
+    font-size:14px;
+}
+.msgs_list .msg_cont p{
+    margin: 5px 0px;
+    font-size: 12px;
+    color: #999;
+}
+.msgs_list .msg_cont .msg_delete{
+    width: 8px;
+    height: 8px;
+    font-size: 12px;
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}

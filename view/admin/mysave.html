@@ -1,0 +1,66 @@
+{% extends 'user.html' %}
+{% block main %}
+
+<div class="cont_save">
+    <h1>我的收藏</h1>
+    <div class="box">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+            <tr class="head">
+                <th align="center">任务名称</th>
+                <th align="center">任务类型</th>
+                <th align="center">奖励金额</th>
+                <th align="center">收藏时间</th>
+                <th align="center">任务截止时间</th>
+                <th align="center">发布时间</th>
+                <th align="center">招募人数</th>
+                <th align="center">操作</th>
+            </tr>
+            <tr>
+                <td align="center"><img src="../../public/images/collect.jpg" width="80" height="60"></td>
+                <td align="center">玩游戏</td>
+                <td align="center"><span class="colorred">￥5.00</span></td>
+                <td align="center">2017-01-04 15:30:20</td>
+                <td align="center">2017-01-04 </td>
+                <td align="center">2017-01-04 15:30:20</td>
+                <td align="center"><span class="colornone">2000</span></td>
+                <td align="center"><button class="applyfor" onclick="">申请任务</button><button class="delete_task">删除</button></td>
+            </tr>
+            <tr>
+                <td align="center"><img src="../../public/images/collect.jpg" width="80" height="60"></td>
+                <td align="center">玩游戏</td>
+                <td align="center"><span class="colorred">￥5.00</span></td>
+                <td align="center">2017-01-04 15:30:20</td>
+                <td align="center">2017-01-04 </td>
+                <td align="center">2017-01-04 15:30:20</td>
+                <td align="center"><span class="colornone">1000</span></td>
+                <td align="center"><button class="applyfor" onclick="">申请任务</button><button class="delete_task">删除</button></td>
+            </tr>
+            <tr>
+                <td align="center"><img src="../../public/images/collect.jpg" width="80" height="60"></td>
+                <td align="center">玩游戏</td>
+                <td align="center"><span class="colorred">￥5.00</span></td>
+                <td align="center">2017-01-04 15:30:20</td>
+                <td align="center">2017-01-04 </td>
+                <td align="center">2017-01-04 15:30:20</td>
+                <td align="center"><span class="colornone">1500</span></td>
+                <td align="center"><button class="applyfor" onclick="">申请任务</button><button class="delete_task">删除</button></td>
+            </tr>
+            <tr>
+                <td align="center"><img src="../../public/images/collect.jpg" width="80" height="60"></td>
+                <td align="center">玩游戏</td>
+                <td align="center"><span class="colorred">￥5.00</span></td>
+                <td align="center">2017-01-04 15:30:20</td>
+                <td align="center">2017-01-04 </td>
+                <td align="center">2017-01-04 15:30:20</td>
+                <td align="center"><span class="colornone">2500</span></td>
+                <td align="center"><button class="applyfor" onclick="window.location=''">申请任务</button><button class="delete_task">删除</button></td>
+            </tr>
+            </tbody>
+        </table>
+        <span class="loading"><button>加载更多...</button></span>
+    </div>
+</div>
+
+
+{%endblock%}

@@ -61,11 +61,7 @@ router.get("/article",function (req,res) {
     });
 });
 
-router.get("/user",function (req,res) {
-    res.render("main/user",{
 
-    });
-});
 
 //2.把这个路由的文件和主模块连接起来
 module.exports=router;

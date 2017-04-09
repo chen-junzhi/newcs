@@ -1,0 +1,61 @@
+button{
+    border:none;
+    outline-style: none;
+}
+.cont_save h1{
+    font-size: 22px;
+    font-weight: 400;
+    margin: 10px 0px;
+}
+.cont_save table{
+    border-color: grey;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.cont_save table th{
+    font-size: 14px;
+    color: #333;
+    height: 45px;
+    line-height: 45px;
+    background: #f0f0f0;
+    font-weight: 400;
+}
+.cont_save table td{
+    padding: 10px 5px;
+    border-bottom: 1px solid #eee;
+    color: #666;
+}
+.cont_save table td .colorred{
+    color:#f00;
+}
+.cont_save table td .colornone{
+    color:#999;
+}
+.cont_save table td .applyfor{
+    width: 80px;
+    height: 30px;
+    background: #2ba1a0;
+    color: #fff;
+    margin-left: 5px;
+}
+.cont_save table td .applyfor:hover{
+    opacity:0.8;
+ }
+.cont_save table td .delete_task{
+    width: 40px;
+    height: 30px;
+    background: none;
+    color: #999;
+    margin-left: 5px;
+}
+.loading{
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+.loading button{
+    width: 150px;
+    height: 45px;
+    background: #fff;
+    border: 1px solid #c9c9c9;
+}

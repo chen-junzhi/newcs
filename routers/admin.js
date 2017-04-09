@@ -24,6 +24,20 @@ var msg={
     message:""
 };
 
+router.get("/",function (req,res,next) {
+    res.render("admin/user_task",{
+    });
+});
+
+router.get("/mysave",function (req,res,next) {
+    res.render("admin/mysave",{
+    });
+});
+
+router.get("/mymsg",function (req,res,next) {
+    res.render("admin/mymsg",{
+    });
+});
 
 
 
