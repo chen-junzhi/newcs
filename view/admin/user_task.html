@@ -1,0 +1,37 @@
+{% extends 'user.html' %}
+{% block main %}
+
+<div class="cont_info">
+    <h1>我的任务</h1>
+    <div class="task_box">
+        <ul class="tab_menu">
+            <li class="current">已申请(0)</li>
+            <li>待审核(0)</li>
+            <li>已完成(0)</li>
+            <li>全部(0)</li>
+        </ul>
+        <div class="tab_box">
+            <div>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="member_table" id="list1">
+                    <tbody><tr>
+                        <th align="center">任务名称</th>
+                        <th align="center">任务类型</th>
+                        <th align="center">奖励金额</th>
+                        <th align="center">申请时间</th>
+                        <th align="center">状态</th>
+                        <th align="center">操作</th>
+                    </tr>
+                    </tbody></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var lis=$(".tab_menu li");
+    lis.on("click",function(){  //返回被选元素的所有同胞元素
+        $(this).addClass("current").siblings().removeClass("current");
+    });
+</script>
+
+{%endblock%}

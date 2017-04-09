@@ -12,6 +12,9 @@ li{
 a:link{
     text-decoration: none;
 }
+body{
+    min-width:1350px;
+}
 
 /*内容由此开始*/
 #maincontent{
@@ -24,10 +27,13 @@ a:link{
     padding-top: 30px;
     margin-bottom: 50px;
 }
-#location {
-    color: #999;
+#location{
+    color:#666;
     margin-bottom: 10px;
     font-size:14px;
+}
+#location p a{
+    color:#666;
 }
 #news_content{
     width: 855px;
@@ -104,7 +110,7 @@ a:link{
     overflow: hidden;
     width:24px;
     height:24px;
-    background: url(../../public/images/jiathis_ico_24x24.png) no-repeat 0px -2112px;
+    background:url(../../public/images/jiathis_ico_24x24.png) no-repeat 0px -2112px;
 }
 .share_count{
     width:58px;
@@ -117,6 +123,7 @@ a:link{
     top:-6px;
     font-size:14px;
     font-weight:200;
+    color:#666;
 }
 #news_sharecontent a:hover,.share_style a span:hover{
     opacity:0.8;
@@ -133,7 +140,7 @@ a:link{
     z-index: 100;
     /*overflow: auto;  滚动条 */
     width:240px;
-    height:240px;
+    height:245px;
     border:1px solid #ccc;
     background-color:#fff;
     position: relative;
@@ -149,8 +156,12 @@ a:link{
     line-height:26px;
     padding-left:5px;
 }
+#shareto_cont table td a{
+    display: inline-block;
+    height:24px;
+}
 #shareto_cont table td a span{
-    margin: 1px 0;
+    margin: 3px 0px;
     line-height:12px;
     height:14px;
     padding-top:2px;
@@ -168,6 +179,7 @@ a:link{
 #shareto_cont table a:hover span{
     width:81px;
     height:14px;
+    margin-bottom:1px;
 }
 .shareto_weixin{
     background:url(../../public/images/jiathis_ico.png) no-repeat 0px -1809px;
