@@ -41,7 +41,7 @@
 		   <button class="login_close" onclick="loginClose()">
 			   <img src="../../public/images/close.png" />
 		   </button>
-		   <form  action="" method="">
+		   <div>
 			   <h1>登录<span>还没有帐号?<a href="javascript:void(0)" onclick="reg()">立即注册</a></span></h1>
 			   <div class="login_content">
 				   <h4 style="font-weight:normal;">手机号或者用户名</h4>
@@ -51,6 +51,7 @@
 				   <span id="login_pwd">
 					   <input type="password" name="password" placeholder="请输入您的密码" />
 				   </span>
+                   <span class="msg"></span>
 				   <span><button id="login_btn">登录</button></span>
 				   <p>
 					   <label>
@@ -60,29 +61,30 @@
 					   </label>
 				   </p>
 			   </div>
-		   </form>
+		   </div>
 	   </div>
 	   <div id="registerBox">
 		   <button class="login_close" onclick="loginClose()">
 			   <img src="../../public/images/close.png" />
 		   </button>
-		   <form  action="" method="">
+		   <div>
 			   <h1>注册<span>已经有帐号?<a href="javascript:void(0)" onclick="log()">马上登录</a></span></h1>
 			   <div class="reg_content">
 				   <h4 style="font-weight:normal;">请用手机号码注册</h4>
-				   <span id="register_user">
+				   <span>
 					   <input type="text" name="username" placeholder="手机号" />
 				   </span>
-				   <span id="register_pwd">
+				   <span>
 					   <input type="password" name="password" placeholder="密码" />
 				   </span>
-				   <span id="register_pwdagain">
-					   <input type="password" name="passwordAgain" placeholder="确认密码" />
+				   <span>
+					   <input type="password" name="repassword" placeholder="确认密码" />
 				   </span>
 				   <span id="register_identify">
 					   <input type="text" name="verify" placeholder="短信验证码" />
 					   <button id="verify_btn" class="phoneCode">获取验证码</button>
 				   </span>
+				   <span id="msg"></span>
 				   <p>
 					   <label>
 						   <input type="checkbox" checked="checked" style="vertical-align:middle;" />
@@ -92,7 +94,7 @@
 				   </p>
 				   <span><button id="register_btn">注册</button></span>
 			   </div>
-		   </form>
+		   </div>
 	   </div>
    </div>
    <div id="loginMask"></div>
@@ -178,7 +180,39 @@
 					top:"0px"
 				},1000);
 			});
+
+			//注册
+			$("#register_btn").on("click",function () {
+				console.log(111);
+				var uname=$("#registerBox").find("[name='username']").val();
+				var pwd=$("#registerBox").find("[name='password']").val();
+				var repwd=$("#registerBox").find("[name='repassword']").val();
+				var msg=$("#msg");
+				if(uname=="" || uname==null || pwd=="" || pwd==null || repwd=="" || repwd==null){
+					msg.html("用户名或者密码不能为空");
+				}
+				if(pwd!==repwd){
+					msg.html("两次输入的密码不一致，请重新输入");
+				}
+				$.ajax({
+					type:"post",
+					url:"/api/user/register",
+					data:{
+						uname:uname,
+						pwd:pwd
+					},
+					dataType:"json",
+					success:function (data) {
+						if(data.code!=2){
+							$(".reg_content").find(".msg").html(data.msg);
+						}else{
+							log();
+						}
+					}
+				});
+			});
 		});
+
 	   function loginClose(){
 		   $("#loginMask").fadeOut();
 		  //$("#loginBox").fadeOut();
@@ -189,6 +223,30 @@
 			   top:"-600px"
 		   },1000);
 		}
+		function reg(){
+            $("#loginBox").animate({
+                top:"-600px"
+            },1000,function(){
+                $("#loginMask").fadeIn();
+                $("#registerBox").fadeIn();
+                $("#registerBox").animate({
+                    top:"0px"
+                });
+            });
+        }
+        function log(){
+            $("#registerBox").animate({
+                top:"-600px"
+            },1000,function(){
+                $("#loginMask").fadeIn();
+                $("#loginBox").fadeIn();
+                $("#loginBox").animate({
+                    top:"0px"
+                });
+            });
+        }
+
+
    </script>
 </body>
 </html>

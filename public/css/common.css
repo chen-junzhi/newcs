@@ -116,8 +116,8 @@ input{
 	font-weight: bold;
 	background: #c32854;
 }
-.login_content .msg,.reg_content .msg{
-	display: block;
+#msg{
+	display: none;
 	padding-top: 5px;
 	color: #f00;
 }

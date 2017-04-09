@@ -14,7 +14,7 @@ var router=express.Router();
 var pool=mysql.createPool({    //数据连接池
     host:"127.0.0.1",
     port:3306,
-    database:"blog",
+    database:"newcs",
     user:"root",
     password:"aaaa"
 });

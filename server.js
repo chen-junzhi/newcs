@@ -6,15 +6,15 @@
 var express=require("express");
 var cookieParser=require("cookie-parser");
 var session=require("express-session");
-//var mysql=require("mysql");
+var mysql=require("mysql");
 
-/*var pool=mysql.createPool({    //数据连接池
+var pool=mysql.createPool({    //数据连接池
     host:"127.0.0.1",
     port:3306,
-    database:"blog",
+    database:"newcs",
     user:"root",
     password:"aaaa"
-});*/
+});
 //加载模块引擎
 var swig=require("swig");
 

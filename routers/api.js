@@ -10,7 +10,7 @@ var mysql=require("mysql");
 var pool=mysql.createPool({    //数据连接池
     host:"127.0.0.1",
     port:3306,
-    database:"blog",
+    database:"newcs",
     user:"root",
     password:"aaaa"
 });
@@ -25,6 +25,38 @@ router.use(function (req,res,next) {
         msg:""
     };
     next();
+});
+
+//注册
+router.post("/user/register",function (req, res) {
+    var uname=req.body.uname;
+    var pwd=req.body.pwd;
+    pool.getConnection(function(err,conn){
+        conn.query("select * from user where uname=?",[uname],function(err,result){
+            if(err){
+                resData.code=0;
+                resData.msg="网络连接失败，请稍后重试";
+                res.json(resData);
+            }else if(result.length>0){
+                resData.code=1;
+                resData.msg="用户名已存在，请重新注册";
+                res.json(resData);
+            }else{
+                conn.query("insert into user values(null,?,?,0)",[uname,password],function (err, resu) {
+                    conn.release();
+                    if(err){
+                        resData.code=0;
+                        resData.msg="网络连接失败，请稍后重试";
+                        res.json(resData);
+                    }else{
+                        resData.code=2;
+                        resData.msg="注册成功";
+                        res.json(resData);
+                    }
+                });
+            }
+        });
+    });
 });
 
 
