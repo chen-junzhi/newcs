@@ -1,0 +1,12 @@
+.sharing h1{
+    font-size: 22px;
+    font-weight: 400;
+    margin: 10px 0px;
+}
+.sharing .sharing_cont{
+    border-top: 2px solid #eaeaea;
+    padding: 30px 20px;
+}
+.sharing .sharing_cont img{
+    margin-top:15px;
+}
