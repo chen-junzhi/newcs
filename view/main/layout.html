@@ -67,7 +67,7 @@
 		   <button class="login_close" onclick="loginClose()">
 			   <img src="../../public/images/close.png" />
 		   </button>
-		   <div>
+
 			   <h1>注册<span>已经有帐号?<a href="javascript:void(0)" onclick="log()">马上登录</a></span></h1>
 			   <div class="reg_content">
 				   <h4 style="font-weight:normal;">请用手机号码注册</h4>
@@ -82,7 +82,7 @@
 				   </span>
 				   <span id="register_identify">
 					   <input type="text" name="verify" placeholder="短信验证码" />
-					   <button id="verify_btn" class="phoneCode">获取验证码</button>
+					   <button id="verify_btn" class="phoneCode" onclick="sendMessage()">获取验证码</button>
 				   </span>
 				   <span id="msg"></span>
 				   <p>
@@ -94,7 +94,7 @@
 				   </p>
 				   <span><button id="register_btn">注册</button></span>
 			   </div>
-		   </div>
+
 	   </div>
    </div>
    <div id="loginMask"></div>
@@ -183,17 +183,90 @@
 
 			//注册
 			$("#register_btn").on("click",function () {
-				console.log(111);
 				var uname=$("#registerBox").find("[name='username']").val();
 				var pwd=$("#registerBox").find("[name='password']").val();
 				var repwd=$("#registerBox").find("[name='repassword']").val();
+                var verifyCode=$("#registerBox").find("[name='verify']").val();
 				var msg=$("#msg");
 				if(uname=="" || uname==null || pwd=="" || pwd==null || repwd=="" || repwd==null){
-					msg.html("用户名或者密码不能为空");
+                    msg.show();
+                    msg.html("手机号或者密码不能为空！");
+                    setTimeout(function(){
+                       msg.hide();
+                    },3000);
+                    return;
 				}
+                var phoneNumber=/^1[34578]\d{9}$/;
+                if(!phoneNumber.test(uname)){
+                    //手机号码格式不正确，请重新输入！
+                    msg.show();
+                    msg.html("手机号码格式不正确，请重新输入！");
+                    setTimeout(function(){
+                        msg.hide();
+                    },3000);
+                    return;
+                }
 				if(pwd!==repwd){
-					msg.html("两次输入的密码不一致，请重新输入");
+                    msg.show();
+                    msg.html("两次输入的密码不一致，请重新输入！");
+                    setTimeout(function(){
+                        msg.hide();
+                    },3000);
+                    return;
 				}
+				//验证码
+                var InterValObj; //timer变量，控制时间
+                var count = 60; //间隔函数，1秒执行
+                var curCount;//当前剩余秒数
+                var APP_ID = '9U5NuUnEAgCyomWXjkEjLRa1-gzGzoHsz';
+                var APP_KEY = '8VrlzHpHOg1ABSosSKb2hw2x';
+                AV.init({
+                    appId:APP_ID,
+                    appKey:APP_KEY
+                });
+
+                function sendMessage(){
+                    curCount = count;
+                    //设置button效果，开始计时
+                    $("#verify_btn").attr("disabled", "true");
+                    $("#verify_btn").val( curCount + "s");
+                    InterValObj = setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+
+                    var user = new AV.User();
+                    user.set("username", uname);
+                    user.set("password", pwd);
+                    user.setMobilePhoneNumber(uname+"");
+
+                    user.signUp(null);
+                }
+                //timer处理函数
+                function SetRemainTime() {
+                    if (curCount == 0) {
+                        window.clearInterval(InterValObj);//停止计时器
+                        $("#verify_btn").removeAttr("disabled");//启用按钮
+                        $("#verify_btn").val("重发验证码");
+                    }
+                    else {
+                        curCount--;
+                        $("#verify_btn").val( curCount + "s" );
+                    }
+                }
+                //验证码
+                function verify(){
+                    var num=parseInt( verifyCode );
+                    AV.User.verifyMobilePhone(num).then(function(){
+                        //验证成功
+                        //alert("验证成功");
+                    }, function(err){
+                        //验证失败
+                        //console.log(err);
+                        msg.show();
+                        msg.html("验证码错误！");
+                        setTimeout(function(){
+                            msg.hide();
+                        },3000);
+                    });
+                }
 				$.ajax({
 					type:"post",
 					url:"/api/user/register",
@@ -204,9 +277,22 @@
 					dataType:"json",
 					success:function (data) {
 						if(data.code!=2){
-							$(".reg_content").find(".msg").html(data.msg);
+                            msg.show();
+                            msg.html(data.msg);
+                            setTimeout(function(){
+                                msg.hide();
+                            },3000);
 						}else{
-							log();
+                            //注册成功，显示登陆界面
+                            msg.show();
+                            msg.html(data.msg);
+                            setTimeout(function(){
+                                msg.hide();
+                                $("#registerBox").find("[name='username']").val("");
+                                $("#registerBox").find("[name='password']").val("");
+                                $("#registerBox").find("[name='repassword']").val("");
+                                log();
+                            },3000);
 						}
 					}
 				});
@@ -245,7 +331,6 @@
                 });
             });
         }
-
 
    </script>
 </body>
