@@ -4,6 +4,9 @@
 	font-family: "微软雅黑";
 	
 }
+body{
+	overflow-x: hidden;
+}
 a{
 	text-decoration: none;
 }

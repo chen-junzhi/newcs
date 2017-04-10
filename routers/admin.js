@@ -39,6 +39,11 @@ router.get("/mymsg",function (req,res,next) {
     });
 });
 
+router.get("/share",function (req,res,next) {
+    res.render("admin/share",{
+    });
+});
+
 
 
 

@@ -41,7 +41,7 @@ app.use("/public",express.static(__dirname+"/public"));
 
 
 
-app.listen(80,"127.0.0.1",function(err){
+app.listen(80,function(err){
     if(err){
         console.log(err);
     }else{
