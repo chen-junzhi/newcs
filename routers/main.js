@@ -61,6 +61,19 @@ router.get("/article",function (req,res) {
     });
 });
 
+router.get("/detail_task1",function (req,res) {
+    //使用模版引擎去渲染页面，两个参数： 路径 分配给这个页面使用的数据
+    res.render("main/detail_task1",{
+
+    });
+});
+router.get("/detail_task",function (req,res) {
+    //使用模版引擎去渲染页面，两个参数： 路径 分配给这个页面使用的数据
+    res.render("main/detail_task",{
+
+    });
+});
+
 
 
 //2.把这个路由的文件和主模块连接起来
