@@ -99,7 +99,7 @@
 	<script>
 		$(function(){
 			$(".con").css({"height":($(window).height())});
-			resize();
+			//resize();
 			/*if(){
 				$("#head").hide();
 				$.scrollify("move",$(".box-btn ul li").eq(0).find("a").attr("href"));
@@ -250,7 +250,7 @@
 			clearTimeout(timer);
 			timer = setTimeout(function() {
 				$(".con").css({"height":($(window).height())});
-			},40);
+			},10);
 		}
 	</script>
 {%endblock%}
