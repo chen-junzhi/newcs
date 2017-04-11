@@ -8,29 +8,32 @@
     width:1200px;
     height: 50px;
     margin:0px auto;
-    border-bottom: 1px solid #0b97c4;
+    border-bottom: 1px solid #9e9e9e;
     line-height: 50px;
 }
 .mis_menu ul{
-   margin-left: 200px;
+    margin-left: 200px;
 }
 .mis_menu ul li{
     float: left;
     margin-right: 15px;
-
 }
 .mis_menu ul li a{
     color:#272727;
 }
+.actie{
+    color:#ED5239;
+}
+
 .mis_menu ul li a:hover{
-   color:#ED5239;
+    color:#ED5239;
 }
 .mission_box .mis_list{
     width:1200px;
     margin: 0px auto;
 }
 .mis_list .zui{
- margin-top: 20px;
+    margin-top: 20px;
 }
 .zui ul{
     float: left;
@@ -71,6 +74,7 @@
     border:none;
     background: none;
     border-radius:3px;
+    outline-style: none;
 
 }
 .sear_button #btn_button{
@@ -85,20 +89,29 @@
 }
 .mis_list_box{
     margin-top:20px;
+    width:1200px;
+    overflow: hidden;
 }
 .mis_list_box .m_lists_b{
+    width:4800px;
+}
+.mis_list_box .m_lists_b ul{
     width:1200px;
-    margin:0px auto;
+    display:none;
+    float: left;
 }
 .m_lists_b ul li{
     float: left;
     width:290px;
     margin-bottom: 20px;
-    display: block;
 
 }
+.all_dis{
+    display: block;
+}
+
 .m_spe_li{
-    margin-right:8px;
+    margin-right:10px;
 }
 .m_lists_b ul li a p.me_img{
     width:290px;
@@ -124,7 +137,7 @@
     color:#fff;
 }
 .m_info:hover .m_price{
-    background: url("../images/task_details_icon2.png") 0px -55px no-repeat;
+    background: url("../../public/images/task_details_icon2.png") 0px -55px no-repeat;
 }
 
 .m_lists_b ul li a div p{
@@ -161,3 +174,4 @@
     display: inline-block;
     background: url("../images/task_details_icon.png") 0px -55px no-repeat;
 }
+
