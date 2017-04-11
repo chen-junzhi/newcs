@@ -3,108 +3,320 @@
 {%block main%}
 <div id="mission">
     <div class="mission_box">
-      <div class="mis_menu">
-          <ul>
-              <li><a href="" style="color:#ED5239;">全部</a></li>
-              <li><a href="">听音乐</a></li>
-              <li><a href="">看电影</a></li>
-              <li><a href="">玩游戏</a></li>
-          </ul>
-      </div>
-      <div class="mis_list">
-          <div class="zui">
-              <ul>
-                  <li class="m_new m_bgc"><a href="" >最新</a></li>
-                  <li class="m_hot "><a href="" >最热</a></li>
-                  <li class="m_select"><a href="">结算时间</a></li>
-              </ul>
-              <div class="sear_button">
-                  <input type="text" name="text" id="search_keyword" />
-                  <button id="btn_button"></button>
-              </div>
-              <div class="clear"></div>
-          </div>
-          <div class="mis_list_box">
-              <div class="m_lists_b">
-                  <ul>
-                      <li class="m_spe_li"><a href="">
-                          <p class="me_img"><img src="../../public/images/1477054047.jpg" /></p>
-                          <div>
-                              <p>aaa<label>听音乐</label></p>
-                              <span>佣金：<b><i>￥</i>2.00</b></span>
-                              <b class="m_price">2000/</b>
-                          </div>
-                      </a></li>
-                      <li class="m_spe_li"><a href="">
-                          <p class="me_img"><img src="../../public/images/1477054047.jpg" /></p>
-                          <div>
-                              <p>aaa<label>听音乐</label></p>
-                              <span>佣金：<b><i>￥</i>2.00</b></span>
-                              <b class="m_price">2000/</b>
-                          </div>
-                      </a></li>
-                      <li class="m_spe_li"><a href="">
-                          <p class="me_img"><img src="../../public/images/1477054047.jpg" /></p>
-                          <div>
-                              <p>aaa<label>听音乐</label></p>
-                              <span>佣金：<b><i>￥</i>2.00</b></span>
-                              <b class="m_price">2000/</b>
-                          </div>
-                      </a></li>
-                      <li><a href="">
-                          <p class="me_img"><img src="../../public/images/1477054047.jpg" /></p>
-                          <div>
-                              <p>aaa<label>听音乐</label></p>
-                              <span>佣金：<b><i>￥</i>2.00</b></span>
-                              <b class="m_price">2000/</b>
-                          </div>
-                      </a></li>
-                      <li class="m_spe_li"><a href="">
-                          <p class="me_img"><img src="../../public/images/1477054047.jpg" /></p>
-                          <div>
-                              <p>aaa<label>听音乐</label></p>
-                              <span>佣金：<b><i>￥</i>2.00</b></span>
-                              <b class="m_price">2000/</b>
-                          </div>
-                      </a></li>
-                      <li class="m_spe_li"><a href="">
-                          <p class="me_img"><img src="../../public/images/1477054047.jpg" /></p>
-                          <div>
-                              <p>aaa<label>听音乐</label></p>
-                              <span>佣金：<b><i>￥</i>2.00</b></span>
-                              <b class="m_price">2000/</b>
-                          </div>
-                      </a></li>
-                      <li class="m_spe_li"><a href="">
-                          <p class="me_img"><img src="../../public/images/1477054047.jpg" /></p>
-                          <div>
-                              <p>aaa<label>听音乐</label></p>
-                              <span>佣金：<b><i>￥</i>2.00</b></span>
-                              <b class="m_price">2000/</b>
-                          </div>
-                      </a></li>
-                      <li ><a href="">
-                          <p class="me_img"><img src="../../public/images/1477054047.jpg" /></p>
-                          <div>
-                              <p>aaa<label>听音乐</label></p>
-                              <span>佣金：<b><i>￥</i>2.00</b></span>
-                              <b class="m_price">2000/</b>
-                          </div>
-                      </a></li>
-                      <li class="m_spe_li"><a href="">
-                          <p class="me_img"><img src="../../public/images/1477054047.jpg" /></p>
-                          <div>
-                              <p>aaa<label>听音乐</label></p>
-                              <span>佣金：<b><i>￥</i>2.00</b></span>
-                              <b class="m_price">2000/</b>
-                          </div>
-                      </a></li>
-                      <div class="clear"></div>
-                  </ul>
-              </div>
-              <div class="list-more"></div>
-          </div>
-      </div>
+        <div class="mis_menu">
+            <ul>
+                <li><a href="##"   class="navs actie" onclick="showDiv(1)">全部</a></li>
+                <li ><a href="##"  class="navs " onclick="showDiv(2)">听音乐</a></li>
+                <li><a href="##"  class="navs" onclick="showDiv(3)">看电影</a></li>
+                <li><a href="##"  class="navs" onclick="showDiv(4)">玩游戏</a></li>
+            </ul>
+        </div>
+        <div class="mis_list">
+            <div class="zui">
+                <ul>
+                    <li class="m_new m_bgc"><a href="" >最新</a></li>
+                    <li class="m_hot" ><a href="##" >最热</a></li>
+                    <li class="m_select"><a href="">结算时间</a></li>
+                </ul>
+                <div class="sear_button">
+                    <input type="text" name="text" id="search_keyword" />
+                    <button id="btn_button"></button>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="mis_list_box">
+                <div class="m_lists_b" id="m_lists_b">
+                    <ul style="display:block">
+                        <li class="all_dis m_spe_li"><a href="/detail_task1">
+                            <p class="me_img"><img src="../../public/images/1474861508.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>听音乐</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="/detail_task2">
+                            <p class="me_img"><img src="../../public/images/1474861508.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>看电影</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/1474861508.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>看电影</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis"><a href="">
+                            <p class="me_img"><img src="../../public/images/1474861508.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>玩游戏</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/1474861508.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>听音乐</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/1474861508.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>玩游戏</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/1474861508.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>听音乐</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis"><a href="">
+                            <p class="me_img"><img src="../../public/images/1474861508.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>看电影</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                    </ul>
+                    <ul>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/1474861508.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>听音乐</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/1477054047.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>听音乐</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/2017-04-06_211538.png" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>听音乐</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis "><a href="">
+                            <p class="me_img"><img src="../../public/images/2017-04-06_211456.png" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>听音乐</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/1477054279.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>听音乐</label></p>
+                                <span>佣金：<b><i>￥</i>3.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/1477016855.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>听音乐</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/2017-04-06-211367.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>听音乐</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/2017-04-06-211367.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>听音乐</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <div class="clear"></div>
+                    </ul>
+                    <ul>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/1474861508.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>看电影</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li "><a href="">
+                            <p class="me_img"><img src="../../public/images/1477054047.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>看电影</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/2017-04-06_211538.png" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>看电影</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis"><a href="">
+                            <p class="me_img"><img src="../../public/images/2017-04-06_211456.png" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>看电影</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/1477054279.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>看电影</label></p>
+                                <span>佣金：<b><i>￥</i>3.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/1477016855.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>看电影</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/2017-04-06-211367.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>看电影</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/2017-04-06-211367.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>看电影</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <div class="clear"></div>
+                    </ul>
+                    <ul>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/1474861508.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>玩游戏</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/1477054047.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>玩游戏</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/2017-04-06_211538.png" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>玩游戏</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis "><a href="">
+                            <p class="me_img"><img src="../../public/images/2017-04-06_211456.png" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>玩游戏</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/1477054279.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>玩游戏</label></p>
+                                <span>佣金：<b><i>￥</i>3.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/1477016855.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>玩游戏</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/2017-04-06-211367.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>玩游戏</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <li class="all_dis m_spe_li"><a href="">
+                            <p class="me_img"><img src="../../public/images/2017-04-06-211367.jpg" /></p>
+                            <div class="m_info">
+                                <p>aaa<label>玩游戏</label></p>
+                                <span>佣金：<b><i>￥</i>2.00</b></span>
+                                <b class="m_price">2000/</b>
+                            </div>
+                        </a></li>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>
+<script>
+
+    var lids=document.getElementById("m_lists_b").getElementsByTagName("ul");
+    //var navs=document.getElementsByClassName("navs");
+    function showDiv(n){
+        for(var i=0;i<=3;i++){  /*注意i=0和i=1区别,i=1会出错，比较index.js:showPic()*/
+            if(i==n-1){
+                lids[n-1].style.display="block";
+                // console.log(navs[n-1]);
+                //navs[n-1].className="actie";
+            }else{
+                lids[i].style.display="none";
+                // navs[i].className="actino";
+            }
+        }
+    }
+
+
+</script>
+
 {%endblock%}

@@ -1,0 +1,234 @@
+{% extends "layout.html" %}
+
+{%block main%}
+<!--
+  头部开始
+
+  头部结束
+-->
+<!--音乐任务详情 1-->
+
+<div class="main">
+    <div class="main_box">
+        <div class="main_top">
+            <div class="maitop_box">
+                <div class="mat_left">
+                    <p class="left_item">首页/任务大厅/玩游戏/漂浮的家-老狼</p>
+                    <div class="left_det">
+                        <div class="left_img"><img src="../../public/images/1477102503.jpg" width="250" height="188" /></div>
+                        <div class="info_de">
+                            <p class="det_item">漂浮的家 - 老狼</p>
+                            <p>发布时间: 2016-10-22</p>
+                            <p>任务时间: 2016-10-22 至 2016-10-31</p>
+                            <p class="det_num">招募人数: <span>2000</span>人 | 申请人数: 人 | 申请成功: 人</p>
+                            <button id="det_appli">马上申请</button>
+                            <button id="det_sc">加入收藏</button>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="det_share">
+                        <b> 分享到：</b>
+                        <a href="" class="weixi"  align="absmiddle"></a><a href="" class="qqkj"></a>
+                        <a href="" class="weib"></a><a href="" class="txwb"></a><a href="" id="s_more"></a>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="mat_right">
+                    <div class="circle">
+                        <div class="circle_box">
+                            <p>任务佣金</p>
+                            <p>￥1.00</p>
+                        </div>
+                    </div>
+                    <p class="hy">已有3000人获得佣金</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="main_bot">
+            <div class="main_bot_box">
+                <div class="bot_left">
+                    <fieldset class="left_step">
+                        <legend>任务描述</legend>
+                        <div class="m_l_left">
+                            <ul class="left_time">
+                                <li>
+                                    <a>步骤一</a><span>▼</span>
+                                </li>
+                                <li style="margin-top: 250px">
+                                    <a>步骤二</a><span>▼</span>
+                                </li>
+                                <li style="margin-top: 35px">
+                                    <a>注意事项</a><span>▼</span>
+                                </li>
+                                <li>
+                                    <a>步骤三</a><span>▼</span>
+                                </li>
+                                <li style="padding-bottom: 20px">
+                                    <a>步骤四</a><span>▼</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="m_l_right">
+                            <ul>
+                                <li style="height:300px">
+                                    <p>扫二维码</p>
+                                    <span style="padding-bottom:5px">必须扫二维码注册</span>
+                                    <img src="../../public/images/1491118653.png" width='200' height="200" />
+                                </li>
+                                <li>
+                                    <p>输入手机号验证码</p>
+                                    <span>自己设置密码 要记得 邀请码不要动 邀请码是默认的 如有更改肯定不合格</span>
+                                </li>
+                                <li>
+                                    <p style="font-size: 16px;padding-bottom: 10px">支付宝芝麻信用分好像要600以上才能成功。</p>
+                                </li>
+                                <li>
+                                    <p>下载某某app</p>
+                                    <span>注册后下载某某APP然后在“我”里面找到我的资料（直接手填身份信息，不需上传证件）</span>
+                                </li>
+                                <li>
+                                    <p>修改相关信息</p>
+                                    <span>会员一定要选择新用户0费用借款，体验七天免费借用款，七天内还款0费用</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clear"></div>
+                    </fieldset>
+
+                </div>
+                <div class="bot_right">
+                    <p class="right_item">试听音乐</p>
+                    <div class="right_music">
+                        <div class="audio">
+                            <div class="music_con">
+                                <audio src="../../public/musics/Sompob Pokepoon - สั่น.mp3" id="audio"></audio>
+                                <div id="play" onclick="playOrPause(this)">4</div>
+                            </div>
+                            <div class="music_pro">
+                                <p>Sompob Pokepoon-<span>薛之谦</span></p>
+                                <div id="processs">
+                                    <div id="progresswrap"></div>
+                                </div>
+                                <span id="progressTime">0:00:00</span>
+                            </div>
+                        </div>
+                        <a class="mor_music" href="">更多音乐任务推荐→</a>
+                        <div class="audios">
+
+                            <div class="audio_div audio1">
+                                <audio src="../../public/media/Sheryfa Luna - Tu Me Manques.mp3" class="audioes"></audio>
+                                <div class="players player1" onclick="playorpau(0)">4</div>
+                            </div>
+                            <div class="audio_div audio2">
+                                <audio src="../../public/media/Sompob Pokepoon.mp3" class="audioes"></audio>
+                                <div class="players player2" onclick="playorpau(1)">4</div>
+                            </div>
+                            <div class="audio_div audio3">
+                                <audio src="../../public/media/SS501.mp3" class="audioes"></audio>
+                                <div class="players player3" onclick="playorpau(2)" >4</div>
+                            </div>
+                            <div class="audio_div audio4">
+                                <audio src="../../public/media/Tearliner.mp3" class="audioes"></audio>
+                                <div class="players player4" onclick="playorpau(3)">4</div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+尾部开始
+
+尾部结束
+-->
+<script>
+    var audio;
+    var progressTime;
+    var time;
+    //因为有外部资源，所以要用window.onload
+    audio = document.getElementById("audio");
+
+    var playorpause=document.getElementById("play");
+    function playOrPause(){
+
+        if(audio.paused){
+            audio.play();
+            playorpause.innerHTML=";";
+            playorpause.style.margin="65px 0px 0px 80px";
+            progressTime=window.setInterval(getProgress,1000);
+            time=window.setInterval(proTime,1000);
+        }else{
+            audio.pause();
+            playorpause.innerHTML="4";
+            playorpause.style.margin="35px 0px 0px 50px"
+        }
+    }
+
+    var process=document.getElementById("processs");
+    var progresswrap=document.getElementById("progresswrap");
+
+    /*进度条*/
+    function getProgress(){
+        var percent=audio.currentTime/audio.duration;
+
+        progresswrap.style.width=percent*process.offsetWidth+'px';
+    }
+
+    function proTime(){
+        var times=document.getElementById("progressTime");
+        times.innerHTML=sTom(audio.currentTime);
+    }
+
+    //计算时间
+    function sTom(time){
+        //先四舍五入
+        time=Math.round(time);
+        //获取分和秒
+        var min=Math.floor(time/30);
+        var sec=time%60;
+
+        var str="";
+
+        if(min>9){
+            str+=min+":";
+        }else{
+            str+="0"+min+":";
+        }
+        if(sec>9){
+            str+=sec;
+        }else{
+            str+="0"+sec;
+        }
+        return str;
+    }
+
+    /*更多音乐播放*/
+    function playorpau(k){
+        var players=document.getElementsByClassName("players");
+        var audioes=document.getElementsByClassName("audioes");
+        for(var i=0;i<=3;i++){
+
+            if(i==k){
+                if(audioes[i].paused){
+                    audioes[k].play();
+                    players[k].innerHTML=";"
+                }else{
+                    audioes[k].pause();
+                    players[k].innerHTML="4";
+                }
+            }else{
+                audioes[i].pause();
+                players[i].innerHTML="4";
+            }
+
+        }
+    }
+
+
+</script>
+{%endblock%}
