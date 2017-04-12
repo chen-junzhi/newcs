@@ -41,7 +41,7 @@ embed{
 	background:url("../../public/images/index_search_bg.jpg");
     background-position:center;
 	background-size:cover;
-    z-index:70;
+	z-index:200;
 }
 .fst .logo2{
 	position:absolute;
@@ -121,7 +121,6 @@ embed{
 
 .scd{
 	background-color:#FD5868;
-    z-index:80;
 }
 .scd .second_img{
 	position:absolute;
@@ -194,7 +193,6 @@ embed{
 
 .thd{
 	background-color:#16CAFF;
-    z-index:80;
 }
 .thd .third_ul li{
 	width:190px;
@@ -253,7 +251,6 @@ embed{
 
 .fot{
 	background-color:#FF5079;
-    z-index:90;
 }
 .fot .people_game{
     width:300px;
@@ -288,14 +285,14 @@ embed{
 
 .fif{
 	background-color:#FCC31A;
-    z-index:100;
 	position:relative;
+	z-index:100;
 }
 .fif .fifth_div{
     width:620px;
     text-align:center;
     color:#fff;
-    margin:40px auto;
+    margin:100px auto 40px;
 }
 .fifth .fifth_div{
 	animation:people_game 1.5s;
@@ -314,7 +311,7 @@ embed{
 .fif .cloud{
     height:110px;
     position:absolute;
-    top:73%;
+    top:83%;
     left:15%;
     opacity:0;
 }
