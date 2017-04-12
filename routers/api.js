@@ -40,7 +40,7 @@ router.post("/user/register",function (req, res) {
                 res.json(resData);
             }else if(result.length>0){
                 resData.code=1;
-                resData.msg="用户名已存在，请重新注册";
+                resData.msg="用户名已存在，请重新注册!";
                 res.json(resData);
             }else{
                 conn.query("insert into user values(null,?,?,0)",[uname,pwd],function (err, resu) {
@@ -58,6 +58,45 @@ router.post("/user/register",function (req, res) {
             }
         });
     });
+});
+
+//登录
+router.post("/user/login",function (req,res,next) {
+    var uname=req.body.uname;
+    var pwd=req.body.pwd;
+    //console.log(uname+"--"+pwd);
+    pool.getConnection(function(err,conn){
+        if(err){
+            resData.code=0;
+            resData.msg="网络连接失败，请稍后重试...";
+            res.json(resData);
+        }else{
+            conn.query("select * from user where uname=? and pwd=?",[uname,pwd],function (err,result) {
+                conn.release();
+                if(err){
+                    resData.code=0;
+                    resData.msg="网络连接失败，请稍后重试...";
+                    res.json(resData);
+                } else if(result.length<=0){
+                    resData.code=1;
+                    resData.msg="用户名或密码错误，请重新输入!";
+                    res.json(resData);
+                }else{
+                    resData.code=2;
+                    resData.msg="登陆成功";
+                    resData.info=result[0];
+                    //把用户信息存储到session里面去
+                    req.session.user={
+                        _id:result[0].uid,
+                        uname:result[0].uname,
+                        isAdmin:result[0].isAdmin
+                    };
+                    res.json(resData);
+                    console.log(req.session.user);
+                }
+            })
+        }
+    })
 });
 
 

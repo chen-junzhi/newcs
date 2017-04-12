@@ -167,6 +167,10 @@
    </div>
    <!--底部结束-->
    <script>
+        var flag1=false;
+        var flag2=false;
+        var flag3=false;
+        var flag4=false;
 		$(function(){
 			$("#login").click(function(){
 				$("#loginMask").fadeIn();
@@ -184,30 +188,28 @@
 			});
 
 			//注册
-            var flag1=false;
-            var flag2=false;
-            var flag3=false;
-            var flag4=false;
+            $("#registerBox").find("[name='username']").blur(function(){
+                var phoneNumber=/^1[34578]\d{9}$/;
+                var msg=$("#msg");
+                var uname=$("#registerBox").find("[name='username']").val();
+                if(!phoneNumber.test(uname)){
+                    //手机号码格式不正确，请重新输入！
+                    msg.show();
+                    msg.html("手机号码格式不正确，请重新输入！");
+                    setTimeout(function(){
+                        msg.hide();
+                    },3000);
+                    flag2=false;
+                }else{
+                    flag2=true;
+                }
+            });
 			$("#register_btn").on("click",function () {
 				var uname=$("#registerBox").find("[name='username']").val();
 				var pwd=$("#registerBox").find("[name='password']").val();
 				var repwd=$("#registerBox").find("[name='repassword']").val();
                 var verifyCode=$("#registerBox").find("[name='verify']").val();
 				var msg=$("#msg");
-                var phoneNumber=/^1[34578]\d{9}$/;
-                $("#registerBox").find("[name='username']").blur(function(){
-                    if(!phoneNumber.test(uname)){
-                        //手机号码格式不正确，请重新输入！
-                        msg.show();
-                        msg.html("手机号码格式不正确，请重新输入！");
-                        setTimeout(function(){
-                            msg.hide();
-                        },3000);
-                        flag2=false;
-                    }else{
-                        flag2=true;
-                    }
-                });
 
                 if(verifyCode=="" || verifyCode==null){
                     msg.show();
@@ -218,7 +220,33 @@
                     flag4=false;
                 }else{
                     //校对验证码
-                    verify();
+                    var InterValObj; //timer变量，控制时间
+                    var count = 60; //间隔函数，1秒执行
+                    var curCount;//当前剩余秒数
+                    var APP_ID = '9U5NuUnEAgCyomWXjkEjLRa1-gzGzoHsz';
+                    var APP_KEY = '8VrlzHpHOg1ABSosSKb2hw2x';
+                    AV.init({
+                        appId:APP_ID,
+                        appKey:APP_KEY
+                    });
+                    //var verifyCode=$("#registerBox").find("[name='verify']").val();
+                    var num=parseInt( verifyCode );
+                    //console.log(num);
+                    AV.User.verifyMobilePhone(num).then(function(){
+                        //验证成功
+                        flag4=true;
+                        //return flag4;
+                        //alert("验证成功");
+                    }, function(err){
+                        //验证失败,不能注册
+                        console.log(err);
+                        msg.show();
+                        msg.html(err);//提示信息显示不出来？
+                        setTimeout(function(){
+                            msg.hide();
+                        },3000);
+                        flag4=false;
+                    });
                 }
 
                 if(pwd!==repwd){
@@ -232,18 +260,6 @@
                     flag3=true;
                 }
 
-                if(!phoneNumber.test(uname)){
-                    //手机号码格式不正确，请重新输入！
-                    msg.show();
-                    msg.html("手机号码格式不正确，请重新输入！");
-                    setTimeout(function(){
-                        msg.hide();
-                    },3000);
-                    flag2=false;
-                }else{
-                    flag2=true;
-                }
-
                 if(uname=="" || uname==null || pwd=="" || pwd==null || repwd=="" || repwd==null){
                     msg.show();
                     msg.html("手机号或者密码不能为空！");
@@ -254,8 +270,9 @@
                 }else{
                     flag1=true;
                 }
-
+                console.log(flag1+"--"+flag2+"--"+flag3+"--"+flag4);
 				if(flag1 && flag2 && flag3 && flag4){
+
                     $.ajax({
                         type:"post",
                         url:"/api/user/register",
@@ -281,6 +298,7 @@
                                     $("#registerBox").find("[name='password']").val("");
                                     $("#registerBox").find("[name='repassword']").val("");
                                     $("#registerBox").find("[name='verify']").val("");
+                                    $("#verify_btn").removeAttr("disabled");//启用按钮
                                     $("#verify_btn").text("获取验证码");
                                     log();
                                 },3000);
@@ -291,16 +309,7 @@
 			});
 		});
 
-        //验证码
-        var InterValObj; //timer变量，控制时间
-        var count = 60; //间隔函数，1秒执行
-        var curCount;//当前剩余秒数
-        var APP_ID = '9U5NuUnEAgCyomWXjkEjLRa1-gzGzoHsz';
-        var APP_KEY = '8VrlzHpHOg1ABSosSKb2hw2x';
-        AV.init({
-            appId:APP_ID,
-            appKey:APP_KEY
-        });
+
 	   function loginClose(){
 		   $("#loginMask").fadeOut();
 		  //$("#loginBox").fadeOut();
@@ -311,6 +320,10 @@
 			   top:"-600px"
 		   },1000);
            window.clearInterval(InterValObj);//停止计时器
+           $("#registerBox").find("[name='username']").val("");
+           $("#registerBox").find("[name='password']").val("");
+           $("#registerBox").find("[name='repassword']").val("");
+           $("#registerBox").find("[name='verify']").val("");
            $("#verify_btn").removeAttr("disabled");//启用按钮
            $("#verify_btn").text("获取验证码");
 		}
@@ -347,8 +360,8 @@
             InterValObj = setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
 
             var user = new AV.User();
-            user.set("username", uname+"");
-            user.set("password", pwd+"");
+            user.set("username", uname);
+            user.set("password", pwd);
             user.setMobilePhoneNumber(uname+"");
 
             user.signUp(null);
@@ -366,24 +379,7 @@
             }
         }
         //验证码的校对
-        function verify(){
-            var verifyCode=$("#registerBox").find("[name='verify']").val();
-            var num=parseInt( verifyCode );
-            AV.User.verifyMobilePhone(num).then(function(){
-                //验证成功
-                //alert("验证成功");
-                flag4=true;
-            }, function(err){
-                //验证失败,不能注册
-                console.log(err);
-                msg.show();
-                msg.html(err);//提示信息显示不出来？
-                setTimeout(function(){
-                    msg.hide();
-                },3000);
-                flag4=false;
-            });
-        }
+
    </script>
 </body>
 </html>
