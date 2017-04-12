@@ -27,9 +27,9 @@
        <div class="header_box">
            <a href="" class="header_logo"><img src="../../public/images/logo.png"></a>
            <ul class="header_right" id="head_ul">
-               <li class="active"><a href="/?num=1">首页</a></li>
-               <li><a href="/white?num=2">小白指栏</a></li>
-               <li><a href="/mission?num=3">任务大厅</a></li>
+               <li class="active"><a href="/">首页</a></li>
+               <li><a href="/white">小白指栏</a></li>
+               <li><a href="/mission">任务大厅</a></li>
                <li><a href="/reviewed">往期踪迹</a></li>
                <li><a href="/new_focus">最新聚焦</a></li>
                {% if userInfo._id %}
@@ -181,7 +181,6 @@
         var flag1=false;
         var flag2=false;
         var flag3=false;
-        var flag4=false;
 		$(function(){
 			$("#login").click(function(){
 				$("#loginMask").fadeIn();
@@ -197,6 +196,15 @@
 					top:"0px"
 				},1000);
 			});
+            //头部切换导航栏
+            var lis=$("#head_ul li");
+            lis.on("click",function(){
+                //var str=location.href;
+                //console.log(str);
+                //var num=str.split("?")[1].split("=")[1];
+                //console.log(num);
+                $(this).addClass("active").siblings().removeClass("active");
+            });
 
 			//注册
             $("#registerBox").find("[name='username']").blur(function(){
@@ -228,7 +236,6 @@
                     setTimeout(function(){
                         msg.hide();
                     },3000);
-                    flag4=false;
                 }else{
                     //校对验证码
                     var APP_ID = '9U5NuUnEAgCyomWXjkEjLRa1-gzGzoHsz';
@@ -248,9 +255,42 @@
                     //console.log(num);
                     AV.User.verifyMobilePhone(num).then(function(){
                         //验证成功
-                        //console.log(flag1+"--"+flag2+"--"+flag3+"--"+flag4+"11");
-                        flag4=true;
-                        //return flag4;
+                        if(flag1 && flag2 && flag3){
+                            $.ajax({
+                                type:"post",
+                                url:"/api/user/register",
+                                data:{
+                                    uname:uname,
+                                    pwd:pwd
+                                },
+                                dataType:"json",
+                                success:function (data) {
+                                    if(data.code!=2){
+                                        msg.show();
+                                        msg.html(data.msg);
+                                        msg.css("color","#f00");
+                                        setTimeout(function(){
+                                            msg.hide();
+                                        },3000);
+                                    }else{
+                                        //注册成功，显示登陆界面
+                                        msg.show();
+                                        msg.html(data.msg);
+                                        msg.css("color","blue");
+                                        setTimeout(function(){
+                                            msg.hide();
+                                            $("#registerBox").find("[name='username']").val("");
+                                            $("#registerBox").find("[name='password']").val("");
+                                            $("#registerBox").find("[name='repassword']").val("");
+                                            $("#registerBox").find("[name='verify']").val("");
+                                            $("#verify_btn").removeAttr("disabled");//启用按钮
+                                            $("#verify_btn").text("获取验证码");
+                                            log();
+                                        },3000);
+                                    }
+                                }
+                            });
+                        }
                         //alert("验证成功");
                     }, function(err){
                         //验证失败,不能注册
@@ -262,7 +302,6 @@
                         setTimeout(function(){
                             msg.hide();
                         },3000);
-                        flag4=false;
                     });
                 }
 
@@ -289,43 +328,7 @@
                 }else{
                     flag1=true;
                 }
-                console.log(flag1+"--"+flag2+"--"+flag3+"--"+flag4);
-				if(flag1 && flag2 && flag3 && flag4){
-                    $.ajax({
-                        type:"post",
-                        url:"/api/user/register",
-                        data:{
-                            uname:uname,
-                            pwd:pwd
-                        },
-                        dataType:"json",
-                        success:function (data) {
-                            if(data.code!=2){
-                                msg.show();
-                                msg.html(data.msg);
-                                msg.css("color","#f00");
-                                setTimeout(function(){
-                                    msg.hide();
-                                },3000);
-                            }else{
-                                //注册成功，显示登陆界面
-                                msg.show();
-                                msg.html(data.msg);
-                                msg.css("color","blue");
-                                setTimeout(function(){
-                                    msg.hide();
-                                    $("#registerBox").find("[name='username']").val("");
-                                    $("#registerBox").find("[name='password']").val("");
-                                    $("#registerBox").find("[name='repassword']").val("");
-                                    $("#registerBox").find("[name='verify']").val("");
-                                    $("#verify_btn").removeAttr("disabled");//启用按钮
-                                    $("#verify_btn").text("获取验证码");
-                                    log();
-                                },3000);
-                            }
-                        }
-                    });
-                }
+                //console.log(flag1+"--"+flag2+"--"+flag3);
 			});
 
             //登录
@@ -411,10 +414,10 @@
             });
         }
 
+        var InterValObj; //timer变量，控制时间
+        var count = 60; //间隔函数，1秒执行
+        var curCount;//当前剩余秒数
         function sendMessage(){
-            var InterValObj; //timer变量，控制时间
-            var count = 60; //间隔函数，1秒执行
-            var curCount;//当前剩余秒数
             var uname=$("#registerBox").find("[name='username']").val();
             var pwd=$("#registerBox").find("[name='password']").val();
             curCount = count;
