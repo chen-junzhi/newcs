@@ -341,6 +341,7 @@ li{
 .music_pro #progressTime{
     display:block;
     margin:15px 0px 0px 200px;
+    font-style: italic;
 }
 .right_music .mor_music{
     margin-left:5px;
@@ -483,13 +484,15 @@ li{
 .right_more {
     font-size: 14px;
     margin-left:100px;
-    margin-top: 340px;
+    margin-top: 20px;
     vertical-align: middle;
 
 }
 .right_more a:nth-child(1){
     width: 130px;
     height:25px;
+    padding-left: 20px;
+    color:#EA5E43;
     display:inline-block;
 }
 .right_more a:nth-child(2){
