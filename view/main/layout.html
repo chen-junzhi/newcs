@@ -23,22 +23,32 @@
 </head>
 <body>
   <!--头部开始-->
-
    <div id="head">
-     <div class="header_box">
-   	   <a href="" class="header_logo"><img src="../../public/images/logo.png"></a>
-   	   <ul class="header_right" id="head_ul">
-   	  	  <li class="active"><a href="/?num=1">首页</a></li>
-   	  	  <li><a href="/white?num=2">小白指栏</a></li>
-   	  	  <li><a href="/mission?num=3">任务大厅</a></li>
-   	  	  <li><a href="/reviewed">往期踪迹</a></li>
-   	  	  <li><a href="/new_focus">最新聚焦</a></li>
-   	  	  <li><a href="javascript:void(0)" id="login">登录</a></li>
-   	  	  <li><a href="javascript:void(0)" id="register">注册</a></li>
-   	   </ul>
+       <div class="header_box">
+           <a href="" class="header_logo"><img src="../../public/images/logo.png"></a>
+           <ul class="header_right" id="head_ul">
+               <li class="active"><a href="/?num=1">首页</a></li>
+               <li><a href="/white?num=2">小白指栏</a></li>
+               <li><a href="/mission?num=3">任务大厅</a></li>
+               <li><a href="/reviewed">往期踪迹</a></li>
+               <li><a href="/new_focus">最新聚焦</a></li>
+               {% if userInfo._id %}
+               <li class="username">{{userInfo.uname}}</li>
+               {% if userInfo.isAdmin %}
+               <span class="admin">您好，管理员</span><a href="/admin">进入后台管理</a>
+               {% else %}
+               <li><a href="javascript:void(0)">个人中心</a></li>
+               {%endif%}
+               <li><a href="javascript:void(0);" onclick="Exit()" id="logout">退出</a></li>
+               {% else %}
+               <li><a href="javascript:void(0)" id="login">登录</a></li>
+               <li><a href="javascript:void(0)" id="register">注册</a></li>
+               {%endif%}
+   	       </ul>
    	  </div>
    </div>
    <div class="wrap">
+       <!--登录-->
 	   <div id="loginBox">
 		   <button class="login_close" onclick="loginClose()">
 			   <img src="../../public/images/close.png" />
@@ -53,8 +63,8 @@
 				   <span id="login_pwd">
 					   <input type="password" name="password" placeholder="请输入您的密码" />
 				   </span>
-                   <span class="msg"></span>
-				   <span><a href="/admin/"><button id="login_btn">登录</button></a></span>
+                   <span id="msg1"></span>
+				   <span><button id="login_btn">登录</button></span>
 				   <p>
 					   <label>
 						   <input type="checkbox" checked="checked" style="vertical-align:middle;" />
@@ -65,6 +75,7 @@
 			   </div>
 		   </div>
 	   </div>
+       <!--注册-->
 	   <div id="registerBox">
 		   <button class="login_close" onclick="loginClose()">
 			   <img src="../../public/images/close.png" />
@@ -220,28 +231,34 @@
                     flag4=false;
                 }else{
                     //校对验证码
-                    var InterValObj; //timer变量，控制时间
-                    var count = 60; //间隔函数，1秒执行
-                    var curCount;//当前剩余秒数
                     var APP_ID = '9U5NuUnEAgCyomWXjkEjLRa1-gzGzoHsz';
                     var APP_KEY = '8VrlzHpHOg1ABSosSKb2hw2x';
                     AV.init({
                         appId:APP_ID,
                         appKey:APP_KEY
                     });
-                    //var verifyCode=$("#registerBox").find("[name='verify']").val();
+                    var user = new AV.User();
+                    user.set("username", uname);
+                    user.set("password", pwd);
+                    user.setMobilePhoneNumber(uname+"");
+
+                    user.signUp(null);
+
                     var num=parseInt( verifyCode );
                     //console.log(num);
                     AV.User.verifyMobilePhone(num).then(function(){
                         //验证成功
+                        //console.log(flag1+"--"+flag2+"--"+flag3+"--"+flag4+"11");
                         flag4=true;
                         //return flag4;
                         //alert("验证成功");
                     }, function(err){
                         //验证失败,不能注册
+                        //console.log(flag1+"--"+flag2+"--"+flag3+"--"+flag4);
                         console.log(err);
                         msg.show();
-                        msg.html(err);//提示信息显示不出来？
+                        msg.html("无效的验证码！");//提示信息显示不出来？
+                        msg.css("color","#f00");
                         setTimeout(function(){
                             msg.hide();
                         },3000);
@@ -252,6 +269,7 @@
                 if(pwd!==repwd){
                     msg.show();
                     msg.html("两次输入的密码不一致，请重新输入！");
+                    msg.css("color","#f00");
                     setTimeout(function(){
                         msg.hide();
                     },3000);
@@ -263,6 +281,7 @@
                 if(uname=="" || uname==null || pwd=="" || pwd==null || repwd=="" || repwd==null){
                     msg.show();
                     msg.html("手机号或者密码不能为空！");
+                    msg.css("color","#f00");
                     setTimeout(function(){
                         msg.hide();
                     },3000);
@@ -272,7 +291,6 @@
                 }
                 console.log(flag1+"--"+flag2+"--"+flag3+"--"+flag4);
 				if(flag1 && flag2 && flag3 && flag4){
-
                     $.ajax({
                         type:"post",
                         url:"/api/user/register",
@@ -285,6 +303,7 @@
                             if(data.code!=2){
                                 msg.show();
                                 msg.html(data.msg);
+                                msg.css("color","#f00");
                                 setTimeout(function(){
                                     msg.hide();
                                 },3000);
@@ -292,6 +311,7 @@
                                 //注册成功，显示登陆界面
                                 msg.show();
                                 msg.html(data.msg);
+                                msg.css("color","blue");
                                 setTimeout(function(){
                                     msg.hide();
                                     $("#registerBox").find("[name='username']").val("");
@@ -307,10 +327,52 @@
                     });
                 }
 			});
+
+            //登录
+            var loginBox=$("#loginBox");
+            $("#login_btn").on("click",function () {
+                var uname=loginBox.find("[name='username']").val();
+                var pwd=loginBox.find("[name='password']").val();
+                var msg1=$("#msg1");
+                //console.log(uname+"--"+pwd);
+                if(uname == "" || uname == null || pwd == "" || pwd == null){
+                    msg1.show();
+                    msg1.html("手机号或者密码不能为空！");
+                    msg1.css("color","#f00");
+                    setTimeout(function(){
+                        msg1.hide();
+                    },3000);
+                }else{
+                    //通过ajax提交请求
+                    $.ajax({
+                        type:"post",
+                        url:"/api/user/login",
+                        data:{
+                            uname:uname,
+                            pwd:pwd
+                        },
+                        dataType:"json",
+                        success:function (result) {
+                            msg1.show();
+                            msg1.html(result.msg);
+                            setTimeout(function(){
+                                msg1.hide();
+                            },3000);
+                            msg1.css("color","#f00");
+                            //console.log(result);
+                            if(result.code==2){
+                                //登陆成功
+                                msg1.css("color","blue");
+                                location.reload();
+                            }
+                        }
+                    });
+                }
+            });
 		});
 
 
-	   function loginClose(){
+	    function loginClose(){
 		   $("#loginMask").fadeOut();
 		  //$("#loginBox").fadeOut();
 		   $("#loginBox").animate({
@@ -319,7 +381,6 @@
 		   $("#registerBox").animate({
 			   top:"-600px"
 		   },1000);
-           window.clearInterval(InterValObj);//停止计时器
            $("#registerBox").find("[name='username']").val("");
            $("#registerBox").find("[name='password']").val("");
            $("#registerBox").find("[name='repassword']").val("");
@@ -351,6 +412,9 @@
         }
 
         function sendMessage(){
+            var InterValObj; //timer变量，控制时间
+            var count = 60; //间隔函数，1秒执行
+            var curCount;//当前剩余秒数
             var uname=$("#registerBox").find("[name='username']").val();
             var pwd=$("#registerBox").find("[name='password']").val();
             curCount = count;
@@ -358,13 +422,6 @@
             $("#verify_btn").attr("disabled", "true");
             $("#verify_btn").text( curCount + "s");
             InterValObj = setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-
-            var user = new AV.User();
-            user.set("username", uname);
-            user.set("password", pwd);
-            user.setMobilePhoneNumber(uname+"");
-
-            user.signUp(null);
         }
         //timer处理函数
         function SetRemainTime() {
