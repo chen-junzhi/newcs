@@ -1,0 +1,38 @@
+h1{
+    font-size: 22px;
+    font-weight: 400;
+    margin: 10px 0px;
+}
+.set_box{
+    margin: 50px 0px 0px 0px;
+}
+.set_box ul li{
+    margin-bottom: 15px;
+}
+.set_box ul li span{
+    display: block;
+    padding: 10px 0px;
+    width: 80px;
+    color: #666;
+    float: left;
+}
+.set_box ul li p input{
+    width: 300px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    resize: none;
+    outline: none;
+}
+.commit_btn{
+    text-align: left;
+    padding: 0px 0px 20px 80px;
+}
+.commit_btn button{
+    background: #ff6600;
+    padding: 10px 15px;
+    margin: 10px 0px;
+    color: #fff;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px;
+}

@@ -1,0 +1,26 @@
+{% extends 'user.html' %}
+{% block main %}
+
+<h1>账号设置</h1>
+<div class="set_box">
+    <form action="" method="post" id="set_form" enctype="multipart/form-data">
+        <div>
+            <ul>
+                <li>
+                    <span>旧密码</span>
+                    <p><input type="password" name="opwd"></p>
+                </li>
+                <li>
+                    <span>新密码</span>
+                    <p><input type="password" name="npwd"></p>
+                </li>
+                <li>
+                    <span>重复密码</span>
+                    <p><input type="password" name="rpwd"></p>
+                </li>
+            </ul>
+        </div>
+        <div class="commit_btn"><button id="btn_submit">保存</button></div>
+    </form>
+</div>
+{%endblock%}
