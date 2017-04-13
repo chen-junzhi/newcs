@@ -100,7 +100,7 @@
 				   <span id="msg"></span>
 				   <p>
 					   <label>
-						   <input type="checkbox" checked="checked" style="vertical-align:middle;" />
+						   <input type="checkbox" checked="true" id="checkedxy" style="vertical-align:middle;" />
 						   已经阅读并同意
 						   <a href="javascript:void(0)">《新创生注册协议》</a>
 					   </label>
@@ -181,6 +181,7 @@
         var flag1=false;
         var flag2=false;
         var flag3=false;
+		var flag4=false;
 		$(function(){
 			$("#login").click(function(){
 				$("#loginMask").fadeIn();
@@ -223,6 +224,23 @@
                     flag2=true;
                 }
             });
+
+			//协议勾选
+			var checkbox=$("#checkedxy");
+			var checkedxy=checkbox.attr("checked");
+			var flag;
+			checkbox.on("click",function(){
+				if(checkedxy){
+					console.log(11);
+					checkbox.attr("checked","false");
+				}else{
+					console.log(22);
+					checkbox.attr("checked","true");
+				}
+			});
+
+			//console.log(checkedxy);
+
 			$("#register_btn").on("click",function () {
 				var uname=$("#registerBox").find("[name='username']").val();
 				var pwd=$("#registerBox").find("[name='password']").val();
@@ -255,7 +273,7 @@
                     //console.log(num);
                     AV.User.verifyMobilePhone(num).then(function(){
                         //验证成功
-                        if(flag1 && flag2 && flag3){
+                        if(flag1 && flag2 && flag3 && flag4){
                             $.ajax({
                                 type:"post",
                                 url:"/api/user/register",
@@ -304,6 +322,18 @@
                         },3000);
                     });
                 }
+
+				if(!checkedxy){
+					msg.show();
+					msg.html("请您先勾选我们的协议！");
+					msg.css("color","#f00");
+					setTimeout(function(){
+						msg.hide();
+					},3000);
+					flag4=false;
+				}else{
+					flag4=true;
+				}
 
                 if(pwd!==repwd){
                     msg.show();
