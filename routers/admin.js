@@ -44,6 +44,16 @@ router.get("/share",function (req,res,next) {
     });
 });
 
+router.get("/info",function (req,res,next) {
+    res.render("admin/info",{
+    });
+});
+
+router.get("/user_set",function (req,res,next) {
+    res.render("admin/user_set",{
+    });
+});
+
 
 
 

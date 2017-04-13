@@ -1,0 +1,176 @@
+{% extends "layout.html" %}
+
+{%block main%}
+<!--
+  头部开始
+
+  头部结束
+-->
+<!--电影类任务 -->
+
+<div class="main">
+    <div class="main_box">
+        <div class="main_top">
+            <div class="maitop_box">
+                <div class="mat_left">
+                    <p class="left_item">首页/任务大厅/玩游戏/漂浮的家-老狼</p>
+                    <div class="left_det">
+                        <div class="left_img"><img src="../../public/images/1477102503.jpg" width="250" height="188" /></div>
+                        <div class="info_de">
+                            <p class="det_item">漂浮的家 - 老狼</p>
+                            <p>发布时间: 2016-10-22</p>
+                            <p>任务时间: 2016-10-22 至 2016-10-31</p>
+                            <p class="det_num">招募人数: <span>2000</span>人 | 申请人数: 人 | 申请成功: 人</p>
+                            <button id="det_appli">马上申请</button>
+                            <button id="det_sc">加入收藏</button>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="det_share">
+                        <b> 分享到：</b>
+                        <a href="" class="weixi"  align="absmiddle"></a><a href="" class="qqkj"></a>
+                        <a href="" class="weib"></a><a href="" class="txwb"></a><a href="" id="s_more"></a>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="mat_right">
+                    <div class="circle">
+                        <div class="circle_box">
+                            <p>任务佣金</p>
+                            <p>￥1.00</p>
+                        </div>
+                    </div>
+                    <p class="hy">已有3000人获得佣金</p>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="main_bot">
+            <div class="main_bot_box">
+                <div class="bot_left">
+                    <fieldset class="left_step">
+                        <legend>任务描述</legend>
+                        <div class="m_l_left">
+                            <ul class="left_time">
+                                <li>
+                                    <a>步骤一</a><span>▼</span>
+                                </li>
+                                <li style="margin-top: 250px">
+                                    <a>步骤二</a><span>▼</span>
+                                </li>
+                                <li style="margin-top: 35px">
+                                    <a>注意事项</a><span>▼</span>
+                                </li>
+                                <li>
+                                    <a>步骤三</a><span>▼</span>
+                                </li>
+                                <li style="padding-bottom: 20px">
+                                    <a>步骤四</a><span>▼</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="m_l_right">
+                            <ul>
+                                <li style="height:300px">
+                                    <p>扫二维码</p>
+                                    <span style="padding-bottom:5px">必须扫二维码注册</span>
+                                    <img src="../../public/images/1491118653.png" width='200' height="200" />
+                                </li>
+                                <li>
+                                    <p>输入手机号验证码</p>
+                                    <span>自己设置密码 要记得 邀请码不要动 邀请码是默认的 如有更改肯定不合格</span>
+                                </li>
+                                <li>
+                                    <p style="font-size: 16px;padding-bottom: 10px">支付宝芝麻信用分好像要600以上才能成功。</p>
+                                </li>
+                                <li>
+                                    <p>下载某某app</p>
+                                    <span>注册后下载某某APP然后在“我”里面找到我的资料（直接手填身份信息，不需上传证件）</span>
+                                </li>
+                                <li>
+                                    <p>修改相关信息</p>
+                                    <span>会员一定要选择新用户0费用借款，体验七天免费借用款，七天内还款0费用</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clear"></div>
+                    </fieldset>
+
+                </div>
+                <div class="bot_right">
+                    <p class="right_item">试看电影</p>
+                    <div id="video">
+                        <video id="myPlayer" src="../../public/medias/speed.mp4" onclick="play()"></video>
+                        <div class="bg"></div>
+                        <div id="controls" onclick="Play(this)">4</div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="movies">
+                        <p class="zuii">最新电影任务</p>
+                        <div class="movie">
+                            <div class="videos">
+                                <video src="../../public/medias/where.mp4" ></video>
+                                <div class="bgs"></div>
+                                <div class="control" onclick="Play(this)">4</div>
+                            </div>
+                            <div class="decrip">
+                                <p>电影名称：血战钢锯岭</p>
+                                <p>点击指数:<span> ★★★</span></p>
+                                <p>任务佣金：<span>￥2.00</span></p>
+                            </div>
+
+
+                        </div>
+                        <div class="movie">
+                            <div class="videos">
+                                <video src="../../public/medias/ph.mp4" ></video>
+                                <div class="bgs"></div>
+                                <div class="control" onclick="Play(this)">4</div>
+                            </div>
+                            <div class="decrip">
+                                <p>电影名称：西游伏妖记</p>
+                                <p>点击指数:<span> ★★★★</span></p>
+                                <p>任务佣金：<span>￥5.00</span></p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="right_more" style="margin-top: 340px">
+                        <a>知道更多最新任务：</a><a href="/mission">→</a>
+                    </div>
+
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+尾部开始
+
+尾部结束
+-->
+<script>
+    var video;
+    var con=document.getElementById("controls");
+
+    video=document.getElementById("myPlayer");
+
+
+    function Play(e) {
+        if(video.paused){
+            video.play();
+            document.getElementById("controls").innerHTML=";";
+            document.getElementsByClassName("bg")[0].style.opacity="0";
+            var percent=video.currentTime/video.duration;
+            console.log(percent);
+        }else{
+            video.pause();
+            document.getElementById("controls").innerHTML="4";
+            document.getElementsByClassName("bg")[0].style.opacity="0.5";
+        }
+    }
+
+
+</script>
+{%endblock%}
