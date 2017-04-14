@@ -181,7 +181,6 @@
         var flag1=false;
         var flag2=false;
         var flag3=false;
-		var flag4=false;
 		$(function(){
 			$("#login").click(function(){
 				$("#loginMask").fadeIn();
@@ -225,19 +224,19 @@
                 }
             });
 
-			//协议勾选
+			/*//协议勾选
 			var checkbox=$("#checkedxy");
 			var checkedxy=checkbox.attr("checked");
-			var flag;
+			var flag=false;
 			checkbox.on("click",function(){
-				if(checkedxy){
-					console.log(11);
-					checkbox.attr("checked","false");
+				if(flag){
+					checkbox.attr("checked");
+                    flag=false;
 				}else{
-					console.log(22);
-					checkbox.attr("checked","true");
+					checkbox.removeAttr("checked");
+                    flag=true;
 				}
-			});
+			});*/
 
 			//console.log(checkedxy);
 
@@ -273,7 +272,7 @@
                     //console.log(num);
                     AV.User.verifyMobilePhone(num).then(function(){
                         //验证成功
-                        if(flag1 && flag2 && flag3 && flag4){
+                        if(flag1 && flag2 && flag3){
                             $.ajax({
                                 type:"post",
                                 url:"/api/user/register",
@@ -323,7 +322,7 @@
                     });
                 }
 
-				if(!checkedxy){
+				/*if(!checkedxy){
 					msg.show();
 					msg.html("请您先勾选我们的协议！");
 					msg.css("color","#f00");
@@ -333,7 +332,7 @@
 					flag4=false;
 				}else{
 					flag4=true;
-				}
+				}*/
 
                 if(pwd!==repwd){
                     msg.show();
