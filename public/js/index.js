@@ -1,20 +1,8 @@
 
 $(function(){
-
-    //头部切换导航栏
-	var lis=$("#head_ul li");
-	lis.on("click",function(){
-        //var str=location.href;
-        //console.log(str);
-        //var num=str.split("?")[1].split("=")[1];
-        //console.log(num);
-        $(this).addClass("active").siblings().removeClass("active");
-
-	});
 	var task_menu=$(".task_menu_list ul li");
     task_menu.on("click",function(){
 		$(this).addClass("active").siblings().removeClass("active");
-
 	});
 })
 
