@@ -26,6 +26,9 @@ input{
 	z-index: 999;
 	background: #fff;
 }
+#head a{
+	color:#000;
+}
 .header_box{
 	width:1200px;
 	height:100%;
@@ -43,8 +46,9 @@ input{
 }
 .header_right{
     height:100%;
-	float: right;
+	float: left;
 	text-align: center;
+	margin-left:30px;
 }
 .header_right li{
   height: 80px;
@@ -53,6 +57,16 @@ input{
   margin-left: 12px;
   padding: 0 12px;
   font-size: 18px;
+}
+#head .userInfo .username span{
+	color:red;
+}
+#head .userInfo li{
+	height:80px;
+	line-height:80px;
+	text-align: center;
+	float: left;
+	margin:0 15px;
 }
 .header_right li a{
 	height:100%;
@@ -69,6 +83,10 @@ input{
 
 .header_right li a{
 	color:black;
+}
+
+#head .userInfo{
+	float: right;
 }
 
 #loginBox,#registerBox{

@@ -22,43 +22,79 @@
     <div class="header_box">
         <a href="" class="header_logo"><img src="../../public/images/logo.png"></a>
         <ul class="header_right" id="head_ul">
-            <li class="active"><a href="/?num=1">首页</a></li>
-            <li><a href="/white?num=2">小白指栏</a></li>
-            <li><a href="/mission?num=3">任务大厅</a></li>
+            <li class="active"><a href="/">首页</a></li>
+            <li><a href="/white">小白指栏</a></li>
+            <li><a href="/mission">任务大厅</a></li>
             <li><a href="/reviewed">往期踪迹</a></li>
             <li><a href="/new_focus">最新聚焦</a></li>
-            <li><a href="javascript:void(0)" id="login">登录</a></li>
-            <li><a href="javascript:void(0)" id="register">注册</a></li>
+        </ul>
+        <ul class="userInfo">
+            <li class="username">欢迎,<span>{{userInfo.uname}}</span></li>
+            <li class="person"><a href="/admin">个人中心</a></li>
+            <li class="exit"><a href="javascript:void(0);" onclick="Exit()">退出</a></li>
         </ul>
     </div>
 </div>
 <div class="wrap">
+    <!--登录-->
     <div id="loginBox">
-        <form  action="" method="">
-            <button class="login_close" onclick="loginClose()">
-                <img src="../../public/images/close.png" />
-            </button>
+        <button class="login_close" onclick="loginClose()">
+            <img src="../../public/images/close.png" />
+        </button>
+        <div>
             <h1>登录<span>还没有帐号?<a href="javascript:void(0)" onclick="reg()">立即注册</a></span></h1>
             <div class="login_content">
-                <h4 style="font-weight:normal;">手机号或者用户名</h4>
+                <h4 style="font-weight:normal;">手机号</h4>
                 <span id="login_user">
-					   <input type="text" name="username" placeholder="请输入您的用户名或者手机号" />
+					   <input type="text" name="username" placeholder="请输入您的手机号" />
 				   </span>
                 <span id="login_pwd">
 					   <input type="password" name="password" placeholder="请输入您的密码" />
 				   </span>
-                <span><button class="login_btn">登录</button></span>
+                <span id="msg1"></span>
+                <span><button id="login_btn">登录</button></span>
                 <p>
                     <label>
                         <input type="checkbox" checked="checked" style="vertical-align:middle;" />
                         记住账号
-                        <a href="javascript:void(0)">忘记密码?</a>
+                        <a href="javascript:void(0)" style="float:right;">忘记密码?</a>
                     </label>
                 </p>
             </div>
-        </form>
+        </div>
     </div>
+    <!--注册-->
     <div id="registerBox">
+        <button class="login_close" onclick="loginClose()">
+            <img src="../../public/images/close.png" />
+        </button>
+
+        <h1>注册<span>已经有帐号?<a href="javascript:void(0)" onclick="log()">马上登录</a></span></h1>
+        <div class="reg_content">
+            <h4 style="font-weight:normal;">请用手机号码注册</h4>
+            <span>
+					   <input type="text" name="username" placeholder="手机号" />
+				   </span>
+            <span>
+					   <input type="password" name="password" placeholder="密码" />
+				   </span>
+            <span>
+					   <input type="password" name="repassword" placeholder="确认密码" />
+				   </span>
+            <span id="register_identify">
+					   <input type="text" name="verify" placeholder="短信验证码" />
+					   <button id="verify_btn" class="phoneCode" onclick="sendMessage()">获取验证码</button>
+				   </span>
+            <span id="msg"></span>
+            <p>
+                <label>
+                    <input type="checkbox" checked="true" id="checkedxy" style="vertical-align:middle;" />
+                    已经阅读并同意
+                    <a href="javascript:void(0)">《新创生注册协议》</a>
+                </label>
+            </p>
+            <span><button id="register_btn">注册</button></span>
+        </div>
 
     </div>
 </div>
@@ -153,21 +189,17 @@
 <!--底部结束-->
 <script>
     $(function(){
-        $("#login").click(function(){
-            $("#loginMask").fadeIn();
-            $("#loginBox").fadeIn();
-            $("#loginBox").animate({
-                top:"0px"
-            });
-        });
-        //点击关闭，用到bootstrap字体图标
+
     });
-    function loginClose(){
-        $("#loginMask").fadeOut();
-        $("#loginBox").fadeOut();
-        $("#loginBox").animate({
-            top:"-400px"
-        });
+    function Exit(){
+        $.get("/api/userExit",null,function (data) {
+            if(data=="0"){
+                alert("网络连接失败，请稍后重试...");
+            }else if(data=="1"){
+                location.href="/";
+                //console.log(111);
+            }
+        })
     }
 </script>
 </body>

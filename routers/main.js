@@ -26,57 +26,57 @@ var pool=mysql.createPool({    //数据连接池
 router.get("/",function (req,res,next) {
     //第一个参数模板的路径   第二个参数：分配给模板使用的数据
     res.render('main/index',{
-
+        userInfo:req.session.user
     });
 });
 
 router.get("/white",function (req,res,next) {
     //第一个参数模板的路径   第二个参数：分配给模板使用的数据
     res.render('main/white',{
-
+        userInfo:req.session.user
     });
 });
 router.get("/mission",function (req,res,next) {
     //第一个参数模板的路径   第二个参数：分配给模板使用的数据
     res.render('main/mission',{
-
+        userInfo:req.session.user
     });
 });
 router.get("/reviewed",function (req,res) {
     //使用模版引擎去渲染页面，两个参数： 路径 分配给这个页面使用的数据
     res.render("main/reviewed",{
-
+        userInfo:req.session.user
     });
 });
 router.get("/new_focus",function (req,res) {
     //使用模版引擎去渲染页面，两个参数： 路径 分配给这个页面使用的数据
     res.render("main/new_focus",{
-
+        userInfo:req.session.user
     });
 });
 router.get("/article",function (req,res) {
     //使用模版引擎去渲染页面，两个参数： 路径 分配给这个页面使用的数据
     res.render("main/article",{
-
+        userInfo:req.session.user
     });
 });
 router.get("/detail_task1",function (req,res) {
     //使用模版引擎去渲染页面，两个参数： 路径 分配给这个页面使用的数据
     res.render("main/detail_task1",{
-
+        userInfo:req.session.user
     });
 });
 
 router.get("/detail_task1",function (req,res) {
     //使用模版引擎去渲染页面，两个参数： 路径 分配给这个页面使用的数据
     res.render("main/detail_task1",{
-
+        userInfo:req.session.user
     });
 });
 router.get("/detail_task",function (req,res) {
     //使用模版引擎去渲染页面，两个参数： 路径 分配给这个页面使用的数据
     res.render("main/detail_task",{
-
+        userInfo:req.session.user
     });
 });
 

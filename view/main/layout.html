@@ -33,19 +33,21 @@
                <li><a href="/mission">任务大厅</a></li>
                <li><a href="/reviewed">往期踪迹</a></li>
                <li><a href="/new_focus">最新聚焦</a></li>
+   	       </ul>
+           <ul class="userInfo">
                {% if userInfo._id %}
-               <li class="username">{{userInfo.uname}}</li>
+               <li class="username">欢迎,<span>{{userInfo.uname}}</span></li>
                {% if userInfo.isAdmin %}
-               <span class="admin">您好，管理员</span><a href="/admin">进入后台管理</a>
+               <li class="admin">您好，管理员！<a href="/admin">进入后台管理</a></li>
                {% else %}
-               <li><a href="javascript:void(0)">个人中心</a></li>
+               <li class="person"><a href="/admin">个人中心</a></li>
                {%endif%}
-               <li><a href="javascript:void(0);" onclick="Exit()" id="logout">退出</a></li>
+               <li class="exit"><a href="javascript:void(0);" onclick="Exit()">退出</a></li>
                {% else %}
                <li><a href="javascript:void(0)" id="login">登录</a></li>
                <li><a href="javascript:void(0)" id="register">注册</a></li>
                {%endif%}
-   	       </ul>
+           </ul>
    	  </div>
    </div>
    <div class="wrap">
@@ -240,7 +242,7 @@
 			});*/
 
 			//console.log(checkedxy);
-
+            //注册
 			$("#register_btn").on("click",function () {
 				var uname=$("#registerBox").find("[name='username']").val();
 				var pwd=$("#registerBox").find("[name='password']").val();
@@ -256,19 +258,6 @@
                     },3000);
                 }else{
                     //校对验证码
-                    var APP_ID = '9U5NuUnEAgCyomWXjkEjLRa1-gzGzoHsz';
-                    var APP_KEY = '8VrlzHpHOg1ABSosSKb2hw2x';
-                    AV.init({
-                        appId:APP_ID,
-                        appKey:APP_KEY
-                    });
-                    var user = new AV.User();
-                    user.set("username", uname);
-                    user.set("password", pwd);
-                    user.setMobilePhoneNumber(uname+"");
-
-                    user.signUp(null);
-
                     var num=parseInt( verifyCode );
                     //console.log(num);
                     AV.User.verifyMobilePhone(num).then(function(){
@@ -404,23 +393,6 @@
             });
 		});
 
-
-	    function loginClose(){
-		   $("#loginMask").fadeOut();
-		  //$("#loginBox").fadeOut();
-		   $("#loginBox").animate({
-			   top:"-600px"
-		   },1000);
-		   $("#registerBox").animate({
-			   top:"-600px"
-		   },1000);
-           $("#registerBox").find("[name='username']").val("");
-           $("#registerBox").find("[name='password']").val("");
-           $("#registerBox").find("[name='repassword']").val("");
-           $("#registerBox").find("[name='verify']").val("");
-           $("#verify_btn").removeAttr("disabled");//启用按钮
-           $("#verify_btn").text("获取验证码");
-		}
 		function reg(){
             $("#loginBox").animate({
                 top:"-600px"
@@ -450,11 +422,34 @@
         function sendMessage(){
             var uname=$("#registerBox").find("[name='username']").val();
             var pwd=$("#registerBox").find("[name='password']").val();
-            curCount = count;
-            //设置button效果，开始计时
-            $("#verify_btn").attr("disabled", "true");
-            $("#verify_btn").text( curCount + "s");
-            InterValObj = setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+            var msg=$("#msg");
+            if(uname==null || uname=="" || pwd==null || pwd==""){
+                msg.show();
+                msg.html("请先填写手机号和密码！");//提示信息显示不出来？
+                msg.css("color","#f00");
+                setTimeout(function(){
+                    msg.hide();
+                },3000);
+            }else{
+                var APP_ID = '9U5NuUnEAgCyomWXjkEjLRa1-gzGzoHsz';
+                var APP_KEY = '8VrlzHpHOg1ABSosSKb2hw2x';
+                AV.init({
+                    appId:APP_ID,
+                    appKey:APP_KEY
+                });
+                var user = new AV.User();
+                user.set("username", uname);
+                user.set("password", pwd);
+                user.setMobilePhoneNumber(uname+"");
+
+                user.signUp(null);
+
+                curCount = count;
+                //设置button效果，开始计时
+                $("#verify_btn").attr("disabled", "true");
+                $("#verify_btn").text( curCount + "s");
+                InterValObj = setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+            }
         }
         //timer处理函数
         function SetRemainTime() {
@@ -470,6 +465,34 @@
         }
         //验证码的校对
 
+        function loginClose(){
+            $("#loginMask").fadeOut();
+            //$("#loginBox").fadeOut();
+            $("#loginBox").animate({
+                top:"-600px"
+            },1000);
+            $("#registerBox").animate({
+                top:"-600px"
+            },1000);
+            $("#registerBox").find("[name='username']").val("");
+            $("#registerBox").find("[name='password']").val("");
+            $("#registerBox").find("[name='repassword']").val("");
+            $("#registerBox").find("[name='verify']").val("");
+            $("#verify_btn").removeAttr("disabled");//启用按钮
+            $("#verify_btn").text("获取验证码");
+            window.clearInterval(InterValObj);//停止计时器
+        }
+
+        function Exit(){
+            $.get("/api/userExit",null,function (data) {
+                if(data=="0"){
+                    alert("网络连接失败，请稍后重试...");
+                }else if(data=="1"){
+                    location.reload();
+                    //console.log(111);
+                }
+            })
+        }
    </script>
 </body>
 </html>

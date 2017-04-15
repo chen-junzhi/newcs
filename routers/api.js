@@ -99,7 +99,20 @@ router.post("/user/login",function (req,res,next) {
     })
 });
 
-
+//退出
+router.get("/userExit",function (req, res) {
+    pool.getConnection(function (err,conn) {
+        conn.release();
+        if(err){
+            console.log(err);
+            res.send("0");
+        }else{
+            req.session.user=null;    //注销成功
+            res.send("1");
+            //console.log("用户注销成功");
+        }
+    });
+})
 
 
 //2.把这个路由的文件和主模块连接起来

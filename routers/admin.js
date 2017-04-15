@@ -26,31 +26,37 @@ var msg={
 
 router.get("/",function (req,res,next) {
     res.render("admin/user_task",{
+        userInfo:req.session.user
     });
 });
 
 router.get("/mysave",function (req,res,next) {
     res.render("admin/mysave",{
+        userInfo:req.session.user
     });
 });
 
 router.get("/mymsg",function (req,res,next) {
     res.render("admin/mymsg",{
+        userInfo:req.session.user
     });
 });
 
 router.get("/share",function (req,res,next) {
     res.render("admin/share",{
+        userInfo:req.session.user
     });
 });
 
 router.get("/info",function (req,res,next) {
     res.render("admin/info",{
+        userInfo:req.session.user
     });
 });
 
 router.get("/user_set",function (req,res,next) {
     res.render("admin/user_set",{
+        userInfo:req.session.user
     });
 });
 
