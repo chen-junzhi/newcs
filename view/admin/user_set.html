@@ -12,7 +12,9 @@
                 </li>
                 <li>
                     <span>新密码</span>
-                    <p><input type="password" name="npwd"></p>
+                    <p><input type="password" name="npwd" onblur="showpwd(this,'npwd')">
+                        <div id="npwd">密码必须由6-16位的数字、字母、下划线组成</div>
+                    </p>
                 </li>
                 <li>
                     <span>重复密码</span>
@@ -23,4 +25,16 @@
         <div class="commit_btn"><button id="btn_submit">保存</button></div>
     </form>
 </div>
+
+<script>
+    function showpwd(obj,divid) {
+        var reg=/^\w{6,16}$/;
+        if(!reg.test(obj.value)){
+            $("#"+divid+"").css("display","block");
+        }else{
+            $("#"+divid+"").css("display","none");
+        }
+    }
+</script>
+
 {%endblock%}

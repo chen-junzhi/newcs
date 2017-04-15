@@ -73,6 +73,14 @@
     padding:4px;
     margin-right:8px;
 }
+.basic_data li div{
+    float:right;
+    position: relative;
+    background:url(../../public/images/onError.gif) no-repeat;
+    padding-left:25px;
+    display: none;
+    margin-top:5px;
+}
 .commit_btn{
     padding: 0px 0px 20px 95px;
 }

@@ -27,7 +27,8 @@
                     </li>
                     <li>
                         <span>真实姓名</span>
-                        <input type="text" name="realname" class="realname" value="" />
+                        <input type="text" name="realname" class="realname" value="" onblur="checkrealname(this,'mydivname')" />
+                        <div id="mydivname" style="right:360px;">请输入您的真实姓名</div>
                     </li>
                     <li>
                         <span style="float: left">性别</span>
@@ -42,11 +43,13 @@
                     </li>
                     <li>
                         <span>身份证号</span>
-                        <input type="text" name="idcard" class="idcard" value=""/>
+                        <input type="text" name="idcard" class="idcard" value="" onblur="checkid(this,'mydivid')"/>
+                        <div id="mydivid" style="right:318px;">请输入正确有效的证件号码</div>
                     </li>
                     <li>
                         <span>邮箱</span>
-                        <input type="text" name="email" class="email" value=""/>
+                        <input type="text" name="email" class="email" value="" onblur="checkmail(this,'mydivmail')"/>
+                        <div id="mydivmail" style="right:345px;">请输入正确的邮箱账号</div>
                     </li>
                     <li>
                         <span>所在地</span>
@@ -97,6 +100,39 @@
                 }
             });
         });
+
     });
+
+    //验证用户真实姓名
+    function checkrealname(obj,divid){
+        var reg=/^[\u4e00-\u9fa5\a-zA-Z][\u4e00-\u9fa5\a-zA-Z]{1,18}$/;
+        if(!reg.test(obj.value)){
+            $("#"+divid+"").css("display","block");
+        }else{
+            $("#"+divid+"").css("display","none");
+        }
+    }
+
+
+    //验证身份证号码
+    function checkid(obj,divid){
+        var reg= /^\d{17}[\d|x]$|^\d{15}$/;
+        if(!reg.test(obj.value)){
+            $("#"+divid+"").css("display","block");
+        }else{
+            $("#"+divid+"").css("display","none");
+        }
+    }
+
+    //验证邮箱
+    function checkmail(obj,divid){
+        var reg=/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+        if(!reg.test(obj.value)){
+            $("#"+divid+"").css("display","block");
+        }else{
+            $("#"+divid+"").css("display","none");
+        }
+    }
 </script>
+
 {%endblock%}
