@@ -23,17 +23,18 @@ h1{
     resize: none;
     outline: none;
 }
-.set_box ul li div#npwd{
+.set_box ul li div#npwd,#warning{
+    width:322px;
     float:right;
     position: relative;
     background:url(../../public/images/onError.gif) no-repeat;
     padding-left:25px;
     display: none;
-    margin:-30px 200px 0px 0px;
+    margin:-30px 200px 0 0;
 }
 .commit_btn{
     text-align: left;
-    padding: 0px 0px 20px 80px;
+    padding: 0 0 20px 80px;
 }
 .commit_btn button{
     background: #ff6600;

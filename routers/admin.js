@@ -8,6 +8,7 @@
     //先加载express
 var express=require("express");
 var mysql=require("mysql");
+var bodyParser=require("body-parser");
 //再加载路由
 var router=express.Router();
 
@@ -57,6 +58,45 @@ router.get("/info",function (req,res,next) {
 router.get("/user_set",function (req,res,next) {
     res.render("admin/user_set",{
         userInfo:req.session.user
+    });
+});
+
+router.post("/user/set",function(req,res,next){
+    var opwd=req.body.opwd;
+    var npwd=req.body.npwd;
+    //console.log(opwd+"--"+npwd);
+    pool.getConnection(function(err,conn){
+        if(err){
+            msg.code=0;
+            msg.message="网络连接失败，请稍后重试...";
+            res.json(msg);
+        }else{
+            conn.query("select pwd from user where pwd=?",[opwd],function (err,result){
+                if(err){
+                    msg.code=0;
+                    msg.message="网络连接失败，请稍后重试...";
+                    res.json(msg);
+                }else if(result.length<=0){
+                    msg.code=1;
+                    msg.message="原始密码输入有误，请重新输入！";
+                    res.json(msg);
+                }else{
+                    conn.query("update user set pwd=? where pwd=?",[npwd,opwd],function(err,result){
+                        conn.release();
+                        if(err){
+                            msg.code=0;
+                            msg.message="网络连接失败，请稍后重试...";
+                            res.json(msg);
+                        }else{
+                            msg.code=2;
+                            msg.message="密码修改成功，请重新登录！";
+                            req.session.user=null;
+                            res.json(msg);
+                        }
+                    });
+                }
+            });
+        }
     });
 });
 

@@ -488,6 +488,7 @@
             window.clearInterval(InterValObj);//停止计时器
         }
 
+        //退出登录
         function Exit(){
             $.get("/api/userExit",null,function (data) {
                 if(data=="0"){

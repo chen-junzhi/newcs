@@ -92,7 +92,7 @@ router.post("/user/login",function (req,res,next) {
                         isAdmin:result[0].isAdmin
                     };
                     res.json(resData);
-                    console.log(req.session.user);
+                    //console.log(req.session.user);
                 }
             })
         }

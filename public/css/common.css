@@ -137,7 +137,7 @@ input{
 	font-weight: bold;
 	background: #c32854;
 }
-#msg,#msg1{
+#msg,#msg1,#msg2{
 	display: none;
 	padding-top: 5px;
 	color: #f00;

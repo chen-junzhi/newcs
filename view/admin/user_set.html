@@ -3,7 +3,7 @@
 
 <h1>账号设置</h1>
 <div class="set_box">
-    <form action="" method="post" id="set_form" enctype="multipart/form-data">
+    <div id="set_form">
         <div>
             <ul>
                 <li>
@@ -13,17 +13,20 @@
                 <li>
                     <span>新密码</span>
                     <p><input type="password" name="npwd" onblur="showpwd(this,'npwd')">
-                        <div id="npwd">密码必须由6-16位的数字、字母、下划线组成</div>
+                        <div id="npwd">密码必须由6-16位的数字、字母、下划线组成！</div>
                     </p>
                 </li>
                 <li>
                     <span>重复密码</span>
-                    <p><input type="password" name="rpwd"></p>
+                    <p><input type="password" name="rpwd" onblur="showrpwd()">
+                        <div id="warning">两次输入的密码不一致，请重新输入！</div>
+                    </p>
                 </li>
             </ul>
         </div>
+        <div id="msg2"></div>
         <div class="commit_btn"><button id="btn_submit">保存</button></div>
-    </form>
+    </div>
 </div>
 
 <script>
@@ -35,6 +38,64 @@
             $("#"+divid+"").css("display","none");
         }
     }
+    function showrpwd(){
+        var npwd=$("#set_form").find("[name='npwd']").val();
+        var rpwd=$("#set_form").find("[name='rpwd']").val();
+        if(rpwd!=npwd){
+            //console.log(111);
+            $("#warning").show();
+        }else{
+            $("#warning").hide();
+        }
+    }
+    $(function(){
+        $("#btn_submit").on("click",function () {
+            var opwd=$("#set_form").find("[name='opwd']").val();
+            var npwd=$("#set_form").find("[name='npwd']").val();
+            var rpwd=$("#set_form").find("[name='rpwd']").val();
+            var msg2=$("#msg2");
+
+            //新密码不能和原始密码相同
+            if(npwd!=opwd){
+                $.ajax({
+                    type:"post",
+                    url:"/admin/user/set",
+                    data:{
+                        opwd:opwd,
+                        npwd:npwd
+                    },
+                    dataType:"json",
+                    success:function (data) {
+                        if(data.code!=2){
+                            msg2.show();
+                            msg2.html(data.message);
+                            msg2.css("color","#f00");
+                            setTimeout(function(){
+                                msg2.hide();
+                            },3000);
+                        }else{
+                            //密码修改成功
+                            msg2.show();
+                            msg2.html(data.message);
+                            msg2.css("color","blue");
+                            setTimeout(function(){
+                                msg2.hide();
+                                location.href="/";
+                            },3000);
+                        }
+                    }
+                });
+            }else{
+                msg2.show();
+                msg2.html("新密码不能和原始密码相同！");
+                msg2.css("color","#f00");
+                setTimeout(function(){
+                    msg2.hide();
+                },3000);
+            }
+        });
+    })
+
 </script>
 
 {%endblock%}
