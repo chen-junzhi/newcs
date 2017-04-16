@@ -52,7 +52,7 @@ app.use("/",require("./routers/main"));
 
 
 
-app.listen(8889,"127.0.0.1",function(err){
+app.listen(80,"127.0.0.1",function(err){
     if(err){
         console.log(err);
     }else{

@@ -5,18 +5,18 @@
     <div class="mission_box">
         <div class="mis_menu">
             <ul>
-                <li><a href="##"   class="navs actie" onclick="showDiv(1)">全部</a></li>
-                <li ><a href="##"  class="navs " onclick="showDiv(2)">听音乐</a></li>
-                <li><a href="##"  class="navs" onclick="showDiv(3)">看电影</a></li>
-                <li><a href="##"  class="navs" onclick="showDiv(4)">玩游戏</a></li>
+                <li><a href="javascript:void(0);"   class="navs actie" onclick="showDiv(1)">全部</a></li>
+                <li ><a href="javascript:void(0);"  class="navs " onclick="showDiv(2)">听音乐</a></li>
+                <li><a href="javascript:void(0);"  class="navs" onclick="showDiv(3)">看电影</a></li>
+                <li><a href="javascript:void(0);"  class="navs" onclick="showDiv(4)">玩游戏</a></li>
             </ul>
         </div>
         <div class="mis_list">
             <div class="zui">
                 <ul>
-                    <li class="m_new m_bgc"><a href=""  onclick="showDiv(4)">最新</a></li>
-                    <li class="m_hot" ><a href="#" >最热</a></li>
-                    <li class="m_select"><a href="">结算时间</a></li>
+                    <li class="m_new m_bgc"><a href="javascript:;" onclick="showDiv(4)">最新</a></li>
+                    <li class="m_hot" ><a href="javascript:;" onclick="showDiv(3)">最热</a></li>
+                    <li class="m_select"><a href="javascript:;">结算时间</a></li>
                 </ul>
                 <div class="sear_button">
                     <input type="text" name="text" id="search_keyword" />
@@ -316,6 +316,19 @@
         }
     }
 
+    $(function(){
+        var lis=$(".mis_menu").find("li");
+        lis.on("click",function(){
+            $(this).find("a").addClass("actie").parent().siblings().find("a").removeClass("actie");
+            //console.log($(this).find("a").parent().siblings());
+        });
+
+        var zui=$(".zui").find("li.m_new,li.m_hot");
+        //console.log(zui);
+        zui.on("click",function(){
+            $(this).addClass("m_bgc").siblings().removeClass("m_bgc");
+        });
+    });
 
 </script>
 
