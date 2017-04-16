@@ -1,0 +1,60 @@
+create table contents(
+     cid int(10) auto_increment primary key,
+     uid int(10) not null comment '任务表的外键',
+     tid int(10) not null comment '用户表的外键',
+    picture varchar(20) not null,
+     type varchar(20),
+     price varchar(20) not null,
+    cdate date not null,
+     status varchar(20)
+     );
+
+create table taskinfo(
+     tid int(10) auto_increment primary key,
+     title varchar(20) not null,
+     type varchar(20) not null,
+     price float(8,2) not null,
+     number int(20)
+   );
+
+alter table contents add foreign key(uid) references user(uid);
+alter table contents add foreign key(tid) references taskinfo(tid);
+
+insert into taskinfo values(null,'七月与安生','看电影',2.00,245);
+insert into  taskinfo values(null,'你给我听好','听音乐',1.0000,999);
+
+insert into  taskinfo values(null,'群友斗地主','玩游戏',2.0000,969);
+
+insert into  taskinfo values(null,'荣耀','听音乐',2.0000,989);
+
+insert into  taskinfo values(null,'凉凉','听音乐',3.0000,1089);
+
+insert into taskinfo values(null,'情书','看电影',4.00,543);
+insert into  taskinfo values(null,'暗黑萌神','玩游戏',1.00,91);
+insert into  taskinfo values(null,'闲来麻将','玩游戏',1.00,401);
+insert into taskinfo values(null,'速度与激情8','看电影',4.00,543);
+insert into taskinfo values(null,'暹罗之恋','看电影',2.00,593);
+insert into  taskinfo values(null,'南方姑娘','听音乐',1.0000,999);
+insert into  taskinfo values(null,'彩虹堂','听音乐',1.0000,999);
+insert into taskinfo values(null,'秘密','看电影',4.00,543);
+insert into taskinfo values(null,'窃听风云','看电影',4.00,543);
+insert into  taskinfo values(null,'聚宝匯','玩游戏',1.00,91);
+insert into  taskinfo values(null,'英雄联盟','玩游戏',1.00,103);
+insert into  taskinfo values(null,'王者荣耀','玩游戏',5.00,333);
+insert into taskinfo values(null,'大话西游','看电影',4.00,543);
+insert into  taskinfo values(null,'告白气球','听音乐',1.0000,999);
+insert into  taskinfo values(null,'认真的雪','听音乐',1.0000,999);
+insert into  taskinfo values(null,'trouble-maker','听音乐',1.0000,999);
+insert into  taskinfo values(null,'绅士','听音乐',1.0000,999);
+insert into  taskinfo values(null,'全齐霸业','玩游戏',5.00,333);
+insert into  taskinfo values(null,'龙武2','玩游戏',5.00,333);
+insert into taskinfo values(null,'生化危机6','看电影',4.00,543);
+insert into taskinfo values(null,'行尸走肉7','看电影',4.00,543);
+
+insert into taskinfo values(null,'择天记','看电影',4.00,543);
+insert into taskinfo values(null,'择天记','血战钢锯岭',4.00,543);
+insert into taskinfo values(null,'你的名字','看电影',4.00,543);
+
+insert into  taskinfo values(null,'枪炮师','玩游戏',1.00,321);
+
+insert into  taskinfo values(null,'魔术世界','玩游戏',1.00,321);
