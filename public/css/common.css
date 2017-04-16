@@ -74,7 +74,7 @@ input{
 }
 .header_right li a:hover{
   border-bottom:2px solid #ea5e43 ;
-  color:#ea5e43;
+  color:#ea5e43 !important;
 }
 .header_right li.active{
   border-bottom:2px solid #ea5e43 ;
@@ -176,13 +176,14 @@ button{
 .reg_content span button.phoneCode{
 	width: 80px;
 	height: 47px;
-	background: #dae2e5;
+	background:#66cc33;
 	color: #666;
 	font-size: 12px;
 	font-weight: normal;
 	position: absolute;
-	top: 0px;
-	right: 0px;
+	top: 0;
+	right: 0;
+	outline: none;
 }
 .reg_content span {
 	position: relative;

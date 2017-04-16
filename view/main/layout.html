@@ -29,18 +29,18 @@
            <a href="" class="header_logo"><img src="../../public/images/logo.png"></a>
            <ul class="header_right" id="head_ul">
                <li class="active"><a href="/">首页</a></li>
-               <li><a href="/white">小白指栏</a></li>
-               <li><a href="/mission">任务大厅</a></li>
-               <li><a href="/reviewed">往期踪迹</a></li>
-               <li><a href="/new_focus">最新聚焦</a></li>
+               <li><a href="/white?num=1">小白指栏</a></li>
+               <li><a href="/mission?num=2">任务大厅</a></li>
+               <li><a href="/reviewed?num=3">往期踪迹</a></li>
+               <li><a href="/new_focus?num=4">最新聚焦</a></li>
    	       </ul>
            <ul class="userInfo">
                {% if userInfo._id %}
                <li class="username">欢迎,<span>{{userInfo.uname}}</span></li>
                {% if userInfo.isAdmin %}
-               <li class="admin">您好，管理员！<a href="/admin">进入后台管理</a></li>
+               <li class="admin">您好，管理员！<a href="/admin" style="color:red;">进入后台管理</a></li>
                {% else %}
-               <li class="person"><a href="/admin">个人中心</a></li>
+               <li class="person"><a href="/admin" style="color:red;">个人中心</a></li>
                {%endif%}
                <li class="exit"><a href="javascript:void(0);" onclick="Exit()">退出</a></li>
                {% else %}
@@ -185,6 +185,17 @@
         var flag2=false;
         var flag3=false;
 		$(function(){
+            var reg=/\?/;
+            var str=location.href;
+            if(reg.test(str)){
+                var lis=$("#head_ul li");
+                var num=str.split("?")[1].split("=")[1];
+                //console.log(num);
+                lis.eq(num).addClass("active").siblings().removeClass("active");
+                lis.eq(num).find("a").css("color","red");
+            }
+
+
 			$("#login").click(function(){
 				$("#loginMask").fadeIn();
 				$("#loginBox").fadeIn();
@@ -199,17 +210,8 @@
 					top:"0px"
 				},1000);
 			});
-            //头部切换导航栏
-            var lis=$("#head_ul li");
-            lis.on("click",function(){
-                //var str=location.href;
-                //console.log(str);
-                //var num=str.split("?")[1].split("=")[1];
-                //console.log(num);
-                $(this).addClass("active").siblings().removeClass("active");
-            });
 
-			//注册
+			//手机号验证
             $("#registerBox").find("[name='username']").blur(function(){
                 var phoneNumber=/^1[34578]\d{9}$/;
                 var msg=$("#msg");
@@ -448,6 +450,7 @@
                 //设置button效果，开始计时
                 $("#verify_btn").attr("disabled", "true");
                 $("#verify_btn").text( curCount + "s");
+                $("#verify_btn").css("background","#dae2e5");
                 InterValObj = setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
             }
         }
@@ -457,6 +460,7 @@
                 window.clearInterval(InterValObj);//停止计时器
                 $("#verify_btn").removeAttr("disabled");//启用按钮
                 $("#verify_btn").text("重发验证码");
+                $("#verify_btn").css("background","#66cc33");
             }
             else {
                 curCount--;
@@ -480,6 +484,7 @@
             $("#registerBox").find("[name='verify']").val("");
             $("#verify_btn").removeAttr("disabled");//启用按钮
             $("#verify_btn").text("获取验证码");
+            $("#verify_btn").css("background","#66cc33");
             window.clearInterval(InterValObj);//停止计时器
         }
 
