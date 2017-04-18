@@ -81,34 +81,34 @@
                     </div>
                     <div class="share">
                         <div class="share_box">
-                            <a href="#" id="bds_more"></a>
-                            <a href="#" class="bds_qzone" title="分享到qq空间"></a>
-                            <a href="#" class="bds_tsina" title="分享到新浪微博"></a>
-                            <a href="#" class="bds_tqq" title="分享到腾讯微博"></a>
-                            <a href="#" class="bds_renren" title="分享到人人网"></a>
-                            <a href="#" class="bds_weixin" title="分享到微信"></a>
+                            <a href="javascript:;" id="bds_more"></a>
+                            <a href="javascript:;" class="bds_qzone" title="分享到qq空间"></a>
+                            <a href="javascript:;" class="bds_tsina" title="分享到新浪微博"></a>
+                            <a href="javascript:;" class="bds_tqq" title="分享到腾讯微博"></a>
+                            <a href="javascript:;" class="bds_renren" title="分享到人人网"></a>
+                            <a href="javascript:;" class="bds_weixin" title="分享到微信"></a>
                         </div>
                         <div class="all_share_box" id="all_share_box" style="display: none">
                             <div class="all_sh_top">分享到</div>
                             <ul id="lism">
-                                <li class="re"><a href="#" class="popup_mshare">一键分享</a></li>
-                                <li><a href="#" class="popup_qzone">QQ空间</a></li>
-                                <li><a href="#" class="popup_tsina">新浪微博</a></li>
-                                <li><a href="#" class="popup_bdysc">百度云收藏</a></li>
-                                <li><a href="#" class="popup_weixin">微信</a></li>
-                                <li><a href="#" class="popup_renren">人人网</a></li>
-                                <li><a href="#" class="popup_tqq">腾讯微博</a></li>
-                                <li><a href="#" class="popup_bdxc">百度相册</a></li>
-                                <li><a href="#" class="popup_kaixin001">开心网</a></li>
-                                <li><a href="#" class="popup_tqf">腾讯朋友</a></li>
-                                <li><a href="#" class="popup_tieba">百度贴吧</a></li>
-                                <li><a href="#" class="popup_douban">豆瓣网</a></li>
-                                <li><a href="#" class="popup_bdhome">百度新首页</a></li>
-                                <li><a href="#" class="popup_sqq">QQ好友</a></li>
-                                <li><a href="#" class="popup_thx">和讯微博</a></li>
-                                <li><a href="#" class="popup_ibaidu">百度中心</a></li>
+                                <li class="re"><a href="javascript:;" class="popup_mshare">一键分享</a></li>
+                                <li><a href="javascript:;" class="popup_qzone">QQ空间</a></li>
+                                <li><a href="javascript:;" class="popup_tsina">新浪微博</a></li>
+                                <li><a href="javascript:;" class="popup_bdysc">百度云收藏</a></li>
+                                <li><a href="javascript:;" class="popup_weixin">微信</a></li>
+                                <li><a href="javascript:;" class="popup_renren">人人网</a></li>
+                                <li><a href="javascript:;" class="popup_tqq">腾讯微博</a></li>
+                                <li><a href="javascript:;" class="popup_bdxc">百度相册</a></li>
+                                <li><a href="javascript:;" class="popup_kaixin001">开心网</a></li>
+                                <li><a href="javascript:;" class="popup_tqf">腾讯朋友</a></li>
+                                <li><a href="javascript:;" class="popup_tieba">百度贴吧</a></li>
+                                <li><a href="javascript:;" class="popup_douban">豆瓣网</a></li>
+                                <li><a href="javascript:;" class="popup_bdhome">百度新首页</a></li>
+                                <li><a href="javascript:;" class="popup_sqq">QQ好友</a></li>
+                                <li><a href="javascript:;" class="popup_thx">和讯微博</a></li>
+                                <li><a href="javascript:;" class="popup_ibaidu">百度中心</a></li>
                             </ul>
-                            <div class="all_sh_bottom"><a href="#" class="popup_more">更多...</a></div>
+                            <div class="all_sh_bottom"><a href="javascript:;" class="popup_more">更多...</a></div>
                         </div>
                     </div>
                     <div class="clear"></div>
@@ -156,7 +156,7 @@
         var bdsmore=$("#bds_more");
         bdsmore.on("mouseover",function () {
             alsb.show();
-            console.log(document.body.scrollTop);
+            //console.log(document.body.scrollTop);
             if((document.body.scrollTop || document.documentElement.scrollTop)<=500){
                 alsb.css("top",-330);
             }else if((document.body.scrollTop || document.documentElement.scrollTop)>=790){
@@ -169,7 +169,18 @@
             alsb.delay(2000).hide(0);
         });
 
-
+        $(".bds_qzone").on("click",function(){
+            var share1=new ShareTip();
+            share1.sharetoqqzone("音乐是一种能产生共鸣效果的生频。新创生音乐任务。带你走进全新的、不一样的、很有动感的体验。注册完毕后，点击任务大厅音乐任务，然后按音乐任务的描述进行流程操作。就可以轻松赚钱。建议使用对 HTML5支持较好的浏览器","http://music.163.com/","http://9c9vimg.000129.com:7861/slt/169815.jpg");
+        });
+        $(".bds_tsina").on("click",function(){
+            var share2=new ShareTip();
+            share2.sharetosina("音乐是一种能产生共鸣效果的生频。新创生音乐任务。带你走进全新的、不一样的、很有动感的体验。注册完毕后，点击任务大厅音乐任务，然后按音乐任务的描述进行流程操作。就可以轻松赚钱。建议使用对 HTML5支持较好的浏览器","http://music.163.com/","http://www.bazhongol.com/ueditor/php/upload/image/20170228/1488245183124904.jpg");
+        });
+       $(".bds_tqq").on("click",function(){
+           var share3=new ShareTip();
+           share3.sharetoqq("音乐是一种能产生共鸣效果的生频。新创生音乐任务。带你走进全新的、不一样的、很有动感的体验。注册完毕后，点击任务大厅音乐任务，然后按音乐任务的描述进行流程操作。就可以轻松赚钱。建议使用对 HTML5支持较好的浏览器","http://music.163.com/","http://c.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=1c773101f0246b607b5bba70dec8367a/8326cffc1e178a821b7f10f2f003738da977e825.jpg");
+       });
     })
 
 
