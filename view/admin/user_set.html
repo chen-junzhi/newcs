@@ -54,15 +54,18 @@
             var npwd=$("#set_form").find("[name='npwd']").val();
             var rpwd=$("#set_form").find("[name='rpwd']").val();
             var msg2=$("#msg2");
+            var uname={{userInfo.uname}};
+            console.log(uname);
 
             //新密码不能和原始密码相同
-            if(npwd!=opwd){
+            if(npwd!=opwd && rpwd==npwd){
                 $.ajax({
                     type:"post",
                     url:"/admin/user/set",
                     data:{
                         opwd:opwd,
-                        npwd:npwd
+                        npwd:npwd,
+                        uname:uname
                     },
                     dataType:"json",
                     success:function (data) {
@@ -85,13 +88,15 @@
                         }
                     }
                 });
-            }else{
+            }else if(npwd==opwd && (npwd!="" || npwd!=null)){
                 msg2.show();
                 msg2.html("新密码不能和原始密码相同！");
                 msg2.css("color","#f00");
                 setTimeout(function(){
                     msg2.hide();
                 },3000);
+            }else if(rpwd!=npwd){
+                $("#warning").show();
             }
         });
     })

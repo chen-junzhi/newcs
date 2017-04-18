@@ -64,6 +64,8 @@ router.get("/user_set",function (req,res,next) {
 router.post("/user/set",function(req,res,next){
     var opwd=req.body.opwd;
     var npwd=req.body.npwd;
+    var uname=req.body.uname;
+    console.log(uname);
     //console.log(opwd+"--"+npwd);
     pool.getConnection(function(err,conn){
         if(err){
@@ -81,7 +83,7 @@ router.post("/user/set",function(req,res,next){
                     msg.message="原始密码输入有误，请重新输入！";
                     res.json(msg);
                 }else{
-                    conn.query("update user set pwd=? where pwd=?",[npwd,opwd],function(err,result){
+                    conn.query("update user set pwd=? where uname=?",[npwd,uname],function(err,result){
                         conn.release();
                         if(err){
                             msg.code=0;
