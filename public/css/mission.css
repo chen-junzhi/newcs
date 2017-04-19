@@ -174,4 +174,34 @@
     display: inline-block;
     background: url("../images/task_details_icon.png") 0px -55px no-repeat;
 }
-
+.pager{
+   width: 1200px;
+    margin: 0px auto;
+    display: block;
+    padding:20px 0px  60px 0px;
+}
+.pager li{
+    float: left;
+    text-align: center;
+    line-height: 30px;
+}
+.pager li:nth-child(1){
+    margin-left: 250px;
+    width:60px;
+    height:30px;
+    border-radius: 5px;
+    background: #B2ADAD;
+}
+.pager li:nth-child(2){
+    margin-left:80px;
+}
+.pager li:nth-child(3){
+    margin-left:80px;
+    width:60px;
+    height:30px;
+    border-radius: 5px;
+    background: #B2ADAD;
+}
+.pager li a{
+    color:#000;
+}
