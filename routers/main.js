@@ -1,6 +1,7 @@
 /**
- * Created by Administrator on 2017/3/16.
+ * Created by Administrator on 2017/4/19.
  */
+
 var express=require("express");
 //再加载路由
 var mysql=require("mysql");
@@ -38,9 +39,38 @@ router.get("/white",function (req,res,next) {
 });
 router.get("/mission",function (req,res,next) {
     //第一个参数模板的路径   第二个参数：分配给模板使用的数据
-    res.render('main/mission',{
-        userInfo:req.session.user
-    });
+    //确保绝对是从第一页开始的
+    var pageNo=Number(req.query.pageNo||1);
+    var size=8;
+
+    pool.getConnection(function (err,conn) {
+        conn.query("select * from taskinfo",function(err,result) {
+            var count=result.length;
+            var pages=Math.ceil(count/size);
+            pageNo=Math.min(pageNo,pageNo);
+            pageNo=Math.max(pageNo,1);
+            conn.query("select * from taskinfo order by tid limit ?,?",[size*(pageNo-1),size],function(err,rs){
+                conn.release();
+                if(err||rs.length<=0){
+                    res.render("main/mission",{
+                        userInfo:req.session.user,
+                        msg:"暂无消息"
+                    });
+                }else{
+                    res.render("main/mission",{
+                        userInfo:req.session.user,
+                        allTask:rs,
+                        tag:"mission",
+                        pageNo:pageNo,
+                        pages:pages,
+                        count:count,
+                        size:size
+                    });
+                    //console.log(result);
+                }
+            })
+        })
+    })
 });
 router.get("/reviewed",function (req,res) {
     //使用模版引擎去渲染页面，两个参数： 路径 分配给这个页面使用的数据
@@ -79,6 +109,7 @@ router.get("/detail_task",function (req,res) {
         userInfo:req.session.user
     });
 });
+
 
 
 
