@@ -1,0 +1,48 @@
+{% extends 'user.html' %}
+
+{%block main%}
+<h3>添加分类</h3>
+<br /><br />
+<div>
+    <div class="form-group">
+        <label for="name">分类名称：</label>
+        <input type="text" class="form-control" id="name" placeholder="请输入分类名" name="name" />
+    </div>
+    <span id="msg" style="display: none;"></span><br />
+    <input type="button" value="提交" id="sub" />
+</div>
+
+<script>
+    $("#sub").on("click",function () {
+        var name=$("#name").val();
+        var msg=$("#msg")[0];
+        console.log(msg);
+        //发ajax请求
+        $.ajax({
+            type:"post",
+            url:"/admin/type/add",
+            data:{
+                name:name
+            },
+            dataType:"json",
+            success:function (result) {
+                if(result.code==1){
+                    msg.html(result.message);
+                    msg.show();
+                    msg.css("color","red");
+                }else if(result.code==2){
+                    $("#name").val("");
+                    //console.log($("#msg")[0]);
+                    msg.html(result.message);
+                    msg.show();
+                    msg.css("color","blue");
+                    setTimeout(function () {
+                        msg.hide();
+                    },2000);
+                }
+            }
+        });
+    });
+</script>
+
+{% endblock %}

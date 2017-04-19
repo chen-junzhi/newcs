@@ -31,6 +31,88 @@ router.get("/",function (req,res,next) {
     });
 });
 
+//用户管理首页
+router.get("/user_index",function (req, res) {
+    //确保你绝对是从第一页开始的
+    var page=Number( req.query.page || 1 );
+    var size=7; //默认每一页显示7条数据
+    //获取用户所有信息
+    pool.getConnection(function (err, conn) {
+        conn.query("select * from user",function (err, result) {
+            var count=result.length;
+            var pages=Math.ceil(count/size);
+            //控制一下页数
+            page=Math.min(page,pages);
+            page=Math.max(1,page);
+            //还要查一次数据库
+            conn.query("select * from user limit ?,?",[size*(page-1),size],function (err, rs) {
+                conn.release();
+                if(err){
+                    console.log(err);
+                    result={};
+                    res.render("admin/user_index",{
+                        allUser:rs
+                    });
+                }else{
+                    res.render("admin/user_index",{
+                        userInfo:req.session.user,
+                        allUser:rs,
+                        tag:"user_index",
+                        page:page,
+                        pages:pages,
+                        count:count,
+                        size:size
+                    });
+                }
+            });
+        });
+    });
+});
+
+router.get("/type_add",function (req,res,next) {
+    res.render("admin/type_add",{
+        userInfo:req.session.user
+    });
+});
+
+//添加分类页面处理数据（添加分类）
+router.post("/type/add",function (req, res) {
+    var name=req.body.name;
+    if(name=="" || name==null){
+        //跳转错误页面
+
+    }else{
+        pool.getConnection(function (err, conn) {
+            conn.query("insert into type values(null,?)",[name],function (err, result) {
+                conn.release();
+                if(err){
+                    console.log(err);//type表中对tname加了unique唯一约束，所以重复添加类名，会报错
+                    msg.code=1;
+                    msg.message="类名不可重复，请重新添加";
+                    res.json(msg);
+                }else{
+                    msg.code=2;
+                    msg.message="添加成功";
+                    res.json(msg);
+                }
+            });
+        });
+    }
+});
+
+
+router.get("/task_add",function (req,res,next) {
+    res.render("admin/task_add",{
+        userInfo:req.session.user
+    });
+});
+
+router.get("/task_index",function (req,res,next) {
+    res.render("admin/task_index",{
+        userInfo:req.session.user
+    });
+});
+
 router.get("/mysave",function (req,res,next) {
     res.render("admin/mysave",{
         userInfo:req.session.user
@@ -65,7 +147,7 @@ router.post("/user/set",function(req,res,next){
     var opwd=req.body.opwd;
     var npwd=req.body.npwd;
     var uname=req.body.uname;
-    console.log(uname);
+    //console.log(uname);
     //console.log(opwd+"--"+npwd);
     pool.getConnection(function(err,conn){
         if(err){

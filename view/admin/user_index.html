@@ -1,0 +1,39 @@
+{% extends 'user.html' %}
+{% block main %}
+
+<div class="cont_info">
+    <h1>用户列表</h1>
+    <div class="task_box">
+        <div class="tab_box">
+            <div>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="member_table" id="list1">
+                    <tbody>
+                        <tr>
+                            <th align="center">ID</th>
+                            <th align="center">用户名</th>
+                            <th align="center">密码</th>
+                            <th align="center">是否是管理员</th>
+                        </tr>
+                        {% for user in allUser %}
+                        <tr style="height:30px;">
+                            <td align="center">{{user.uid}}</td>
+                            <td align="center">{{user.uname}}</td>
+                            <td align="center">{{user.pwd}}</td>
+                            <td align="center">{% if user.isAdmin %}是{% else %}否{%endif%}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var lis=$(".tab_menu li");
+    lis.on("click",function(){  //返回被选元素的所有同胞元素
+        $(this).addClass("current").siblings().removeClass("current");
+    });
+</script>
+{% include 'page.html' %}
+{%endblock%}

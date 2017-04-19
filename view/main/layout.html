@@ -39,7 +39,7 @@
                {% if userInfo._id %}
                <li class="username">欢迎,<span>{{userInfo.uname}}</span></li>
                {% if userInfo.isAdmin %}
-               <li class="admin">您好，管理员！<a href="/admin" style="color:red;">进入后台管理</a></li>
+               <li class="admin">您好，管理员！<a href="/admin/user_index" style="color:red;">进入后台管理</a></li>
                {% else %}
                <li class="person"><a href="/admin" style="color:red;">个人中心</a></li>
                {%endif%}

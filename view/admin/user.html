@@ -109,10 +109,17 @@
                 <h3>{{userInfo.uname}}</h3>
             </div>
             <ul>
+                {% if userInfo.isAdmin %}
+                <li class="mytak sidebar_active"><a href="/admin/user_index?Num=0">用户列表</a></li>
+                <li class="mytak"><a href="/admin/type_add?Num=1">分类管理</a></li>
+                <li class="mytak"><a href="/admin/task_add?Num=2">任务管理</a></li>
+                <li class="mytak"><a href="/admin/task_index?Num=3">任务首页</a></li>
+                {% else %}
                 <li class="mytak sidebar_active"><a href="/admin?Num=0">我的任务</a></li>
                 <li class="mysave"><a href="/admin/mysave?Num=1">我的收藏</a></li>
                 <li class="myshare"><a href="/admin/share?Num=2">分享/邀请</a></li>
                 <li class="mymsg"><a href="/admin/mymsg?Num=3">消息(1)</a></li>
+                {% endif %}
             </ul>
             <ul>
                 <li class="user_data"><a href="/admin/info?Num=4">基本资料</a></li>
