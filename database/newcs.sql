@@ -9,3 +9,14 @@ CREATE TABLE `user` (
   `isAdmin` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Table structure for `type`
+-- ----------------------------
+DROP TABLE IF EXISTS `type`;
+CREATE TABLE `type` (
+  `tid` int(11) NOT NULL AUTO_INCREMENT,
+  `tname` varchar(20) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`tid`),
+  UNIQUE KEY `tname` (`tname`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

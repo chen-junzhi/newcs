@@ -8,14 +8,14 @@
         <label for="name">分类名称：</label>
         <input type="text" class="form-control" id="name" placeholder="请输入分类名" name="name" />
     </div>
-    <span id="msg" style="display: none;"></span><br />
+    <span id="msg_1" style="display: none;"></span><br />
     <input type="button" value="提交" id="sub" />
 </div>
 
 <script>
     $("#sub").on("click",function () {
         var name=$("#name").val();
-        var msg=$("#msg")[0];
+        var msg=$("#msg_1");
         console.log(msg);
         //发ajax请求
         $.ajax({
