@@ -28,8 +28,8 @@
                 <div class="m_lists_b" id="m_lists_b">
                     <ul style="display:block">
                         {% for task in allTask %}
-                        <li class="all_dis m_spe_li"><a href="/detail_task1">
-                            <p class="me_img"><img src="../../public/images/video_6.jpg" /></p>
+                        <li class="all_dis m_spe_li"><a href="/{% if task.type=='听音乐' %}detail_task1{%else%}detail_task{%endif%}">
+                            <p class="me_img"><img src="../../public/images/{% if task.type=='看电影' %}video{%else%}music{%endif%}_{% if task.tid>=8 %}5{%else%}8{%endif%}.jpg" /></p>
                             <div class="m_info">
                                 <p>{{task.title}}<label>{{task.type}}</label></p>
                                 <span>佣金：<b><i>￥</i>{{task.price}}</b></span>
@@ -64,38 +64,10 @@
                                 <b class="m_price">2000/</b>
                             </div>
                         </a></li>
-                        <li class="all_dis "><a href="/detail_task1">
-                            <p class="me_img"><img src="../../public/images/2017-04-06_211456.png" /></p>
-                            <div class="m_info">
-                                <p>aaa<label>听音乐</label></p>
-                                <span>佣金：<b><i>￥</i>2.00</b></span>
-                                <b class="m_price">2000/</b>
-                            </div>
-                        </a></li>
-                        <li class="all_dis m_spe_li"><a href="/detail_task1">
-                            <p class="me_img"><img src="../../public/images/music_5.jpg" /></p>
-                            <div class="m_info">
-                                <p>aaa<label>听音乐</label></p>
-                                <span>佣金：<b><i>￥</i>3.00</b></span>
-                                <b class="m_price">2000/</b>
-                            </div>
-                        </a></li>
-                        <li class="all_dis m_spe_li"><a href="/detail_task1">
-                            <p class="me_img"><img src="../../public/images/music_6.jpg" /></p>
-                            <div class="m_info">
-                                <p>aaa<label>听音乐</label></p>
-                                <span>佣金：<b><i>￥</i>2.00</b></span>
-                                <b class="m_price">2000/</b>
-                            </div>
-                        </a></li>
-                        <li class="all_dis m_spe_li"><a href="/detail_task1">
-                            <p class="me_img"><img src="../../public/images/music_7.jpg" /></p>
-                            <div class="m_info">
-                                <p>aaa<label>听音乐</label></p>
-                                <span>佣金：<b><i>￥</i>2.00</b></span>
-                                <b class="m_price">2000/</b>
-                            </div>
-                        </a></li>
+
+
+
+
                         <li class="all_dis m_spe_li"><a href="/detail_task1">
                             <p class="me_img"><img src="../../public/images/music_9.jpg" /></p>
                             <div class="m_info">
@@ -210,6 +182,10 @@
             $(this).addClass("m_bgc").siblings().removeClass("m_bgc");
         });
     });
+
+    //分页查询的图片显示
+
+
 
 </script>
 {% include "page.html" %}
