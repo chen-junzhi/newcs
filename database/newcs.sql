@@ -22,12 +22,13 @@ CREATE TABLE `type` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 create table taskInfo(
+    skid int primary key auto_increment,
     uid int,
     tid int,
-    skid int primary key auto_increment,
     title varchar(100),
     price decimal(10,2),
     num int,
+    pubTime varchar(100),
     pic varchar(1000)
 );
 alter table taskInfo add foreign key(uid) references user(uid);

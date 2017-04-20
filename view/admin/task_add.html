@@ -1,7 +1,7 @@
 {% extends 'user.html' %}
 {% block main %}
 
-<div class="cont_info">
+<form class="cont_info" method="post">
     <h1>添加任务</h1>
     <div class="form-group">
         <label for="category">分类：</label>
@@ -13,25 +13,44 @@
     </div>
     <div class="form-group">
         <label for="title">标题：</label>
-        <input type="text" class="form-control" id="title" placeholder="请输入内容标题" name="title" />
+        <input name="title"  class="form-control" id="title" placeholder="请输入任务标题" />
     </div>
 
     <div class="form-group">
-        <label for="description">简介：</label>
-        <textarea name="description" class="form-control" id="description" rows="5" placeholder="请输入内容简介" ></textarea>
+        <label for="description">佣金：</label>
+        <input name="price" type="number" class="form-control" id="description" placeholder="请输入任务佣金" />
     </div>
 
     <div class="form-group">
-        <label for="content">内容：</label>
-        <textarea name="content" class="form-control" id="content" rows="10" placeholder="请输入内容" ></textarea>
+        <label for="content">招募人数：</label>
+        <input name="num" class="form-control" id="content"  placeholder="请输入招募人数" />
     </div>
 
-    <button type="submit" class="btn btn-primary">提交</button>
+    <p>任务图片：<input type="file" name="pic" id="pic" onchange="setImagePreviews(this,'showpic')"/></p>
 
-</div>
+    <div id="showpic">
+
+    </div>
+    <input type="submit" class="btn btn-primary" id="submit" value="提交">
+
+</form>
 
 <script>
-
+    $("#submit").on("click",function () {
+        $.ajaxFileUpload({
+            url:"/task_add",
+            fileElementId:"pic",
+            dataType:"json",
+            success:function (data,status) {
+                if(data.code==1){
+                    $("#pic").file=null;
+                }
+            },
+            error:function (data, status, e) {
+                console.log(e);
+            }
+        });
+    });
 </script>
 
 {%endblock%}

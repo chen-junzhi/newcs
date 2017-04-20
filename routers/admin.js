@@ -9,6 +9,10 @@
 var express=require("express");
 var mysql=require("mysql");
 var bodyParser=require("body-parser");
+var multer=require("multer");
+var fs=require("fs");
+
+var upload=multer({dest:"../../public/pic"});    //指定文件上传路径
 //再加载路由
 var router=express.Router();
 
@@ -70,7 +74,7 @@ router.get("/user_index",function (req, res) {
 });
 
 router.get("/type_add",function (req,res,next) {
-    res.render("admin/type_add",{
+    res.render("admin/type_add?Num=2",{
         userInfo:req.session.user
     });
 });
@@ -112,6 +116,46 @@ router.get("/task_add",function (req, res) {
             });
         });
     })
+});
+
+//添加任务
+router.post("/task_add",upload.array("pic"),function (req, res) {
+    var tid=req.body.category;
+    var title=req.body.title;
+    var price=req.body.price;
+    var num=req.body.num;
+    //console.log(req.session.user);
+
+    var date=new Date();
+    var addTime=date.getFullYear() + "," +(date.getMonth()+1) + "," + date.getDate()
+        + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+
+    pool.getConnection(function (err, conn) {
+        //console.log(req.files);
+        if(req.files!=undefined){
+            var file;
+            var fileName;
+            var filePath="";
+            for(var i in req.files){
+                file=req.files[i];
+                fileName=new Date().getTime() + "_" + file.originalname;
+                fs.renameSync(file.path, __dirname + "/pic/" + fileName);
+                if(filePath!=""){
+                    filePath+=",";
+                }
+                filePath+="/pic/"+fileName;
+            }
+        }
+        conn.query("insert into taskInfo values(null,?,?,?,?,?,?,?)",
+            [req.session.user._id,tid,title,price,num,addTime,filePath],function (err, result) {
+                conn.release();
+                if(!err){
+                    res.send("<script>alert('内容添加成功');location.href='./task_add?Num=2'</script>");
+                }else{
+                    console.log(err);
+                }
+            });
+    });
 });
 
 router.get("/task_index",function (req,res,next) {
