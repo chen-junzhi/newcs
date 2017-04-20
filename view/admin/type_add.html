@@ -1,7 +1,7 @@
 {% extends 'user.html' %}
 
 {%block main%}
-<h3>添加分类</h3>
+<h1>添加分类</h1>
 <br /><br />
 <div>
     <div class="form-group">
@@ -16,7 +16,7 @@
     $("#sub").on("click",function () {
         var name=$("#name").val();
         var msg=$("#msg_1");
-        console.log(msg);
+        //console.log(msg);
         //发ajax请求
         $.ajax({
             type:"post",

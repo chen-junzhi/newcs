@@ -101,10 +101,17 @@ router.post("/type/add",function (req, res) {
 });
 
 
-router.get("/task_add",function (req,res,next) {
-    res.render("admin/task_add",{
-        userInfo:req.session.user
-    });
+//添加任务
+router.get("/task_add",function (req, res) {
+    pool.getConnection(function (err, conn) {
+        conn.query("select * from type order by tid",function (err, result) {
+            conn.release();
+            res.render("admin/task_add",{
+                userInfo:req.session.user,
+                categories:result
+            });
+        });
+    })
 });
 
 router.get("/task_index",function (req,res,next) {
