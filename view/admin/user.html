@@ -141,9 +141,31 @@
         if(reg.test(str)){
             var li=$(".content_box").find("li");
             var Num=str.split("?")[1].split("=")[1];
-            li.eq(Num).addClass("sidebar_active").siblings().removeClass("sidebar_active");
+
+            switch(Num){
+                case "0":
+                    li.eq(Num).addClass("sidebar_active0").siblings().removeClass("sidebar_active1 sidebar_active2 sidebar_active3 sidebar_active4 sidebar_active5");
+                    break;
+                case "1":
+                    li.eq(Num).addClass("sidebar_active1").siblings().removeClass("sidebar_active0 sidebar_active2 sidebar_active3 sidebar_active4 sidebar_active5");
+                    break;
+                case "2":
+                    li.eq(Num).addClass("sidebar_active2").siblings().removeClass("sidebar_active1 sidebar_active0 sidebar_active3 sidebar_active4 sidebar_active5");
+                    break;
+                case "3":
+                    li.eq(Num).addClass("sidebar_active3").siblings().removeClass("sidebar_active1 sidebar_active2 sidebar_active0 sidebar_active4 sidebar_active5");
+                    break;
+                case "4":
+                    li.eq(Num).addClass("sidebar_active4").siblings().removeClass("sidebar_active1 sidebar_active2 sidebar_active3 sidebar_active0 sidebar_active5");
+                    break;
+                case "5":
+                    li.eq(Num).addClass("sidebar_active5").siblings().removeClass("sidebar_active1 sidebar_active2 sidebar_active3 sidebar_active4 sidebar_active0");
+                    break;
+                default:
+                    break;
+            }
             if(Num==4 || Num==5){
-                li.eq(0).removeClass("sidebar_active");
+                li.eq(0).removeClass("sidebar_active0");
             }
         }
     });
