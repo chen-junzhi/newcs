@@ -12,7 +12,7 @@ var bodyParser=require("body-parser");
 var multer=require("multer");
 var fs=require("fs");
 
-var upload=multer({dest:"../../public/pic"});    //指定文件上传路径
+var upload=multer({dest:__dirname+"/pic"});    //指定文件上传路径
 //再加载路由
 var router=express.Router();
 
@@ -150,9 +150,14 @@ router.post("/task_add",upload.array("pic"),function (req, res) {
             [req.session.user._id,tid,title,price,num,addTime,filePath],function (err, result) {
                 conn.release();
                 if(!err){
-                    res.send("<script>alert('内容添加成功');location.href='./task_add?Num=2'</script>");
+                    msg.code=1;
+                    msg.msg="添加成功";
+                    res.send(msg);
                 }else{
                     console.log(err);
+                    msg.code=0;
+                    msg.msg="数据库错误";
+                    res.send(msg);
                 }
             });
     });

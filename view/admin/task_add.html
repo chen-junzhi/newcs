@@ -1,13 +1,13 @@
 {% extends 'user.html' %}
 {% block main %}
 
-<form class="cont_info" method="post">
+<div class="cont_info">
     <h1>添加任务</h1>
     <div class="form-group" style="margin-bottom:10px;">
         <label for="category">分类：</label>
         <select id="category" class="form-control" name="category">
             {% for category in categories %}
-            <option value="{{category.tid}}">{{category.tname}}</option>
+            <option value="{{category.tid}}" class="option">{{category.tname}}</option>
             {% endfor %}
         </select>
     </div>
@@ -17,33 +17,53 @@
     </div>
 
     <div class="form-group" style="margin-bottom:10px;">
-        <label for="description">佣金：</label>
-        <input name="price" type="number" class="form-control" id="description" placeholder="请输入任务佣金" />
+        <label for="price">佣金：</label>
+        <input name="price" type="number" class="form-control" id="price" placeholder="请输入任务佣金" />
     </div>
 
     <div class="form-group" style="margin-bottom:10px;">
-        <label for="content">招募人数：</label>
-        <input name="num" class="form-control" id="content"  placeholder="请输入招募人数" />
+        <label for="num">招募人数：</label>
+        <input name="num" class="form-control" id="num"  placeholder="请输入招募人数" />
     </div>
 
-    <p style="margin-bottom:10px;">任务图片：<input type="file" name="pic" id="pic" onchange="setImagePreviews(this,'showpic')"/></p>
+    <p style="margin-bottom:10px;">任务图片：<input type="file" name="pic" id="pic" onchange="setImagePreviews(this,'showpic')" multiple/></p>
 
     <div id="showpic">
 
     </div>
-    <input type="submit" class="btn btn-primary" id="submit" value="提交">
+    <button class="btn btn-primary" id="submit">提交</button>
 
-</form>
+</div>
 
 <script>
+    var category=$("#category").children('option:selected').val();
+    $("#category").change(function(){
+        category=$(this).children('option:selected').val();
+    });
     $("#submit").on("click",function () {
+        //console.log(category);
+        var title=$("#title").val();
+        var price=$("#price").val();
+        var num=$("#num").val();
         $.ajaxFileUpload({
-            url:"/task_add",
+            url:"/admin/task_add",
             fileElementId:"pic",
+            data:{
+                category:category,
+                title:title,
+                price:price,
+                num:num
+            },
             dataType:"json",
             success:function (data,status) {
                 if(data.code==1){
+                    $("#category").find("option").val("");
+                    $("#title").val("");
+                    $("#price").val("");
+                    $("#num").val("");
                     $("#pic").file=null;
+                    alert('任务添加成功');
+                    location.href="/admin/task_add?Num=2";
                 }
             },
             error:function (data, status, e) {

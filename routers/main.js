@@ -44,12 +44,12 @@ router.get("/mission",function (req,res,next) {
     var size=8;
 
     pool.getConnection(function (err,conn) {
-        conn.query("select * from taskinfo",function(err,result) {
+        conn.query("select * from taskInfo",function(err,result) {
             var count=result.length;
             var pages=Math.ceil(count/size);
             pageNo=Math.min(pageNo,pageNo);
             pageNo=Math.max(pageNo,1);
-            conn.query("select * from taskinfo order by tid limit ?,?",[size*(pageNo-1),size],function(err,rs){
+            conn.query("select skid,uid,type.tid,tname,title,price,num,pubTime,pic from taskInfo,type where type.tid=taskInfo.tid order by tid limit ?,?",[size*(pageNo-1),size],function(err,rs){
                 conn.release();
                 if(err||rs.length<=0){
                     res.render("main/mission",{
@@ -66,7 +66,7 @@ router.get("/mission",function (req,res,next) {
                         count:count,
                         size:size
                     });
-                    //console.log(result);
+                    console.log(rs);
                 }
             })
         })

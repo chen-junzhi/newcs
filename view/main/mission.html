@@ -29,11 +29,11 @@
                     <ul style="display:block">
                         {% for task in allTask %}
                         <li class="all_dis m_spe_li"><a href="/{% if task.type=='听音乐' %}detail_task1{%else%}detail_task{%endif%}">
-                            <p class="me_img"><img src="../../public/images/{% if task.type=='看电影' %}video{%else%}music{%endif%}_{% if task.tid>=8 %}5{%else%}8{%endif%}.jpg" /></p>
+                            <p class="me_img"><img src="../../routers/pic/1492785388214_1_201110151609081KF73.jpg" /></p>
                             <div class="m_info">
-                                <p>{{task.title}}<label>{{task.type}}</label></p>
-                                <span>佣金：<b><i>￥</i>{{task.price}}</b></span>
-                                <b class="m_price">{{task.number}}/</b>
+                                <p>{{task.title}}<label>{{task.tname}}</label></p>
+                                <span>佣金：<b><i>￥</i>{{task.price+".00"}}</b></span>
+                                <b class="m_price">{{task.num}}/</b>
                             </div>
                         </a></li>
                         {% endfor %}
