@@ -68,29 +68,9 @@ a{
 .cont_sidebar ul li.user_set a{
     background: url(../../public/images/memberico1.png) no-repeat 61px -271px;
 }
-.cont_sidebar ul li.sidebar_active0 a{
+.cont_sidebar ul li.sidebar_active a{
     color: #c22754;
     background: url(../images/memberico2.png) no-repeat 59px 11px;
-}
-.cont_sidebar ul li.sidebar_active1 a{
-    color: #c22754;
-    background: url(../images/memberico2.png) no-repeat 58px -39px;
-}
-.cont_sidebar ul li.sidebar_active2 a{
-    color: #c22754;
-    background: url(../images/memberico2.png) no-repeat 57px -371px;
-}
-.cont_sidebar ul li.sidebar_active3 a{
-    color: #c22754;
-    background: url(../images/memberico2.png) no-repeat 57px -321px;
-}
-.cont_sidebar ul li.sidebar_active4 a{
-    color: #c22754;
-    background: url(../images/memberico2.png) no-repeat 61px -213px;
-}
-.cont_sidebar ul li.sidebar_active5 a{
-    color: #c22754;
-    background: url(../images/memberico2.png) no-repeat 61px -271px;
 }
 
 /*模板引擎的静态块*/

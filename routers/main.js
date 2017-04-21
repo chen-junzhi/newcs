@@ -66,7 +66,7 @@ router.get("/mission",function (req,res,next) {
                         count:count,
                         size:size
                     });
-                    console.log(rs);
+                    //console.log(rs);
                 }
             })
         })

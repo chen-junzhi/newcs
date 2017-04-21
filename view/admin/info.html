@@ -66,7 +66,7 @@
                     </li>
                 </ul>
                 <div class="commit_btn">
-                    <a href="javascript:void(0);">保存</a>
+                    <a href="#">保存</a>
                 </div>
             </form>
         </div>
@@ -100,17 +100,6 @@
                     $("#selDistrict").append(option);
                 }
             });
-        });
-
-        //保存用户修改的信息
-        $(".commit_btn").on("click",function () {
-            var realname=$("#form_commit").find("[name='realname']").val();
-            var sex=$("#form_commit").find("[name='sex']").val();
-            var idcard=$("#form_commit").find("[name='idcard']").val();
-            var email=$("#form_commit").find("[name='email']").val();
-            var uname={{userInfo.uname}};
-
-            //console.log(realname+sex+idcard+email);
         });
     });
 
@@ -158,9 +147,6 @@
             $("#"+divid+"").css("display","none");
         }
     }
-
-
-    
 </script>
 
 {%endblock%}
