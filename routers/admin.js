@@ -74,7 +74,7 @@ router.get("/user_index",function (req, res) {
 });
 
 router.get("/type_add",function (req,res,next) {
-    res.render("admin/type_add?Num=2",{
+    res.render("admin/type_add",{
         userInfo:req.session.user
     });
 });

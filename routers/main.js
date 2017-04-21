@@ -90,11 +90,11 @@ router.get("/article",function (req,res) {
         userInfo:req.session.user
     });
 });
-router.get("/detail_task1",function (req,res) {
+router.get("/task/apply",function (req,res) {
     //使用模版引擎去渲染页面，两个参数： 路径 分配给这个页面使用的数据
-    res.render("main/detail_task1",{
-        userInfo:req.session.user
-    });
+    if(!req.session.user){
+        res.send("<script>alert('请先登录');location.reload();</script>");
+    }
 });
 
 router.get("/detail_task1",function (req,res) {

@@ -1,0 +1,14 @@
+.pager{
+   padding-left:23%;
+
+}
+.pager li{
+    float:left;
+    margin:0 10px;
+}
+.pager:after{
+    display:block;
+    content: "";
+    width: 0;
+    clear: both;
+}

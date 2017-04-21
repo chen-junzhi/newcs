@@ -3,7 +3,7 @@
 
 <form class="cont_info" method="post">
     <h1>添加任务</h1>
-    <div class="form-group">
+    <div class="form-group" style="margin-bottom:10px;">
         <label for="category">分类：</label>
         <select id="category" class="form-control" name="category">
             {% for category in categories %}
@@ -11,22 +11,22 @@
             {% endfor %}
         </select>
     </div>
-    <div class="form-group">
+    <div class="form-group" style="margin-bottom:10px;">
         <label for="title">标题：</label>
         <input name="title"  class="form-control" id="title" placeholder="请输入任务标题" />
     </div>
 
-    <div class="form-group">
+    <div class="form-group" style="margin-bottom:10px;">
         <label for="description">佣金：</label>
         <input name="price" type="number" class="form-control" id="description" placeholder="请输入任务佣金" />
     </div>
 
-    <div class="form-group">
+    <div class="form-group" style="margin-bottom:10px;">
         <label for="content">招募人数：</label>
         <input name="num" class="form-control" id="content"  placeholder="请输入招募人数" />
     </div>
 
-    <p>任务图片：<input type="file" name="pic" id="pic" onchange="setImagePreviews(this,'showpic')"/></p>
+    <p style="margin-bottom:10px;">任务图片：<input type="file" name="pic" id="pic" onchange="setImagePreviews(this,'showpic')"/></p>
 
     <div id="showpic">
 
