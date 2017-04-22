@@ -5,10 +5,12 @@
     <div class="mission_box">
         <div class="mis_menu">
             <ul>
-                <li><a href="javascript:void(0);"   class="navs actie" onclick="showDiv(1)">全部</a></li>
-                <li ><a href="javascript:void(0);"  class="navs " onclick="showDiv(2)">听音乐</a></li>
-                <li><a href="javascript:void(0);"  class="navs" onclick="showDiv(3)">看电影</a></li>
-                <li><a href="javascript:void(0);"  class="navs" onclick="showDiv(4)">玩游戏</a></li>
+                <li><a href="javascript:void(0);"   class="navs actie" >全部</a></li>
+                <li ><a href="javascript:void(0);"  class="navs " >听音乐</a></li>
+                <li><a href="javascript:void(0);"  class="navs" >看电影</a></li>
+                <li><a href="javascript:void(0);"  class="navs" >玩游戏</a></li>
+                <li><a href="javascript:void(0);"  class="navs" >看漫画</a></li>
+                <li><a href="javascript:void(0);"  class="navs" >看小说</a></li>
             </ul>
         </div>
         <div class="mis_list">
@@ -28,11 +30,11 @@
                 <div class="m_lists_b" id="m_lists_b">
                     <ul style="display:block">
                         {% for task in allTask %}
-                        <li class="all_dis m_spe_li"><a href="/{% if task.type=='听音乐' %}detail_task1{%else%}detail_task{%endif%}">
-                            <p class="me_img"><img src="../../routers/pic/1492785388214_1_201110151609081KF73.jpg" /></p>
+                        <li class="all_dis m_spe_li"><a href="/{% if task.tname=='听音乐' %}detail_task1?skid={{task.skid}}{%else%}detail_task?skid={{task.skid}}{%endif%}">
+                            <p class="me_img"><img src="../../public{{task.pic}}" /></p>
                             <div class="m_info">
                                 <p>{{task.title}}<label>{{task.tname}}</label></p>
-                                <span>佣金：<b><i>￥</i>{{task.price+".00"}}</b></span>
+                                <span>佣金：<b><i>￥</i>{{task.price}}.00</b></span>
                                 <b class="m_price">{{task.num}}/</b>
                             </div>
                         </a></li>

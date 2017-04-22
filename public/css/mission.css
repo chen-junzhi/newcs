@@ -16,7 +16,7 @@
 }
 .mis_menu ul li{
     float: left;
-    margin-right: 15px;
+    margin-right: 40px;
 }
 .mis_menu ul li a{
     color:#272727;
@@ -133,6 +133,7 @@
     background: #C22754;
 
 }
+
 .m_info:hover p,.m_info:hover span,.m_info:hover .m_price,.m_info:hover span b,.m_info:hover span b i{
     color:#fff;
 }
@@ -174,6 +175,9 @@
     display: inline-block;
     background: url("../images/task_details_icon.png") 0px -55px no-repeat;
 }
+.m_price{
+    font-size: 15px !important;
+}
 .pager{
    width: 1200px;
     margin: 0px auto;
@@ -183,25 +187,44 @@
 .pager li{
     float: left;
     text-align: center;
-    line-height: 30px;
+
 }
 .pager li:nth-child(1){
     margin-left: 250px;
-    width:60px;
-    height:30px;
+    width:80px;
+    height:40px;
     border-radius: 5px;
     background: #B2ADAD;
+    opacity: 0.7;
+    line-height: 40px;
 }
 .pager li:nth-child(2){
     margin-left:80px;
 }
-.pager li:nth-child(3){
+.next{
     margin-left:80px;
-    width:60px;
-    height:30px;
+    width:80px;
+    height:40px;
     border-radius: 5px;
     background: #B2ADAD;
+    opacity: 0.7;
+    line-height: 40px;
 }
 .pager li a{
     color:#000;
+}
+.next:hover,.pager li:nth-child(1):hover{
+    background-color:#34C9C6 ;
+    opacity: 0.5;
+
+}
+.next:hover a,.pager li:nth-child(1):hover a{
+    color:#fff;
+}
+.pages{
+    width:20px;
+    height:20px;
+    border: 1px solid #ccc;
+    text-align: center;
+    line-height:20px;
 }
