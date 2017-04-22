@@ -1,6 +1,7 @@
 /**
- * Created by Administrator on 2017/4/19.
+ * Created by Administrator on 2017/4/23.
  */
+
 
 var express=require("express");
 //再加载路由
@@ -66,7 +67,7 @@ router.get("/mission",function (req,res,next) {
                         count:count,
                         size:size
                     });
-                   // console.log(rs);
+                    // console.log(rs);
                 }
             })
         })
@@ -121,7 +122,7 @@ router.get("/detail_task1",function (req,res) {
 });
 router.get("/detail_task",function (req,res) {
     var skid=req.query.skid;
-   // console.log(skid);
+    // console.log(skid);
     pool.getConnection(function(err,conn){
         conn.query("select skid,uid,type.tid,tname,title,price,num,pubTime,pic from taskinfo,type where type.tid=taskinfo.tid and skid=?",[skid],function (err,rs) {
             conn.release();
