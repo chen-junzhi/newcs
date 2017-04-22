@@ -33,7 +33,7 @@
         </ul>
         <ul class="userInfo">
             <li class="username">欢迎,<span>{{userInfo.uname}}</span></li>
-            <li class="person"><a href="/admin">个人中心</a></li>
+            <li class="person"><a href="javascript:;">个人中心</a></li>
             <li class="exit"><a href="javascript:void(0);" onclick="Exit()">退出</a></li>
         </ul>
     </div>
@@ -50,10 +50,10 @@
             </div>
             <ul>
                 {% if userInfo.isAdmin %}
-                <li class="mytak sidebar_active"><a href="/admin/user_index?Num=0">用户列表</a></li>
+                <li class="mytak sidebar_active0"><a href="/admin/user_index?Num=0">用户列表</a></li>
                 <li class="mytak"><a href="/admin/type_add?Num=1">分类管理</a></li>
                 <li class="mytak"><a href="/admin/task_add?Num=2">任务管理</a></li>
-                <li class="mytak"><a href="/admin/task_index?Num=3">任务首页</a></li>
+                <!--<li class="mytak"><a href="/admin/task_index?Num=3">任务首页</a></li>-->
                 {% else %}
                 <li class="mytak sidebar_active0"><a href="/admin?Num=0">我的任务</a></li>
                 <li class="mysave"><a href="/admin/mysave?Num=1">我的收藏</a></li>

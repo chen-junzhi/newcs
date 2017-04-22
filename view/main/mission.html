@@ -28,8 +28,8 @@
                 <div class="m_lists_b" id="m_lists_b">
                     <ul style="display:block">
                         {% for task in allTask %}
-                        <li class="all_dis m_spe_li"><a href="/{% if task.type=='听音乐' %}detail_task1{%else%}detail_task{%endif%}">
-                            <p class="me_img"><img src="../../routers/pic/1492785388214_1_201110151609081KF73.jpg" /></p>
+                        <li class="all_dis m_spe_li"><a href="/{% if task.tname=='听音乐' %}detail_task1{%else%}detail_task{%endif%}">
+                            <p class="me_img"><img src="../../public{{task.pic}}" /></p>
                             <div class="m_info">
                                 <p>{{task.title}}<label>{{task.tname}}</label></p>
                                 <span>佣金：<b><i>￥</i>{{task.price}}</b></span>
