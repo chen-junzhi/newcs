@@ -6,9 +6,9 @@
         <div class="mis_menu">
             <ul>
                 <li><a href="javascript:void(0);"   class="navs actie" onclick="showDiv(1)">全部</a></li>
-                <li ><a href="javascript:void(0);"  class="navs " onclick="showDiv(2)">听音乐</a></li>
-                <li><a href="javascript:void(0);"  class="navs" onclick="showDiv(3)">看电影</a></li>
-                <li><a href="javascript:void(0);"  class="navs" onclick="showDiv(4)">玩游戏</a></li>
+                {% for task in allTask %}
+                <li ><a href="javascript:void(0);"  class="navs " onclick="showDiv(2)">{{task.tname}}</a></li>
+                {% endfor %}
             </ul>
         </div>
         <div class="mis_list">
