@@ -13,14 +13,19 @@
         <div class="main_top">
             <div class="maitop_box">
                 <div class="mat_left">
-                    <p class="left_item">首页/任务大厅/玩游戏/漂浮的家-老狼</p>
+                    {% for task in allTask %}
+                    <p class="left_item">首页/任务大厅/{{task.tname}}/{{task.title}}</p>
+
                     <div class="left_det">
-                        <div class="left_img"><img src="../../public/images/1477102503.jpg" width="250" height="188" /></div>
+                        <div class="left_img"><img src="../../public{{task.pic}}" width="250" height="188" /></div>
                         <div class="info_de">
-                            <p class="det_item">漂浮的家 - 老狼</p>
-                            <p>发布时间: 2016-10-22</p>
-                            <p>任务时间: 2016-10-22 至 2016-10-31</p>
-                            <p class="det_num">招募人数: <span>2000</span>人 | 申请人数: 人 | 申请成功: 人</p>
+
+                            <p class="det_item">{{task.title}}</p>
+
+                            <p>发布时间: {{task.pubTime}}</p>
+                            <p>任务时间:  2017-4-22至 2017-10-31</p>
+                            <p class="det_num">招募人数: <span>{{task.num}}</span>人 | 申请人数: 人 | 申请成功: 人</p>
+                            {% endfor %}
                             <button id="det_appli">马上申请</button>
                             <button id="det_sc">加入收藏</button>
                         </div>
@@ -37,7 +42,9 @@
                     <div class="circle">
                         <div class="circle_box">
                             <p>任务佣金</p>
-                            <p>￥1.00</p>
+                            {% for task in allTask %}
+                            <p>￥{{task.price}}.00</p>
+                            {% endfor %}
                         </div>
                     </div>
                     <p class="hy">已有3000人获得佣金</p>
@@ -106,7 +113,9 @@
                                 <div id="play" onclick="playOrPause(this)">4</div>
                             </div>
                             <div class="music_pro">
+
                                 <p>Sompob Pokepoon-<span>薛之谦</span></p>
+
                                 <div id="processs">
                                     <div id="progresswrap"></div>
                                 </div>

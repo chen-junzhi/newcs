@@ -1,6 +1,7 @@
 /**
- * Created by Administrator on 2017/4/19.
+ * Created by Administrator on 2017/4/23.
  */
+
 
 var express=require("express");
 //再加载路由
@@ -41,7 +42,7 @@ router.get("/mission",function (req,res,next) {
     //第一个参数模板的路径   第二个参数：分配给模板使用的数据
     //确保绝对是从第一页开始的
     var pageNo=Number(req.query.pageNo||1);
-    var size=8;
+    var size=4;
 
     pool.getConnection(function (err,conn) {
         conn.query("select * from taskInfo",function(err,result) {
@@ -66,7 +67,7 @@ router.get("/mission",function (req,res,next) {
                         count:count,
                         size:size
                     });
-                    //console.log(rs);
+                    // console.log(rs);
                 }
             })
         })
@@ -99,15 +100,45 @@ router.get("/task/apply",function (req,res) {
 
 router.get("/detail_task1",function (req,res) {
     //使用模版引擎去渲染页面，两个参数： 路径 分配给这个页面使用的数据
-    res.render("main/detail_task1",{
-        userInfo:req.session.user
-    });
+    var skid=req.query.skid;
+    console.log(skid);
+    pool.getConnection(function(err,conn){
+        conn.query("select skid,uid,type.tid,tname,title,price,num,pubTime,pic from taskinfo,type where type.tid=taskinfo.tid and skid=?",[skid],function (err,rs) {
+            conn.release();
+            if(err||rs.length<=0){
+                res.render("main/detail_task1",{
+                    userInfo:req.session.user,
+                    msg:"暂无消息"
+                });
+            }else{
+                res.render("main/detail_task1",{
+                    userInfo:req.session.user,
+                    allTask:rs
+                });
+            }
+        })
+    })
+
 });
 router.get("/detail_task",function (req,res) {
-    //使用模版引擎去渲染页面，两个参数： 路径 分配给这个页面使用的数据
-    res.render("main/detail_task",{
-        userInfo:req.session.user
-    });
+    var skid=req.query.skid;
+    // console.log(skid);
+    pool.getConnection(function(err,conn){
+        conn.query("select skid,uid,type.tid,tname,title,price,num,pubTime,pic from taskinfo,type where type.tid=taskinfo.tid and skid=?",[skid],function (err,rs) {
+            conn.release();
+            if(err||rs.length<=0){
+                res.render("main/detail_task",{
+                    userInfo:req.session.user,
+                    msg:"暂无消息"
+                });
+            }else{
+                res.render("main/detail_task",{
+                    userInfo:req.session.user,
+                    allTask:rs
+                });
+            }
+        })
+    })
 });
 
 

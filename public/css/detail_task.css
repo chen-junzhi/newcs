@@ -335,6 +335,7 @@ li{
    width:205px;
    height: 205px;
    float: left;
+    border-radius: 2px;
    box-shadow: 2px 2px 3px #ccc;
   background-size:cover;
 }
@@ -356,6 +357,7 @@ li{
     font-family: Webdings;
     font-size: 35px;
     line-height: 40px;
+
     color:#fff;
     border-radius: 50%;
     margin: 80px 0px 0px 80px;
@@ -381,8 +383,9 @@ li{
 }
 #video #controls{
     width:20px;
-    border-radius: 50%;
+    border-radius:50%;
     font-family: Webdings;
+    display:block;
     font-size: 25px;
     padding: 10px;
     line-height:20px;
@@ -496,14 +499,15 @@ li{
     display:inline-block;
 }
 .right_more a:nth-child(2){
-    width:40px;
+    width:60px;
     height: 25px;
     display:inline-block;
     text-align: center;
     line-height: 25px;
-    color:#363636;
+    color:#fff;
     vertical-align: middle;
-    background-color: #ccc;
+    background-color: #ED9358;
+    border-radius: 2px;
     cursor: pointer;
 }
 
