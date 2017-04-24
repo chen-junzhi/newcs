@@ -31,6 +31,21 @@ create table taskInfo(
     pubTime varchar(100),
     pic varchar(1000)
 );
+
+//新建用户信息表
+DROP TABLE IF EXISTS `userInfo`;
+CREATE TABLE `userInfo`(
+  `uid` int AUTO_INCREMENT,
+  `realname` varchar(10),
+  `sex` varchar(10),
+  `idcard` varchar(30),
+  `email` varchar(30),
+  `location` varchar(30),
+  `pic` varchar(30),
+  PRIMARY KEY (`uid`)
+);
+alter table userInfo add foreign key(uid) references user(uid);
+
 alter table taskInfo add foreign key(uid) references user(uid);
 alter table taskInfo add foreign key(tid) references type(tid);
 alter table taskInfo auto_increment=1;
