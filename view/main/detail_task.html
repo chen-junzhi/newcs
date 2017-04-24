@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 {% extends "layout.html" %}
 
 {%block main%}
@@ -170,7 +171,7 @@
             document.getElementById("controls").innerHTML=";";
             document.getElementsByClassName("bg")[0].style.opacity="0";
             var percent=video.currentTime/video.duration;
-           // console.log(percent);
+            // console.log(percent);
         }else{
             video.pause();
             document.getElementById("controls").innerHTML="4";
@@ -178,22 +179,22 @@
         }
     }
     /*
-var bg1=document.getElementById("bg1");
-    bg1.onmouseover=function () {
-        document.getElementById("controls").style.display="block";
-    }
-    bg1.onmouseout=function () {
-        document.getElementById("controls").style.display="none";
-    }*/
+     var bg1=document.getElementById("bg1");
+     bg1.onmouseover=function () {
+     document.getElementById("controls").style.display="block";
+     }
+     bg1.onmouseout=function () {
+     document.getElementById("controls").style.display="none";
+     }*/
 
     /*$(function () {
-        $("#det_appli").on("click",function () {
-            $.ajax({
-                type:"get",
-                url:"/main/task/apply"
-            });
-        });
-    });*/
+     $("#det_appli").on("click",function () {
+     $.ajax({
+     type:"get",
+     url:"/main/task/apply"
+     });
+     });
+     });*/
 
 
 </script>
