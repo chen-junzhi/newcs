@@ -5,12 +5,15 @@
     <div class="mission_box">
         <div class="mis_menu">
             <ul>
-                <li><a href="javascript:void(0);"   class="navs actie" >全部</a></li>
-                <li ><a href="javascript:void(0);"  class="navs " >听音乐</a></li>
-                <li><a href="javascript:void(0);"  class="navs" >看电影</a></li>
-                <li><a href="javascript:void(0);"  class="navs" >玩游戏</a></li>
-                <li><a href="javascript:void(0);"  class="navs" >看漫画</a></li>
-                <li><a href="javascript:void(0);"  class="navs" >看小说</a></li>
+                <li><a href="/mission?num=2"   class="navs actie" >全部</a></li>
+                {% for type in Types %}
+                <li ><a href="/mission?tid={{type.tid}}"  class="navs " >{{type.tname}}</a></li>
+                {% endfor %}
+
+                <!--<li><a href="javascript:void(0);"  class="navs" >看电影</a></li>-->
+                <!--<li><a href="javascript:void(0);"  class="navs" >玩游戏</a></li>-->
+                <!--<li><a href="javascript:void(0);"  class="navs" >看漫画</a></li>-->
+                <!--<li><a href="javascript:void(0);"  class="navs" >看小说</a></li>-->
             </ul>
         </div>
         <div class="mis_list">

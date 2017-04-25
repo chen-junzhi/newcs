@@ -15,6 +15,7 @@ var pool=mysql.createPool({    //数据连接池
     user:"root",
     password:"aaaa"
 });
+ var typeInfo;
 
 // router.get("/",function (req,res) {
 //     //使用模板引擎去渲染页面，两个参数
@@ -43,35 +44,64 @@ router.get("/mission",function (req,res,next) {
     //确保绝对是从第一页开始的
     var pageNo=Number(req.query.pageNo||1);
     var size=4;
-
+    var tid=req.query.tid;
+    var num=req.query.num;
     pool.getConnection(function (err,conn) {
-        conn.query("select * from taskInfo",function(err,result) {
-            var count=result.length;
-            var pages=Math.ceil(count/size);
-            pageNo=Math.min(pageNo,pageNo);
-            pageNo=Math.max(pageNo,1);
-            conn.query("select skid,uid,type.tid,tname,title,price,num,pubTime,pic from taskInfo,type where type.tid=taskInfo.tid order by tid limit ?,?",[size*(pageNo-1),size],function(err,rs){
-                conn.release();
-                if(err||rs.length<=0){
-                    res.render("main/mission",{
-                        userInfo:req.session.user,
-                        msg:"暂无消息"
-                    });
+        conn.query("select * from type",function (err,r) {
+            conn.query("select * from taskInfo",function(err,result) {
+                var count=result.length;
+                var pages=Math.ceil(count/size);
+                pageNo=Math.min(pageNo,pageNo);
+                pageNo=Math.max(pageNo,1);
+                if(tid){
+                    conn.query("select skid,uid,type.tid,tname,title,price,num,pubTime,pic from taskInfo,type where type.tid=taskInfo.tid and type.tid=? order by tid limit ?,?", [tid,size*(pageNo-1),size],function(err,rs){
+                        conn.release();
+                        if(err){
+                            res.render("main/mission",{
+                                userInfo:req.session.user,
+                                msg:"暂无消息"
+                            });
+                        }else{
+                            res.render("main/mission",{
+                                userInfo:req.session.user,
+                                allTask:rs,
+                                Types:r,
+                                tag:"mission",
+                                pageNo:pageNo,
+                                pages:pages,
+                                count:count,
+                                size:size
+                            });
+                            // console.log(r);
+                        }
+                    })
                 }else{
-                    res.render("main/mission",{
-                        userInfo:req.session.user,
-                        allTask:rs,
-                        tag:"mission",
-                        pageNo:pageNo,
-                        pages:pages,
-                        count:count,
-                        size:size
-                    });
-                    // console.log(rs);
+                    conn.query("select skid,uid,type.tid,tname,title,price,num,pubTime,pic from taskInfo,type where type.tid=taskInfo.tid order by tid limit ?,?",[size*(pageNo-1),size],function(err,rs){
+                        conn.release();
+                        if(err||rs.length<=0){
+                            res.render("main/mission",{
+                                userInfo:req.session.user,
+                                msg:"暂无消息"
+                            });
+                        }else{
+                            res.render("main/mission",{
+                                userInfo:req.session.user,
+                                allTask:rs,
+                                Types:r,
+                                tag:"mission",
+                                pageNo:pageNo,
+                                pages:pages,
+                                count:count,
+                                size:size
+                            });
+                            // console.log(r);
+                        }
+                    })
                 }
-            })
-        })
+
+            })});
     })
+
 });
 router.get("/reviewed",function (req,res) {
     //使用模版引擎去渲染页面，两个参数： 路径 分配给这个页面使用的数据
