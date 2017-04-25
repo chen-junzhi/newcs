@@ -358,7 +358,9 @@
             $("#login_btn").on("click",function () {
                 var uname=loginBox.find("[name='username']").val();
                 var pwd=loginBox.find("[name='password']").val();
+				var flag=loginBox.find("[type='checkbox']").is(":checked");
                 var msg1=$("#msg1");
+				//console.log(flag);
                 //console.log(uname+"--"+pwd);
                 if(uname == "" || uname == null || pwd == "" || pwd == null){
                     msg1.show();
