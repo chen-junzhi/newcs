@@ -12,7 +12,7 @@ var bodyParser=require("body-parser");
 var multer=require("multer");
 var fs=require("fs");
 
-var upload=multer({dest:__dirname+"/pic"});    //指定文件上传路径
+var upload=multer({dest:__dirname+"/../public/pic"});    //指定文件上传路径
 //再加载路由
 var router=express.Router();
 
@@ -139,7 +139,7 @@ router.post("/task_add",upload.array("pic"),function (req, res) {
             for(var i in req.files){
                 file=req.files[i];
                 fileName=new Date().getTime() + "_" + file.originalname;
-                fs.renameSync(file.path, __dirname + "/pic/" + fileName);
+                fs.renameSync(file.path, __dirname + "/../public/pic/" + fileName);
                 if(filePath!=""){
                     filePath+=",";
                 }
