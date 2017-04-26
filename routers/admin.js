@@ -158,7 +158,7 @@ router.post("/task_add",upload.array("pic"),function (req, res) {
                 if(!err){
                     msg.code=1;
                     msg.msg="添加成功";
-                  //res.send(msg);
+                    res.send(msg);
                   //  console.log(msg);
                 }else{
                     console.log(err);
