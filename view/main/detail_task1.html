@@ -22,8 +22,8 @@
 
                             <p class="det_item">{{task.title}}</p>
 
-                            <p>发布时间: {{task.pubTime}}</p>
-                            <p>任务时间:  2017-4-22至 2017-10-31</p>
+                            <p>发布时间: <span  id="pubtime2">{{task.pubTime}}</span></p>
+                            <p>任务时间:  {{task.pubTime}}至 <span id="delay2"></span></p>
                             <p class="det_num">招募人数: <span>{{task.num}}</span>人 | 申请人数: 人 | 申请成功: 人</p>
                             {% endfor %}
                             <button id="det_appli">马上申请</button>
@@ -240,7 +240,20 @@
 
         }
     }
-
+$(function () {
+    var delay2=$("#delay2");
+    var pubtime2=$("#pubtime2").html();
+    var ad = pubtime2.split("-");
+    // console.log(a);
+    var y=Number(ad[0]);
+    var m=Number(ad[1])+2;
+    if(m>12){
+        y+=1;
+        m-=12;
+    }
+    var delayTime=y+"-"+m+"-"+ad[2];
+    delay2.html(delayTime);
+})
 
 </script>
 {%endblock%}
