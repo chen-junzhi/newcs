@@ -23,7 +23,7 @@
 
 			<div class="logo2"><img src="../../public/images/logo2.png"></div>
 			<div class="s-p"><p>我想玩游戏、玩注册、听音乐、看电影......</p></div>
-			<div class="s-i"><input type="text" name="text" id="text" placeholder="玩游戏、玩注册、听音乐、看电影、、、" /></div>
+			<div class="s-i"><input type="text" name="text" id="keyWord" placeholder="玩游戏、玩注册、听音乐、看电影、、、" /></div>
 			<div class="s-n"><a href="#2" onclick="scrollfiy('#2')"><img src="../../public/images/go_next_ico.png"></a></div>
 			<div class="s-c"><p>版权所有©新创生MUX,powered by alimama THX.</p></div>
 		</div>
@@ -98,6 +98,13 @@
 
 	<script>
 		$(function(){
+			var keyWord=$("#keyWord");
+			keyWord.keydown(function(e){
+				var word=$("#keyWord").val();
+				if(e.keyCode==13){
+					location.href="/mission?word="+word+"";
+				}
+			});
 			$(".con").css({"height":($(window).height())});
 			//resize();
 			/*if(){

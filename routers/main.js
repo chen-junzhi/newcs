@@ -15,7 +15,6 @@ var pool=mysql.createPool({    //数据连接池
     user:"root",
     password:"aaaa"
 });
- var typeInfo;
 
 // router.get("/",function (req,res) {
 //     //使用模板引擎去渲染页面，两个参数
@@ -39,6 +38,7 @@ router.get("/white",function (req,res,next) {
         userInfo:req.session.user
     });
 });
+
 router.get("/mission",function (req,res,next) {
     //第一个参数模板的路径   第二个参数：分配给模板使用的数据
     //确保绝对是从第一页开始的
@@ -46,6 +46,8 @@ router.get("/mission",function (req,res,next) {
     var size=4;
     var tid=req.query.tid;
     var num=req.query.num;
+    var word=req.query.word;
+    //console.log(word);
     pool.getConnection(function (err,conn) {
         conn.query("select * from type",function (err,r) {
             conn.query("select * from taskInfo",function(err,result) {
@@ -59,7 +61,8 @@ router.get("/mission",function (req,res,next) {
                         if(err){
                             res.render("main/mission",{
                                 userInfo:req.session.user,
-                                msg:"暂无消息"
+                                msg:"暂无消息",
+                                Types:r
                             });
                         }else{
                             res.render("main/mission",{
@@ -75,13 +78,37 @@ router.get("/mission",function (req,res,next) {
                             // console.log(r);
                         }
                     })
+                }else if(word){
+                    conn.query("select skid,tname,title,price,num,pubTime,pic from taskInfo,type where type.tid=taskInfo.tid  and tname=? order by type.tid limit ?,?",[word,size*(pageNo-1),size],function (err, rr) {
+                        conn.release();
+                        if(err||rr.length<=0){
+                            res.render("main/mission",{
+                                userInfo:req.session.user,
+                                msg:"暂无任务",
+                                Types:r
+                            });
+                        }else{
+                            res.render("main/mission",{
+                                userInfo:req.session.user,
+                                allTask:rr,
+                                Types:r,
+                                tag:"mission",
+                                pageNo:pageNo,
+                                pages:pages,
+                                count:count,
+                                size:size
+                            });
+                            //console.log(r);
+                        }
+                    });
                 }else{
                     conn.query("select skid,uid,type.tid,tname,title,price,num,pubTime,pic from taskInfo,type where type.tid=taskInfo.tid order by tid limit ?,?",[size*(pageNo-1),size],function(err,rs){
                         conn.release();
                         if(err||rs.length<=0){
                             res.render("main/mission",{
                                 userInfo:req.session.user,
-                                msg:"暂无消息"
+                                msg:"暂无消息",
+                                Types:r
                             });
                         }else{
                             res.render("main/mission",{
@@ -94,7 +121,7 @@ router.get("/mission",function (req,res,next) {
                                 count:count,
                                 size:size
                             });
-                            // console.log(r);
+                            //console.log(r);
                         }
                     })
                 }
@@ -131,7 +158,7 @@ router.get("/task/apply",function (req,res) {
 router.get("/detail_task1",function (req,res) {
     //使用模版引擎去渲染页面，两个参数： 路径 分配给这个页面使用的数据
     var skid=req.query.skid;
-    console.log(skid);
+    //console.log(skid);
     pool.getConnection(function(err,conn){
         conn.query("select skid,uid,type.tid,tname,title,price,num,pubTime,pic from taskinfo,type where type.tid=taskinfo.tid and skid=?",[skid],function (err,rs) {
             conn.release();
