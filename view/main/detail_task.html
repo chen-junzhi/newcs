@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<!DOCTYPE html>
+
 {% extends "layout.html" %}
 
 {%block main%}
@@ -24,8 +23,8 @@
 
                             <p class="det_item">{{task.title}} </p>
 
-                            <p>发布时间: {{task.pubTime}}</p>
-                            <p>任务时间: 2017-4-22 至 2017-10-31</p>
+                            <p>发布时间: <span  id="pubtime">{{task.pubTime}}</span></p>
+                            <p>任务时间: {{task.pubTime}}至 <span id="delay"></span></p>
                             <p class="det_num">招募人数: <span>{{task.num}}</span>人 | 申请人数: 人 | 申请成功: 人</p>
                             {% endfor %}
                             <button id="det_appli">马上申请</button>
@@ -188,15 +187,22 @@
      document.getElementById("controls").style.display="none";
      }*/
 
-    /*$(function () {
-     $("#det_appli").on("click",function () {
-     $.ajax({
-     type:"get",
-     url:"/main/task/apply"
-     });
-     });
-     });*/
 
+//到期时间
+$(function () {
+    var delay=$("#delay");
+    var pubtime=$("#pubtime").html();
+    var a = pubtime.split("-");
+   // console.log(a);
+    var y=Number(a[0]);
+    var m=Number(a[1])+2;
+    if(m>12){
+        y+=1;
+        m-=12;
+    }
+    var delayTime=y+"-"+m+"-"+a[2];
+    delay.html(delayTime);
+})
 
 </script>
 {%endblock%}

@@ -87,19 +87,25 @@ router.post("/type/add",function (req, res) {
 
     }else{
         pool.getConnection(function (err, conn) {
-            conn.query("insert into type values(null,?)",[name],function (err, result) {
-                conn.release();
-                if(err){
-                    console.log(err);//type表中对tname加了unique唯一约束，所以重复添加类名，会报错
-                    msg.code=1;
-                    msg.message="类名不可重复，请重新添加";
-                    res.json(msg);
-                }else{
-                    msg.code=2;
-                    msg.message="添加成功";
-                    res.json(msg);
-                }
-            });
+
+                conn.query("insert into type values(null,?)",[name],function (err, result) {
+                    conn.release();
+                    if(err){
+                        console.log(err);//type表中对tname加了unique唯一约束，所以重复添加类名，会报错
+                        msg.code=1;
+                        msg.message="类名不可重复，请重新添加";
+                        res.json(msg);
+                    }else{
+                        msg.code=2;
+                        msg.message="添加成功";
+                        // msg.info=result[0];
+                        //req.session.user.types=rs;
+
+                        //console.log(result[0]);
+                        res.json(msg);
+                    }
+                });
+
         });
     }
 });
@@ -127,8 +133,8 @@ router.post("/task_add",upload.array("pic"),function (req, res) {
     //console.log(req.session.user);
 
     var date=new Date();
-    var addTime=date.getFullYear() + "," +(date.getMonth()+1) + "," + date.getDate()
-        + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+    var addTime=date.getFullYear() + "-" +(date.getMonth()+1) + "-" + date.getDate();
+
 
     pool.getConnection(function (err, conn) {
         //console.log(req.files);
@@ -152,7 +158,8 @@ router.post("/task_add",upload.array("pic"),function (req, res) {
                 if(!err){
                     msg.code=1;
                     msg.msg="添加成功";
-                    res.send(msg);
+                  //res.send(msg);
+                  //  console.log(msg);
                 }else{
                     console.log(err);
                     msg.code=0;
