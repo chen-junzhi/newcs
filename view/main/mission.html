@@ -25,7 +25,7 @@
                 </ul>
                 <div class="sear_button">
                     <input type="text" name="text" id="search_keyword" />
-                    <button id="btn_button"></button>
+                    <button id="btn_button" onclick="showTask()"></button>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -79,9 +79,20 @@
         zui.on("click",function(){
             $(this).addClass("m_bgc").siblings().removeClass("m_bgc");
         });
+
+        var keyWord=$("#search_keyword");
+        keyWord.keydown(function(e){
+            if(e.keyCode==13){
+                showTask();
+            }
+        });
     });
 
-    //分页查询的图片显示
+    function showTask(){
+        var keyWord=$("#search_keyword").val();
+        location.href="/mission?keyWord="+keyWord+"";
+    }
+
 
 
 

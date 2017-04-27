@@ -47,6 +47,7 @@ router.get("/mission",function (req,res,next) {
     var tid=req.query.tid;
     var num=req.query.num;
     var word=req.query.word;
+    var keyWord=req.query.keyWord;
     //console.log(word);
     pool.getConnection(function (err,conn) {
         conn.query("select * from type",function (err,r) {
@@ -101,6 +102,29 @@ router.get("/mission",function (req,res,next) {
                             //console.log(r);
                         }
                     });
+                }else if(keyWord){
+                    conn.query("select skid,uid,type.tid,tname,title,price,num,pubTime,pic from taskInfo,type where type.tid=taskInfo.tid and title like '%"+keyWord+"%' order by type.tid limit ?,?",[size*(pageNo-1),size],function(err,rs){
+                        conn.release();
+                        if(err||rs.length<=0){
+                            res.render("main/mission",{
+                                userInfo:req.session.user,
+                                msg:"暂无消息",
+                                Types:r
+                            });
+                        }else{
+                            res.render("main/mission",{
+                                userInfo:req.session.user,
+                                allTask:rs,
+                                Types:r,
+                                tag:"mission",
+                                pageNo:pageNo,
+                                pages:pages,
+                                count:count,
+                                size:size
+                            });
+                            //console.log(r);
+                        }
+                    })
                 }else{
                     conn.query("select skid,uid,type.tid,tname,title,price,num,pubTime,pic from taskInfo,type where type.tid=taskInfo.tid order by tid limit ?,?",[size*(pageNo-1),size],function(err,rs){
                         conn.release();
