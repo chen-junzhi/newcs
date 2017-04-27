@@ -48,6 +48,7 @@ router.get("/mission",function (req,res,next) {
     var num=req.query.num;
     var word=req.query.word;
     var keyWord=req.query.keyWord;
+    var id=req.query.id;
     //console.log(word);
     pool.getConnection(function (err,conn) {
         conn.query("select * from type",function (err,r) {
@@ -125,6 +126,30 @@ router.get("/mission",function (req,res,next) {
                             //console.log(r);
                         }
                     })
+                }else if(id){
+                    conn.query("select skid,uid,type.tid,tname,title,price,num,pubTime,pic from taskInfo,type where type.tid=taskInfo.tid order by pubTime desc limit ?,?",[size*(pageNo-1),size],function(err,resu){
+                        conn.release();
+                        if(err||resu.length<=0){
+                            res.render("main/mission",{
+                                userInfo:req.session.user,
+                                msg:"暂无消息",
+                                Types:r
+                            });
+                        }else{
+                            res.render("main/mission",{
+                                userInfo:req.session.user,
+                                allTask:resu,
+                                Types:r,
+                                tag:"mission",
+                                pageNo:pageNo,
+                                pages:pages,
+                                count:count,
+                                size:size
+                            });
+                            //console.log(r);
+                        }
+                    })
+
                 }else{
                     conn.query("select skid,uid,type.tid,tname,title,price,num,pubTime,pic from taskInfo,type where type.tid=taskInfo.tid order by tid limit ?,?",[size*(pageNo-1),size],function(err,rs){
                         conn.release();
@@ -149,6 +174,7 @@ router.get("/mission",function (req,res,next) {
                         }
                     })
                 }
+
 
             })});
     })
