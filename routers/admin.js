@@ -348,6 +348,29 @@ router.post("/user/set",function(req,res,next){
     });
 });
 
+router.post("/del",function(req,res){
+    var num=req.body.num;
+    pool.getConnection(function(err,conn){
+        if(err){
+            msg.code=0;
+            msg.message="网络连接失败，请稍后重试...";
+            res.json(msg);
+        }else{
+            conn.query("delete from taskApply where tid=?",[num],function (err, result) {
+                conn.release();
+                if(err){
+                    msg.code=0;
+                    msg.message="网络连接失败，请稍后重试...";
+                    res.json(msg);
+                }else{
+                    msg.code=1;
+                    msg.message="任务删除成功！";
+                    res.json(msg);
+                }
+            });
+        }
+    });
+});
 
 
 

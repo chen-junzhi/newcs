@@ -258,34 +258,36 @@ $(function () {
         if($("#login").length>0){
             alert("请先登录");
         }else{
-            //已经登陆成功，接下来要在个人中心显示当前任务，把本页的数据传给个人中心页面？
-            var src=$(".left_img").find("img").attr("src");
-            var type=$("#type").html();
-            var price=$("#price").html();
-            var num=$("#num").html();
-            var title=$(".det_item").html();
+            if(confirm("您确定申请该任务吗？")){
+                //已经登陆成功，接下来要在个人中心显示当前任务，把本页的数据传给个人中心页面？
+                var src=$(".left_img").find("img").attr("src");
+                var type=$("#type").html();
+                var price=$("#price").html();
+                var num=$("#num").html();
+                var title=$(".det_item").html();
 
-            $.ajax({
-                type:"post",
-                url:"/task_apply",
-                data:{
-                    src:src,
-                    type:type,
-                    title:title,
-                    price:price,
-                    num:num,
-                    pubtime2:pubtime2,
-                    delayTime:delayTime
-                },
-                dataType:"json",
-                success:function(data){
-                    if(data.code==1){
-                        alert("任务申请成功，可到个人中心查看");
-                    }else{
-                        alert("网络连接失败，请稍后重试");
+                $.ajax({
+                    type:"post",
+                    url:"/task_apply",
+                    data:{
+                        src:src,
+                        type:type,
+                        title:title,
+                        price:price,
+                        num:num,
+                        pubtime2:pubtime2,
+                        delayTime:delayTime
+                    },
+                    dataType:"json",
+                    success:function(data){
+                        if(data.code==1){
+                            alert("任务申请成功，可到个人中心查看");
+                        }else{
+                            alert("网络连接失败，请稍后重试");
+                        }
                     }
-                }
-            });
+                });
+            }
         }
     });
 })

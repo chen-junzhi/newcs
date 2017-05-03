@@ -33,7 +33,7 @@
                             <td align="center">{{task.pubtime2}}</td>
                             <td align="center">{{task.delayTime}}</td>
                             <td align="center"><span class="colornone">{{task.num}}</span></td>
-                            <td align="center"><button class="delete_task" onclick="del(this,'{{task.tid}}')">删除</button></td>
+                            <td align="center"><button class="delete_task" onclick="del('{{task.tid}}')">删除</button></td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -52,8 +52,32 @@
     $("#apply").html(number);
     //console.log($(".tab_box").find("tr").length-1);
 
-    function del(tr,num){
-        console.log(tr);
+    function del(num){
+        //console.log(td);
+        //console.log(td.parentNode.parentNode);
+        /*var tr=td.parentNode.parentNode;
+        if(confirm("您确定要删除这个任务吗？")){
+            tr.remove();
+        }*/
+        //删除数据库的数据
+        if(confirm("您确定要删除这条任务吗？")){
+            $.ajax({
+                type:"post",
+                url:"/admin/del",
+                data:{
+                    num:num
+                },
+                dataType:"json",
+                success:function(data){
+                    if(data.code==1){
+                        alert("任务删除成功！");
+                        location.reload();
+                    }else{
+                        alert("网络连接失败，请稍后重试");
+                    }
+                }
+            });
+        }
     }
 </script>
 {% include 'page.html' %}
