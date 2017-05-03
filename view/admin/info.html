@@ -20,7 +20,7 @@
                     <div class="clear"></div>
                 </div>
             </div>
-            <form action="" method="post" id="form_commit" enctype="multipart/form-data">
+            <div id="form_commit" style="display: none;">
                 <ul>
                     <li>
                         <span>用户名</span>
@@ -35,10 +35,10 @@
                         <span style="float: left">性别</span>
                         <p>
                             <label>
-                                <input name="sex" type="radio" value="1">男
+                                <input name="sex" type="radio" value="男">男
                             </label>
                             <label>
-                                <input name="sex" type="radio" value="0">女
+                                <input name="sex" type="radio" value="女">女
                             </label>
                         </p>
                     </li>
@@ -66,9 +66,41 @@
                     </li>
                 </ul>
                 <div class="commit_btn">
-                    <a href="#">保存</a>
+                    <a href="/admin/saveInfo?Num=4&uname={{userInfo.uname}}">保存</a>
                 </div>
-            </form>
+            </div>
+
+            <div id="alter_show">
+                <ul>
+                    <li>
+                        <span>用户名</span>
+                        <span class="user_name">{{userInfo.uname}}</span>
+                    </li>
+                    <li>
+                        <span>真实姓名</span>
+                        <span>{{userInfo.realname}}</span>
+                    </li>
+                    <li>
+                        <span style="float: left">性别</span>
+                        <span>{{userInfo.sex}}</span>
+                    </li>
+                    <li>
+                        <span>身份证号</span>
+                        <span>{{userInfo.idcard}}</span>
+                    </li>
+                    <li>
+                        <span>邮箱</span>
+                        <span>{{userInfo.email}}</span>
+                    </li>
+                    <li>
+                        <span>所在地</span>
+                        <span>{{userInfo.local}}</span>
+                    </li>
+                </ul>
+                <div class="alter_btn">
+                    <a href="javascript:void(0)">修改</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -102,6 +134,12 @@
             });
         });
 
+        //点击修改用户信息
+        $(".alter_btn").on("click",function () {
+            $("#form_commit").css("display","block");
+            $("#alter_show").css("display","none");
+        });
+
         //保存用户修改的信息
         $(".commit_btn").on("click",function () {
             var realname=$("#form_commit").find("[name='realname']").val();
@@ -110,12 +148,11 @@
             var sex = $('#form_commit').find(':radio[name="sex"]:checked').val();
             var local=$("#form_commit").find("option:selected").text();
             var uname={{userInfo.uname}};
-
-            console.log(realname+"____"+idcard+"__"+email+"________"+sex+"_____"+local+"____"+uname);
+//            console.log(sex);
 
             //使用ajax上传文件
             $.ajaxFileUpload({
-                url:"/addUserInfo",              //请求的地址
+                url:"/admin/info",              //请求的地址
                 data:{
                     uname:uname,
                     realname:realname,
@@ -124,20 +161,22 @@
                     idcard:idcard,
                     local:local,
                 },      //传参
-                fileElementId:["photo"],         //需要上传的图片域的id
+                fileElementId:"photo",         //需要上传的图片域的id
                 dataType:"json",                 //后台返回的数据类型
                 success:function (data) {            //成功的时候回调的函数
                     if(data.code==0){
                         //失败
-                        console.log(data.message);
-                        alert("网络连接失败，请稍后再试")
+                        //console.log(data.message);
+                        alert("网络连接失败，请稍后再试");
                     }else if(data.code==1){
                         //更改用户信息成功
-                        location.href="user_info.html";
+                        $("#form_commit").css("display","none");
+                        $("#alter_show").css("display","block");
+//                        console.log(data);
                     }
                 },
-                error:function () {              //失败的时候回调的函数
-
+                error:function (e) {              //失败的时候回调的函数
+                    console.log(e);
                 }
             });
 

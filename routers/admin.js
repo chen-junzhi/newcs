@@ -227,9 +227,78 @@ router.get("/share",function (req,res,next) {
 });
 
 router.get("/info",function (req,res,next) {
-    res.render("admin/info",{
-        userInfo:req.session.user
+    var uname=req.query.uname;
+    //console.log(uname);
+    pool.getConnection(function (err,conn) {
+        conn.query("select * from user where uname=?",[uname],function (err,result) {
+            conn.release();
+            res.render("admin/info",{
+                userInfo:req.session.user
+            })
+            //console.log(result);
+        });
+
     });
+});
+router.get("/saveInfo",function (req,res,next) {
+    var uname=req.query.uname;
+    //console.log(uname);
+    pool.getConnection(function (err,conn) {
+        conn.query("select * from user where uname=?",[uname],function (err,result) {
+            conn.release();
+            res.render("admin/info",{
+                userInfo:req.session.user
+            })
+            console.log(result);
+        });
+
+    });
+});
+
+router.post("/info",upload.array("photo"),function(req,res,next){
+    var realname=req.body.realname;
+    var idcard=req.body.idcard;
+    var email=req.body.email;
+    var sex=req.body.sex;
+    var local=req.body.local;
+    var uname=req.body.uname;
+    //console.log(sex);
+
+    // console.log(realname+"_"+idcard+"_"+uname+"_"+local);
+
+    pool.getConnection(function (err,conn) {
+        //先把文件上传
+        if(req.files!=undefined){
+            var file;
+            var fileName;
+            var filePath="";
+            for(var i in req.files){
+                file=req.files[i];
+                fileName=new Date().getTime() + "_" + file.originalname;
+                fs.renameSync(file.path, __dirname + "/../public/pic/" + fileName);
+                if(filePath!=""){
+                    filePath+=",";
+                }
+                filePath+="/pic/"+fileName;
+                // console.log(filePath);
+            }
+        }
+        conn.query("update user set realname=?,sex=?,idcard=?,email=?,pic=?,local=? where uname=? ",
+            [realname,sex,idcard,email,filePath,local,uname],function (err,result) {
+                conn.release();
+                if(err){
+                    console.log(err);
+                }else{
+                    msg.code=1;
+                    msg.message="修改成功";
+                    res.render("admin/info",{
+                        msg:msg,
+                        userInfo:req.session.user
+                    });
+                }
+            });
+    });
+
 });
 
 router.get("/user_set",function (req,res,next) {

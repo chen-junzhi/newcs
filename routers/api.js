@@ -89,7 +89,13 @@ router.post("/user/login",function (req,res,next) {
                     req.session.user={
                         _id:result[0].uid,
                         uname:result[0].uname,
-                        isAdmin:result[0].isAdmin
+                        isAdmin:result[0].isAdmin,
+                        realname:result[0].realname,
+                        sex:result[0].sex,
+                        idcard:result[0].idcard,
+                        email:result[0].email,
+                        local:result[0].local,
+                        pic:result[0].pic
                     };
                     res.json(resData);
                     //console.log(req.session.user);

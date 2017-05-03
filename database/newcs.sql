@@ -10,6 +10,16 @@ CREATE TABLE `user` (
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+
+
+//为user表添加字段
+alter table user add realname varchar(10);
+alter table user add sex varchar(10);
+alter table user add idcard varchar(30);
+alter table user add email varchar(30);
+alter table user add pic varchar(100);
+alter table user add local varchar(30);
+
 -- ----------------------------
 -- Table structure for `type`
 -- ----------------------------
@@ -32,19 +42,7 @@ create table taskInfo(
     pic varchar(1000)
 );
 
-//新建用户信息表
-DROP TABLE IF EXISTS `userInfo`;
-CREATE TABLE `userInfo`(
-  `uid` int AUTO_INCREMENT,
-  `realname` varchar(10),
-  `sex` varchar(10),
-  `idcard` varchar(30),
-  `email` varchar(30),
-  `location` varchar(30),
-  `pic` varchar(30),
-  PRIMARY KEY (`uid`)
-);
-alter table userInfo add foreign key(uid) references user(uid);
+
 
 alter table taskInfo add foreign key(uid) references user(uid);
 alter table taskInfo add foreign key(tid) references type(tid);
