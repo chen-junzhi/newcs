@@ -30,11 +30,43 @@ var msg={
 };
 
 router.get("/",function (req,res,next) {
-    res.render("admin/user_task",{
-        userInfo:req.session.user
+    //确保你绝对是从第一页开始的
+    var page=Number( req.query.page || 1 );
+    var size=7; //默认每一页显示7条数据
+    //获取用户所有信息
+    pool.getConnection(function(err,conn){
+        conn.query("select * from taskApply where uid=?",[req.session.user._id],function(err,result){
+            //console.log(req.session.user._id);
+            var count=result.length;
+            var pages=Math.ceil(count/size);
+            //控制一下页数
+            page=Math.min(page,pages);
+            page=Math.max(1,page);
+            //还要查一次数据库
+            conn.query("select * from taskApply where uid=? limit ?,?",[req.session.user._id,size*(page-1),size],function (err, rs) {
+                conn.release();
+                if(err){
+                    console.log(err);
+                    result={};
+                    res.render("admin/user_task",{
+                        userInfo:req.session.user,
+                        allTask:rs
+                    });
+                }else{
+                    res.render("admin/user_task",{
+                        userInfo:req.session.user,
+                        allTask:rs,
+                        tag:"",
+                        page:page,
+                        pages:pages,
+                        count:count,
+                        size:size
+                    });
+                }
+            });
+        });
     });
 });
-
 //用户管理首页
 router.get("/user_index",function (req, res) {
     //确保你绝对是从第一页开始的
