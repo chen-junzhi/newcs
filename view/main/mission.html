@@ -4,8 +4,9 @@
 <div id="mission">
     <div class="mission_box">
         <div class="mis_menu">
-            <ul>
-                <li><a href="/mission?num=2"   class="navs actie" >全部</a></li>
+
+            <ul class="m_menu_ul">
+                <li class="all_li"><a href="/mission?num=2"   class="navs" >全部</a></li>
                 {% for type in Types %}
                 <li ><a href="/mission?tid={{type.tid}}"  class="navs " >{{type.tname}}</a></li>
                 {% endfor %}
@@ -68,11 +69,19 @@
     }
 
     $(function(){
-        var lis=$(".mis_menu").find("li");
-        lis.on("click",function(){
-            $(this).find("a").addClass("actie").parent().siblings().find("a").removeClass("actie");
-            //console.log($(this).find("a").parent().siblings());
-        });
+        var reg=/\?/;
+        var str=location.href;
+        var ttid=str.split("?")[1].split("=")[0];
+        if(reg.test(str)&&ttid=="tid"){
+            var lis=$(".m_menu_ul").find("li");
+            var num=str.split("?")[1].split("=")[1];
+            //console.log(num);
+            lis.eq(num-8).find("a").css("color","#ED5239");
+        }else if(reg.test(str)&&ttid=="num"){
+            $(".all_li").find("a").css("color","#ED5239");
+        }
+
+
 
         var zui=$(".zui").find("li.m_new,li.m_hot");
         //console.log(zui);
