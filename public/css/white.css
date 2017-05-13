@@ -85,17 +85,20 @@
     display: block;
 }
 .task_menu_list ul li{
-    width:204px;
-    margin:0px 5px;
+    width:168px;
+    margin:0px 22px;
     display: block;
     white-space: nowrap;
     float: left;
     text-align: center;
     overflow:hidden ;
 }
-.task_menu_list ul li a:hover{
+.task_menu_list ul li:hover{
     border-bottom:2px solid #ea5e43 ;
-    color:#ea5e43;
+
+}
+.task_menu_list ul li a:hover{
+    color:#ea5e43 !important;
 }
 .task_menu_item{
     height:55px;
@@ -103,6 +106,10 @@
     font-size: 24px;
     color:#626262;
 }
+.actived{
+    color:#EA5E43;
+}
+
 .task_list .task_text{
     padding:70px 0px 85px;
     background: #efefef;
@@ -129,6 +136,9 @@
 }
 .text_c1.text_c2,.text_c3,.text_c4,.text_c5{
     font-size: 15px;
+}
+.active{
+    border-bottom: 2px solid #EA5E43;
 }
 .text_c1 p,.text_c2 p,.text_c3 p,.text_c4 p,.text_c5 p{
     color:red;
