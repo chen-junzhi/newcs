@@ -201,7 +201,7 @@
 .pager li:nth-child(2){
     margin-left:80px;
 }
-.next{
+.next2{
     margin-left:80px;
     width:80px;
     height:40px;
@@ -213,12 +213,12 @@
 .pager li a{
     color:#000;
 }
-.next:hover,.pager li:nth-child(1):hover{
+.next2:hover,.pager li:nth-child(1):hover{
     background-color:#34C9C6 ;
     opacity: 0.5;
 
 }
-.next:hover a,.pager li:nth-child(1):hover a{
+.next2:hover a,.pager li:nth-child(1):hover a{
     color:#fff;
 }
 .pages{

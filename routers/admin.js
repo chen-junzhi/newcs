@@ -30,11 +30,43 @@ var msg={
 };
 
 router.get("/",function (req,res,next) {
-    res.render("admin/user_task",{
-        userInfo:req.session.user
+    //确保你绝对是从第一页开始的
+    var page=Number( req.query.page || 1 );
+    var size=7; //默认每一页显示7条数据
+    //获取用户所有信息
+    pool.getConnection(function(err,conn){
+        conn.query("select * from taskApply where uid=?",[req.session.user._id],function(err,result){
+            //console.log(req.session.user._id);
+            var count=result.length;
+            var pages=Math.ceil(count/size);
+            //控制一下页数
+            page=Math.min(page,pages);
+            page=Math.max(1,page);
+            //还要查一次数据库
+            conn.query("select * from taskApply where uid=? limit ?,?",[req.session.user._id,size*(page-1),size],function (err, rs) {
+                conn.release();
+                if(err){
+                    console.log(err);
+                    result={};
+                    res.render("admin/user_task",{
+                        userInfo:req.session.user,
+                        allTask:rs
+                    });
+                }else{
+                    res.render("admin/user_task",{
+                        userInfo:req.session.user,
+                        allTask:rs,
+                        tag:"",
+                        page:page,
+                        pages:pages,
+                        count:count,
+                        size:size
+                    });
+                }
+            });
+        });
     });
 });
-
 //用户管理首页
 router.get("/user_index",function (req, res) {
     //确保你绝对是从第一页开始的
@@ -195,9 +227,78 @@ router.get("/share",function (req,res,next) {
 });
 
 router.get("/info",function (req,res,next) {
-    res.render("admin/info",{
-        userInfo:req.session.user
+    var uname=req.query.uname;
+    //console.log(uname);
+    pool.getConnection(function (err,conn) {
+        conn.query("select * from user where uname=?",[uname],function (err,result) {
+            conn.release();
+            res.render("admin/info",{
+                userInfo:req.session.user
+            })
+            //console.log(result);
+        });
+
     });
+});
+router.get("/saveInfo",function (req,res,next) {
+    var uname=req.query.uname;
+    //console.log(uname);
+    pool.getConnection(function (err,conn) {
+        conn.query("select * from user where uname=?",[uname],function (err,result) {
+            conn.release();
+            res.render("admin/info",{
+                userInfo:req.session.user
+            })
+            console.log(result);
+        });
+
+    });
+});
+
+router.post("/info",upload.array("photo"),function(req,res,next){
+    var realname=req.body.realname;
+    var idcard=req.body.idcard;
+    var email=req.body.email;
+    var sex=req.body.sex;
+    var local=req.body.local;
+    var uname=req.body.uname;
+    //console.log(sex);
+
+    // console.log(realname+"_"+idcard+"_"+uname+"_"+local);
+
+    pool.getConnection(function (err,conn) {
+        //先把文件上传
+        if(req.files!=undefined){
+            var file;
+            var fileName;
+            var filePath="";
+            for(var i in req.files){
+                file=req.files[i];
+                fileName=new Date().getTime() + "_" + file.originalname;
+                fs.renameSync(file.path, __dirname + "/../public/pic/" + fileName);
+                if(filePath!=""){
+                    filePath+=",";
+                }
+                filePath+="/pic/"+fileName;
+                // console.log(filePath);
+            }
+        }
+        conn.query("update user set realname=?,sex=?,idcard=?,email=?,pic=?,local=? where uname=? ",
+            [realname,sex,idcard,email,filePath,local,uname],function (err,result) {
+                conn.release();
+                if(err){
+                    console.log(err);
+                }else{
+                    msg.code=1;
+                    msg.message="修改成功";
+                    res.render("admin/info",{
+                        msg:msg,
+                        userInfo:req.session.user
+                    });
+                }
+            });
+    });
+
 });
 
 router.get("/user_set",function (req,res,next) {
@@ -247,6 +348,29 @@ router.post("/user/set",function(req,res,next){
     });
 });
 
+router.post("/del",function(req,res){
+    var num=req.body.num;
+    pool.getConnection(function(err,conn){
+        if(err){
+            msg.code=0;
+            msg.message="网络连接失败，请稍后重试...";
+            res.json(msg);
+        }else{
+            conn.query("delete from taskApply where tid=?",[num],function (err, result) {
+                conn.release();
+                if(err){
+                    msg.code=0;
+                    msg.message="网络连接失败，请稍后重试...";
+                    res.json(msg);
+                }else{
+                    msg.code=1;
+                    msg.message="任务删除成功！";
+                    res.json(msg);
+                }
+            });
+        }
+    });
+});
 
 
 

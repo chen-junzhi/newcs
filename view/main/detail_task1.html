@@ -14,7 +14,7 @@
             <div class="maitop_box">
                 <div class="mat_left">
                     {% for task in allTask %}
-                    <p class="left_item">首页/任务大厅/{{task.tname}}/{{task.title}}</p>
+                    <p class="left_item">首页/任务大厅/<span id="type">{{task.tname}}</span>/{{task.title}}</p>
 
                     <div class="left_det">
                         <div class="left_img"><img src="../../public{{task.pic}}" width="250" height="188" /></div>
@@ -24,7 +24,7 @@
 
                             <p>发布时间: <span  id="pubtime2">{{task.pubTime}}</span></p>
                             <p>任务时间:  {{task.pubTime}}至 <span id="delay2"></span></p>
-                            <p class="det_num">招募人数: <span>{{task.num}}</span>人 | 申请人数: 人 | 申请成功: 人</p>
+                            <p class="det_num">招募人数: <span id="num">{{task.num}}</span>人 | 申请人数: 人 | 申请成功: 人</p>
                             {% endfor %}
                             <button id="det_appli">马上申请</button>
                             <button id="det_sc">加入收藏</button>
@@ -43,7 +43,7 @@
                         <div class="circle_box">
                             <p>任务佣金</p>
                             {% for task in allTask %}
-                            <p>￥{{task.price}}.00</p>
+                            <p>￥<span id="price">{{task.price}}</span>.00</p>
                             {% endfor %}
                         </div>
                     </div>
@@ -253,6 +253,43 @@ $(function () {
     }
     var delayTime=y+"-"+m+"-"+ad[2];
     delay2.html(delayTime);
+
+    $("#det_appli").on("click",function() {
+        if($("#login").length>0){
+            alert("请先登录");
+        }else{
+            if(confirm("您确定申请该任务吗？")){
+                //已经登陆成功，接下来要在个人中心显示当前任务，把本页的数据传给个人中心页面？
+                var src=$(".left_img").find("img").attr("src");
+                var type=$("#type").html();
+                var price=$("#price").html();
+                var num=$("#num").html();
+                var title=$(".det_item").html();
+
+                $.ajax({
+                    type:"post",
+                    url:"/task_apply",
+                    data:{
+                        src:src,
+                        type:type,
+                        title:title,
+                        price:price,
+                        num:num,
+                        pubtime2:pubtime2,
+                        delayTime:delayTime
+                    },
+                    dataType:"json",
+                    success:function(data){
+                        if(data.code==1){
+                            alert("任务申请成功，可到个人中心查看");
+                        }else{
+                            alert("网络连接失败，请稍后重试");
+                        }
+                    }
+                });
+            }
+        }
+    });
 })
 
 </script>

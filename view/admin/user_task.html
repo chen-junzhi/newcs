@@ -5,7 +5,7 @@
     <h1>我的任务</h1>
     <div class="task_box">
         <ul class="tab_menu">
-            <li class="current">已申请(0)</li>
+            <li class="current">已申请(<span id="apply"></span>)</li>
             <li>待审核(0)</li>
             <li>已完成(0)</li>
             <li>全部(0)</li>
@@ -13,15 +13,31 @@
         <div class="tab_box">
             <div>
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="member_table" id="list1">
-                    <tbody><tr>
-                        <th align="center">任务名称</th>
-                        <th align="center">任务类型</th>
-                        <th align="center">奖励金额</th>
-                        <th align="center">申请时间</th>
-                        <th align="center">状态</th>
-                        <th align="center">操作</th>
-                    </tr>
-                    </tbody></table>
+                    <tbody>
+                        <tr>
+                            <th align="center">任务编号</th>
+                            <th align="center">任务名称</th>
+                            <th align="center">任务类型</th>
+                            <th align="center">奖励金额</th>
+                            <th align="center">任务发布时间</th>
+                            <th align="center">任务截止时间</th>
+                            <th align="center">招募人数</th>
+                            <th align="center">操作</th>
+                        </tr>
+                        {% for task in allTask %}
+                        <tr>
+                            <td align="center">{{task.tid}}</td>
+                            <td align="center"><img src="{{task.src}}" width="80" height="80"></td>
+                            <td align="center">{{task.type}}</td>
+                            <td align="center"><span style="color:#f00;">￥{{task.price}}</span></td>
+                            <td align="center">{{task.pubtime2}}</td>
+                            <td align="center">{{task.delayTime}}</td>
+                            <td align="center"><span class="colornone">{{task.num}}</span></td>
+                            <td align="center"><button class="delete_task" onclick="del('{{task.tid}}')">删除</button></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -32,6 +48,37 @@
     lis.on("click",function(){  //返回被选元素的所有同胞元素
         $(this).addClass("current").siblings().removeClass("current");
     });
-</script>
+    var number=$(".tab_box").find("tr").length-1;
+    $("#apply").html(number);
+    //console.log($(".tab_box").find("tr").length-1);
 
+    function del(num){
+        //console.log(td);
+        //console.log(td.parentNode.parentNode);
+        /*var tr=td.parentNode.parentNode;
+        if(confirm("您确定要删除这个任务吗？")){
+            tr.remove();
+        }*/
+        //删除数据库的数据
+        if(confirm("您确定要删除这条任务吗？")){
+            $.ajax({
+                type:"post",
+                url:"/admin/del",
+                data:{
+                    num:num
+                },
+                dataType:"json",
+                success:function(data){
+                    if(data.code==1){
+                        alert("任务删除成功！");
+                        location.reload();
+                    }else{
+                        alert("网络连接失败，请稍后重试");
+                    }
+                }
+            });
+        }
+    }
+</script>
+{% include 'page.html' %}
 {%endblock%}

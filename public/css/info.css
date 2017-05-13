@@ -92,21 +92,26 @@
     display: none;
     margin-top:5px;
 }
-.commit_btn{
+.commit_btn,.alter_btn{
     padding: 0px 0px 20px 95px;
 }
-.commit_btn a{
+.commit_btn a,.alter_btn a{
     background: #ff6600;
     display: block;
     width:28px;
     height:18px;
     padding: 10px 20px;
-    margin: 20px 0px;
+    margin: 20px 15px;
     color: #fff;
     -webkit-border-radius:3px;
     -moz-border-radius:3px;
     border-radius:3px;
 }
-.commit_btn a:hover{
+.commit_btn a input{
+    background: none;
+    border:none;
+    color:#fff;
+}
+.commit_btn a:hover,.alter_btn a:hover{
     opacity:0.9;
 }

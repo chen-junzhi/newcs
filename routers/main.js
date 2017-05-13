@@ -127,9 +127,9 @@ router.get("/mission",function (req,res,next) {
                         }
                     })
                 }else if(id){
-                    conn.query("select skid,uid,type.tid,tname,title,price,num,pubTime,pic from taskInfo,type where type.tid=taskInfo.tid order by pubTime desc limit ?,?",[size*(pageNo-1),size],function(err,resu){
+                    conn.query("select skid,uid,type.tid,tname,title,price,num,pubTime,pic from taskInfo,type where type.tid=taskInfo.tid order by pubTime desc limit ?,?",[size*(pageNo-1),size],function(err,rs){
                         conn.release();
-                        if(err||resu.length<=0){
+                        if(err||rs.length<=0){
                             res.render("main/mission",{
                                 userInfo:req.session.user,
                                 msg:"暂无消息",
@@ -138,7 +138,7 @@ router.get("/mission",function (req,res,next) {
                         }else{
                             res.render("main/mission",{
                                 userInfo:req.session.user,
-                                allTask:resu,
+                                allTask:rs,
                                 Types:r,
                                 tag:"mission",
                                 pageNo:pageNo,
@@ -149,8 +149,8 @@ router.get("/mission",function (req,res,next) {
                             //console.log(r);
                         }
                     })
-
-                }else{
+                }
+                else{
                     conn.query("select skid,uid,type.tid,tname,title,price,num,pubTime,pic from taskInfo,type where type.tid=taskInfo.tid order by tid limit ?,?",[size*(pageNo-1),size],function(err,rs){
                         conn.release();
                         if(err||rs.length<=0){
@@ -175,7 +175,6 @@ router.get("/mission",function (req,res,next) {
                     })
                 }
 
-
             })});
     })
 
@@ -198,10 +197,35 @@ router.get("/article",function (req,res) {
         userInfo:req.session.user
     });
 });
-router.get("/task/apply",function (req,res) {
-    //使用模版引擎去渲染页面，两个参数： 路径 分配给这个页面使用的数据
-    res.render("main/article",{
-        userInfo:req.session.user
+router.post("/task_apply",function (req,res) {
+    var src=req.body.src;
+    var type=req.body.type;
+    var title=req.body.title;
+    var price=req.body.price;
+    var num=req.body.num;
+    var pubtime2=req.body.pubtime2;
+    var delayTime=req.body.delayTime;
+    var msg={
+        code:-1,
+        msg:""
+    };
+    //console.log(src+"--"+type+"--"+price+"--"+num+"--"+pubtime2+"--"+delayTime);
+    pool.getConnection(function (err, conn) {
+        conn.query("insert into taskApply values(null,?,?,?,?,?,?,?,?)",
+            [req.session.user._id,src, type, title, price, num,pubtime2,delayTime], function (err, result) {
+                conn.release();
+                if (!err) {
+                    msg.code = 1;
+                    msg.msg = "申请成功";
+                    res.send(msg);
+                    //  console.log(msg);
+                } else {
+                    console.log(err);
+                    msg.code = 0;
+                    msg.msg = "数据库错误";
+                    res.send(msg);
+                }
+            });
     });
 });
 
